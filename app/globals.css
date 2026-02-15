@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-primary: #e27b32;
   --color-primary-dark: #5e391c;
@@ -14,23 +15,50 @@
   --radius-xl: 0.75rem;
   --radius-2xl: 1rem;
   --radius-full: 9999px;
+
+  --color-brown: var(--foreground);
 }
+
+:root {
+  --background: var(--color-background-light);
+  --foreground: var(--color-primary-dark);
+  --glass-bg: rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.3);
+}
+
+.dark {
+  --background: var(--color-background-dark);
+  --foreground: #f8f7f6;
+  --glass-bg: rgba(33, 24, 17, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Utilities */
 .glass-card {
-  background: rgba(255, 255, 255, 0.4);
+  background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--glass-border);
 }
+
 .liquid-glass-gradient {
-  background: linear-gradient(
-    135deg,
-    rgba(226, 123, 50, 0.1) 0%,
-    rgba(255, 255, 255, 0.4) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(226, 123, 50, 0.1) 0%,
+      rgba(255, 255, 255, 0.4) 100%);
 }
-.text-brown {
-  color: #5e391c;
+
+.dark .liquid-glass-gradient {
+  background: linear-gradient(135deg,
+      rgba(226, 123, 50, 0.1) 0%,
+      rgba(33, 24, 17, 0.4) 100%);
 }
+
 .slider-thumb::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -42,10 +70,63 @@
   border: 3px solid white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+.dark .slider-thumb::-webkit-slider-thumb {
+  border-color: #211811;
+}
+
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 15s linear infinite;
+}
+
+.pause-on-hover:hover .animate-scroll {
+  animation-play-state: paused;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes reverse-spin-slow {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-reverse-spin-slow {
+  animation: reverse-spin-slow 20s linear infinite;
 }

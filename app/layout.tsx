@@ -32,12 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
-          rel="stylesheet"
-        />
-      </head>
+
       <body className="bg-background-light dark:bg-background-dark font-display text-primary-dark antialiased">
         <div className=" bg-red-600 text-white text-center text-sm font-extrabold py-3 px-4 uppercase tracking-wide">
           ⚠ this website is under development. <br />
@@ -45,7 +40,7 @@ export default function RootLayout({
           <br />
           Email: ownestfinance@gmail.com <br />
           Phone: +61 0414060000
-        </div>{" "}
+        </div>
         <Header /> {children}
         <Footer />
       </body>
