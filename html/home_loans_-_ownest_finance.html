@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Home Loans - Ownest Finance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e27b32",
+                        "primary-dark": "#5e391c",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#211811",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .glass-dark {
+            background: rgba(33, 24, 17, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .liquid-icon {
+            background: linear-gradient(135deg, rgba(226, 123, 50, 0.2) 0%, rgba(255, 255, 255, 0.4) 100%);
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+        body {
+            color: #5e391c;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased">
+<!-- Navigation -->
+<nav class="fixed w-full z-50 top-0 left-0 glass dark:glass-dark border-b border-white/20">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-icons">account_balance</span>
+</div>
+<span class="text-2xl font-extrabold tracking-tight text-primary-dark dark:text-white">OWNEST</span>
+</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Home Loans</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Calculators</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Rates</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">About</a>
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded text-sm font-bold transition-all shadow-lg shadow-primary/20">
+                    Get Started
+                </button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Modern luxury home" class="w-full h-full object-cover" data-alt="Modern luxury minimalist architectural home exterior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIxw3_AatR8tvAO12z-JQpVcfs5bEkeKUSVqIROE8TFcw7Mytj9l8J4MJ_I9tzym-DlUTrWKzHxStDDyNTY4oPCUMtFlNFJr4oWoXjHVpzJ9Q-3TR4TVqomO15gn9xhWQ8Oy9tLnAoAmmY4S4tWUe528Ea1tPGVg3clKqFsRU3wSk7ylOxayIN48o2gxQXAMPDnkyQ0B87cOrjaA9Sx8bboqCP-s8UwJiaAbssbMtHV77cqFlL_blaT78ZXI8exisKqxnAxVO7MYZF"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background-light/40 to-transparent"></div>
+</div>
+<div class="container mx-auto px-6 relative z-10">
+<div class="max-w-xl glass p-10 rounded-xl shadow-2xl">
+<span class="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4">Premium Financing</span>
+<h1 class="text-5xl md:text-6xl font-extrabold text-primary-dark mb-6 leading-[1.1]">Own your future, beautifully.</h1>
+<p class="text-lg text-primary-dark/80 mb-8 leading-relaxed">Experience a new standard of home financing. Bespoke loan solutions crafted for those who value precision, speed, and elegance.</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded font-bold text-base transition-all">Apply Now</button>
+<button class="glass border-primary/20 hover:bg-white/50 px-8 py-4 rounded font-bold text-base transition-all flex items-center justify-center gap-2">
+<span class="material-icons text-sm">play_circle</span> View Rates
+                    </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Key Features Grid -->
+<section class="py-24 bg-background-light dark:bg-background-dark">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-extrabold text-primary-dark dark:text-white mb-4">Why Ownest Finance?</h2>
+<div class="w-20 h-1 bg-primary mx-auto rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Low Rates -->
+<div class="glass p-8 rounded-xl border border-white/50 hover:shadow-xl transition-all group">
+<div class="w-16 h-16 rounded-full liquid-icon flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-icons text-primary text-3xl">trending_down</span>
+</div>
+<h3 class="text-xl font-bold text-primary-dark dark:text-white mb-3">Industry Low Rates</h3>
+<p class="text-primary-dark/70 dark:text-white/70 leading-relaxed">Access market-leading interest rates negotiated directly with premier banking institutions.</p>
+</div>
+<!-- Flexible Terms -->
+<div class="glass p-8 rounded-xl border border-white/50 hover:shadow-xl transition-all group">
+<div class="w-16 h-16 rounded-full liquid-icon flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-icons text-primary text-3xl">tune</span>
+</div>
+<h3 class="text-xl font-bold text-primary-dark dark:text-white mb-3">Flexible Terms</h3>
+<p class="text-primary-dark/70 dark:text-white/70 leading-relaxed">Customizable repayment structures that align with your unique cash flow and wealth goals.</p>
+</div>
+<!-- Pre-approval -->
+<div class="glass p-8 rounded-xl border border-white/50 hover:shadow-xl transition-all group">
+<div class="w-16 h-16 rounded-full liquid-icon flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-icons text-primary text-3xl">bolt</span>
+</div>
+<h3 class="text-xl font-bold text-primary-dark dark:text-white mb-3">Fast Pre-approval</h3>
+<p class="text-primary-dark/70 dark:text-white/70 leading-relaxed">Digital-first processing that delivers pre-approval results in as little as 24 hours.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Loan Categories -->
+<section class="py-24 bg-primary/5">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+<div>
+<img alt="First home buyers" class="rounded-xl shadow-2xl" data-alt="Beautiful modern living room with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQK3jpBQse0l2rh1QTrvRqnOJ_bjv1yyme_LgyM-m0ofXrFyrP9Q8xJc7a1a3BQnuZpugnU3Y76tXTPrVoUxGipr7qs1nIZc2QnM2UYBQVxdw6Wk9GLSJ46q3gyIvAzkhTPnE0hDLgmi8hAvE2UgTfORTSvpoMWaaMMauaN5h2c8P2Xj6PNXgBjg2R1b8d-HthvbulgTRAjjyUYDOzTex9UMSq3wQF8k8VEfOD8FzGJlGZO9k1SWk8DrAtNVXzP1VeF1QbmgCi4FCI"/>
+</div>
+<div>
+<span class="text-primary font-bold text-sm uppercase tracking-widest mb-4 block">Tailored Solutions</span>
+<h2 class="text-4xl font-extrabold text-primary-dark dark:text-white mb-6">First Home Buyers</h2>
+<p class="text-lg text-primary-dark/80 dark:text-white/80 mb-8 leading-relaxed">Stepping into the property market should be a celebration, not a stress. We provide the guidance and low-deposit options you need to secure your first sanctuary.</p>
+<ul class="space-y-4 mb-8">
+<li class="flex items-center gap-3 font-semibold text-primary-dark dark:text-white">
+<span class="material-icons text-primary">check_circle</span> 5% Deposit schemes available
+                        </li>
+<li class="flex items-center gap-3 font-semibold text-primary-dark dark:text-white">
+<span class="material-icons text-primary">check_circle</span> Expert grant assistance
+                        </li>
+</ul>
+<button class="border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold px-8 py-3 rounded transition-all">Learn More</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24 lg:flex-row-reverse">
+<div class="lg:order-2">
+<img alt="Investment property" class="rounded-xl shadow-2xl" data-alt="Sleek glass high-rise building reflecting the sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3qBsXYdoAN8GprMPdIdWJBQ5c6-zU_Yix1UuX5OJVrN9PZLoXOTnv2VXn1fTKO236WCit4-d6T44j7TaYpDr4sV5Ds2Xa0sa7kAEevUvMSZ4rpH8pMh2Ma8Bs4GWWLdimNOWL52x7LA5-YtyJCL4RduB6B9Xf-J-a1hoV8TpIQWTk1ikKJh9fQ43SAwyLJzAfh0vGYWTXq7GM3rE_71g4Mz87Ook8JHLGmZkle8cSxQh9TJnXx53vkQWWI1bu--K9XuCxludu5l8H"/>
+</div>
+<div class="lg:order-1">
+<span class="text-primary font-bold text-sm uppercase tracking-widest mb-4 block">Wealth Growth</span>
+<h2 class="text-4xl font-extrabold text-primary-dark dark:text-white mb-6">Investment Loans</h2>
+<p class="text-lg text-primary-dark/80 dark:text-white/80 mb-8 leading-relaxed">Maximize your portfolio's potential with interest-only options and tax-effective lending strategies designed for sophisticated investors.</p>
+<ul class="space-y-4 mb-8">
+<li class="flex items-center gap-3 font-semibold text-primary-dark dark:text-white">
+<span class="material-icons text-primary">check_circle</span> Portfolio review &amp; optimization
+                        </li>
+<li class="flex items-center gap-3 font-semibold text-primary-dark dark:text-white">
+<span class="material-icons text-primary">check_circle</span> Competitive equity access
+                        </li>
+</ul>
+<button class="border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold px-8 py-3 rounded transition-all">Investor Solutions</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<img alt="Construction site" class="rounded-xl shadow-2xl" data-alt="Architectural plans and construction of a modern house" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdKuJ_vcKKYUj-V_1MI40cIu2VAYI3jrgi48EGdqpBtJW6gGjy-v00kZRFhW526Iy7Q4G_BAHjIQduFOOrJu1Ccy17pL8lMPfdefiPsrUdbujjO83uCAPVcwadOnGR5EJqDdqEZ0vWy2kFecdUVZghtZu-Z5TJSYiiDUz0RifqYTNRePdrzfs2kt4LnVZzr2nRflTSZR6RbuyVSF_9t0OdbsyAcj9GswcX4eP1aKk00BtDTErNEI_6a9u-sBXVUzOXZZCri5f5fjjd"/>
+</div>
+<div>
+<span class="text-primary font-bold text-sm uppercase tracking-widest mb-4 block">Build Your Vision</span>
+<h2 class="text-4xl font-extrabold text-primary-dark dark:text-white mb-6">Construction Loans</h2>
+<p class="text-lg text-primary-dark/80 dark:text-white/80 mb-8 leading-relaxed">Finance your build in stages. Our construction loans offer interest-only payments during the build phase to keep your costs manageable.</p>
+<ul class="space-y-4 mb-8">
+<li class="flex items-center gap-3 font-semibold text-primary-dark dark:text-white">
+<span class="material-icons text-primary">check_circle</span> Progress payment management
+                        </li>
+<li class="flex items-center gap-3 font-semibold text-primary-dark dark:text-white">
+<span class="material-icons text-primary">check_circle</span> Simple drawdown process
+                        </li>
+</ul>
+<button class="border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold px-8 py-3 rounded transition-all">Start Building</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Eligibility Form Section -->
+<section class="py-24 relative overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Residential landscape" class="w-full h-full object-cover opacity-20" data-alt="Soft focused background of a leafy high-end suburb" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmCVk5qmGsvxryHg9FAScFdNNqZZ953E-oJ8Vg7ujA0VFZaU1x4LYch0VlvCwnU36n9SYqMJU8FO6Sww-87T3jgYTFhc_lPuIyH9pGvYcjNgw1IJn0kk947h04ElqPLVxJwlXg4qJLdVy6DAzB3vJyNKY6BE3Rq8dHRFtY-Q5mAceRFeDRxJyXt0MrwLJSLOn8gO-afCUI98WVRLssTA4IhfoBrX2TmtyBE3i3WJvQiR71oNGb0qOUCPGzCH2-DIVjBXaENGQDqxmt"/>
+</div>
+<div class="max-w-4xl mx-auto px-6 relative z-10">
+<div class="glass p-12 rounded-xl shadow-2xl border border-white">
+<div class="text-center mb-10">
+<h2 class="text-3xl md:text-4xl font-extrabold text-primary-dark mb-4">Check Your Eligibility</h2>
+<p class="text-primary-dark/70">Take the first step towards your new home. It only takes 2 minutes.</p>
+</div>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-sm font-bold text-primary-dark">Desired Loan Amount</label>
+<input class="w-full px-4 py-3 bg-white/50 border border-primary/20 rounded focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-primary-dark/40" placeholder="$0.00" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-bold text-primary-dark">Property Value</label>
+<input class="w-full px-4 py-3 bg-white/50 border border-primary/20 rounded focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-primary-dark/40" placeholder="$0.00" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-sm font-bold text-primary-dark">Full Name</label>
+<input class="w-full px-4 py-3 bg-white/50 border border-primary/20 rounded focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-primary-dark/40" placeholder="John Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-bold text-primary-dark">Email Address</label>
+<input class="w-full px-4 py-3 bg-white/50 border border-primary/20 rounded focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-primary-dark/40" placeholder="john@example.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-bold text-primary-dark">Loan Type</label>
+<select class="w-full px-4 py-3 bg-white/50 border border-primary/20 rounded focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all appearance-none">
+<option>First Home Buyer</option>
+<option>Investment Property</option>
+<option>Refinance</option>
+<option>Construction</option>
+</select>
+</div>
+<button class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded text-lg shadow-xl shadow-primary/30 transition-all uppercase tracking-widest mt-4" type="button">
+                        Submit Assessment
+                    </button>
+<p class="text-center text-xs text-primary-dark/50 mt-4">By clicking submit, you agree to our terms of service and privacy policy.</p>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-background-dark text-white py-16">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-icons text-sm">account_balance</span>
+</div>
+<span class="text-xl font-extrabold tracking-tight">OWNEST</span>
+</div>
+<p class="text-white/60 text-sm leading-relaxed">Redefining luxury property finance through transparency, technology, and human expertise.</p>
+</div>
+<div>
+<h4 class="font-bold mb-6">Solutions</h4>
+<ul class="space-y-3 text-sm text-white/60">
+<li><a class="hover:text-primary transition-colors" href="#">Owner Occupier</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Investor</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">First Home Buyers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Refinancing</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">Company</h4>
+<ul class="space-y-3 text-sm text-white/60">
+<li><a class="hover:text-primary transition-colors" href="#">Our Story</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Press</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">Contact</h4>
+<ul class="space-y-3 text-sm text-white/60">
+<li class="flex items-center gap-2"><span class="material-icons text-xs">phone</span> 1300 OWNEST</li>
+<li class="flex items-center gap-2"><span class="material-icons text-xs">email</span> hello@ownest.finance</li>
+<li class="flex items-center gap-2"><span class="material-icons text-xs">location_on</span> Level 42, Tower One, Sydney</li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/40">
+<p>© 2024 Ownest Finance Pty Ltd. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-white transition-colors" href="#">Credit Guide</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

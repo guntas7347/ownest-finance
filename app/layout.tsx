@@ -34,7 +34,7 @@ export default function RootLayout({
     <html lang="en">
 
       <body className="bg-background-light dark:bg-background-dark font-display text-primary-dark antialiased">
-        <div className=" bg-red-600 text-white text-center text-sm font-extrabold py-3 px-4 uppercase tracking-wide">
+        <div className="hidden bg-red-600 text-white text-center text-sm font-extrabold py-3 px-4 uppercase tracking-wide">
           ⚠ this website is under development. <br />
           OWNEST FINANCE PTY LTD
           <br />

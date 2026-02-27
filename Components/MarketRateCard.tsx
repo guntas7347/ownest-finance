@@ -54,7 +54,7 @@ export default function MarketRateCard({
         if (!isVisible) return;
 
         let startTimestamp: number | null = null;
-        const duration = 1000 * 3; // 2 seconds
+        const duration = 1000 * 1.5; // 2 seconds
 
         const step = (timestamp: number) => {
             if (!startTimestamp) startTimestamp = timestamp;

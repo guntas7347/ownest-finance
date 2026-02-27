@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ownest Finance | Tailored Asset Loans</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e27b32",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#211811",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+        }
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .dark .liquid-glass {
+            background: rgba(33, 24, 17, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(226, 123, 50, 0.1);
+        }
+        .bg-gradient-mesh {
+            background-color: #f8f7f6;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(226, 123, 50, 0.08) 0, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(226, 123, 50, 0.05) 0, transparent 50%);
+        }
+        .dark .bg-gradient-mesh {
+            background-color: #1a120b;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(226, 123, 50, 0.15) 0, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(226, 123, 50, 0.05) 0, transparent 50%);
+        }
+        .custom-slider::-webkit-slider-runnable-track {
+            background: rgba(226, 123, 50, 0.2);
+            height: 4px;
+            border-radius: 2px;
+        }
+        .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            background: #e27b32;
+            border-radius: 50%;
+            margin-top: -8px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(226, 123, 50, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-100 transition-colors duration-300">
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 liquid-glass border-b border-white/10">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-icons text-white">account_balance</span>
+</div>
+<span class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white uppercase">Ownest<span class="text-primary">Finance</span></span>
+</div>
+<div class="hidden md:flex items-center gap-8 text-sm font-semibold uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Residential</a>
+<a class="text-primary underline underline-offset-8" href="#">Assets</a>
+<a class="hover:text-primary transition-colors" href="#">Commercial</a>
+<a class="hover:text-primary transition-colors" href="#">Advisory</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2 rounded-full border border-primary/30 text-primary font-semibold hover:bg-primary/10 transition-all">Client Portal</button>
+<button class="px-6 py-2 rounded-full bg-primary text-white font-semibold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">Contact Us</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-mesh">
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+</div>
+<div class="container mx-auto px-6 relative z-10 text-center">
+<span class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6">Bespoke Financial Solutions</span>
+<h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-white mb-6 leading-tight">
+                    Tailored Asset <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">Finance Excellence</span>
+</h1>
+<p class="max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400 mb-10 leading-relaxed font-light">
+                    Elevate your lifestyle and operational capacity with bespoke lending solutions for luxury vehicles, marine vessels, and high-performance industrial equipment.
+                </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+<button class="w-full sm:w-auto px-8 py-4 bg-primary text-white rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-primary/40 transition-all flex items-center justify-center gap-2">
+                        Get Started <span class="material-icons">arrow_forward</span>
+</button>
+<button class="w-full sm:w-auto px-8 py-4 liquid-glass text-slate-800 dark:text-white rounded-xl font-bold text-lg hover:bg-white/50 transition-all">
+                        View Rates
+                    </button>
+</div>
+</div>
+</section>
+<!-- Asset Breakdown -->
+<section class="py-24 container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Vehicle Card -->
+<div class="liquid-glass p-8 rounded-2xl group hover:transform hover:-translate-y-2 transition-all duration-500">
+<div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-icons text-primary text-3xl">directions_car</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Luxury Vehicles</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        From rare collectibles and vintage restorations to modern supercars and high-end luxury fleets.
+                    </p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-icons text-primary text-xs">fiber_manual_record</span> Exotic Car Financing</li>
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-icons text-primary text-xs">fiber_manual_record</span> Classic Car Acquisitions</li>
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-icons text-primary text-xs">fiber_manual_record</span> Executive Fleet Leasing</li>
+</ul>
+<img class="w-full h-48 object-cover rounded-xl grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Silver luxury sports car parked in modern garage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo5EcMrTGzSJDgY3D-sFIVDsT7XrfkP3XIa2HNIBHXsE8NvU5pNDa1U57apLT59E5TKcH9OwpNrQ-ZnQHoSNEGUvWyz93GU3B-UvUC-shW8tqhipR843XETjgXr1uutwczbzb8jnBwj85bQxQsKRinToAqWsA7yVOLkQ3JB9WB1zu1UfPoXnLviJJ-fVx50J0o_u7i52TOgqHG_AV8njDVvvgW-FXf6q0qNTkeLdZmqHxg_5E-GuEZpPuCJp_kv3-3R3erwxPAgwfU"/>
+</div>
+<!-- Marine Card -->
+<div class="liquid-glass p-8 rounded-2xl group hover:transform hover:-translate-y-2 transition-all duration-500">
+<div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-icons text-primary text-3xl">directions_boat</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Marine Vessels</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Bespoke financial structures for private leisure yachts, luxury catamarans, and specialized commercial vessels.
+                    </p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-icons text-primary text-xs">fiber_manual_record</span> Private Yacht Loans</li>
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-icons text-primary text-xs">fiber_manual_record</span> Refit &amp; Overhaul Finance</li>
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-icons text-primary text-xs">fiber_manual_record</span> Commercial Marine Leasing</li>
+</ul>
+<img class="w-full h-48 object-cover rounded-xl grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Luxury white yacht cruising on calm blue water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBicDtrb93eCs_PhpSKjVRC0NXncgVWij5KvrplZeg0hprBhTjqEb_TCs-APoTBiUXtitrlRNdtSHvCCb6GMOXzJ_6n9TDa8Q86s7bml8OwiLU2yPbvpXiCBVsUYGu8BVIPPCWEI4HHgkumjAmYm705xhkXeOlLqgkexGzyM4Ei3_IR9bHbGVw-aTF0bWCxA7DVoL8vefHswiatoKa-BsbM-qhD1AT_Xf1w9glsEoMgUw741aO-HPMqdNnOkcu2HuM9IF2HPJfGbxIG"/>
+</div>
+<!-- Industrial Card -->
+<div class="liquid-glass p-8 rounded-2xl group hover:transform hover:-translate-y-2 transition-all duration-500">
+<div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-icons text-primary text-3xl">settings_input_component</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Industrial Assets</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Strategic funding for high-value industrial equipment, medical technology, and specialized manufacturing lines.
+                    </p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-icons text-primary text-xs">fiber_manual_record</span> Precision Machinery Finance</li>
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-icons text-primary text-xs">fiber_manual_record</span> MedTech Acquisition</li>
+<li class="flex items-center gap-2 text-sm font-medium"><span class="material-icons text-primary text-xs">fiber_manual_record</span> Production Line Expansion</li>
+</ul>
+<img class="w-full h-48 object-cover rounded-xl grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="High tech industrial robotics in clean facility" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7gSUK0b6bziuAPZntr13E2ZAUyaX-vzl9mpk9o90saWl7mTaPx4WqgY1mgjaMHajfjTJ3RkTVJfPgOVZLUDLxOXpuaEDNqELo5VlY193kmr3kUrIpKDMwEIhRbXBizeO58buBD2oku-s4oFP9sbQIsHdsP9UOXSy1CGUKwE8KF6aA-IuK4LWO_m4VPkfHgSg7IZrL9k1NsDB7J6DCZfZvMTtfVNSlglu4u_0BPIgBIcSnfYq7COCeUPt2YxvWxt7TZiC5LUZNVV-l"/>
+</div>
+</div>
+</section>
+<!-- Calculator Section -->
+<section class="py-24 bg-primary/5">
+<div class="container mx-auto px-6">
+<div class="max-w-5xl mx-auto liquid-glass rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row">
+<!-- Calculator Inputs -->
+<div class="flex-1 p-10 lg:p-16 border-b lg:border-b-0 lg:border-r border-slate-200 dark:border-white/10">
+<h2 class="text-3xl font-bold mb-10">Asset Finance <span class="text-primary">Calculator</span></h2>
+<div class="space-y-10">
+<div>
+<div class="flex justify-between items-center mb-4">
+<label class="text-sm font-bold uppercase tracking-widest text-slate-500">Asset Value</label>
+<span class="text-2xl font-bold text-primary">$250,000</span>
+</div>
+<input class="w-full custom-slider h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer" max="1000000" min="10000" step="5000" type="range" value="250000"/>
+</div>
+<div>
+<div class="flex justify-between items-center mb-4">
+<label class="text-sm font-bold uppercase tracking-widest text-slate-500">Deposit Amount</label>
+<span class="text-2xl font-bold text-primary">$50,000</span>
+</div>
+<input class="w-full custom-slider h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer" max="500000" min="0" step="1000" type="range" value="50000"/>
+</div>
+<div>
+<div class="flex justify-between items-center mb-4">
+<label class="text-sm font-bold uppercase tracking-widest text-slate-500">Loan Term (Years)</label>
+<span class="text-2xl font-bold text-primary">5 Years</span>
+</div>
+<div class="grid grid-cols-5 gap-4">
+<button class="py-2 rounded-lg bg-primary text-white text-sm font-bold">1</button>
+<button class="py-2 rounded-lg bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-bold border border-slate-200 dark:border-white/10 hover:border-primary transition-all">2</button>
+<button class="py-2 rounded-lg bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-bold border border-slate-200 dark:border-white/10 hover:border-primary transition-all">3</button>
+<button class="py-2 rounded-lg bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-bold border border-slate-200 dark:border-white/10 hover:border-primary transition-all">4</button>
+<button class="py-2 rounded-lg bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-bold border border-slate-200 dark:border-white/10 hover:border-primary transition-all">5</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Calculator Results -->
+<div class="lg:w-96 p-10 lg:p-16 bg-slate-900 dark:bg-slate-950 text-white flex flex-col justify-center">
+<p class="text-slate-400 text-sm font-bold uppercase tracking-widest mb-2">Estimated Monthly Payment</p>
+<h3 class="text-6xl font-extrabold text-primary mb-8">$3,840<span class="text-xl font-normal text-slate-500">.00</span></h3>
+<div class="space-y-4 mb-10">
+<div class="flex justify-between text-sm py-3 border-b border-white/10">
+<span class="text-slate-400">Interest Rate (Fixed)</span>
+<span class="font-bold">5.45% p.a.</span>
+</div>
+<div class="flex justify-between text-sm py-3 border-b border-white/10">
+<span class="text-slate-400">Total Interest Payable</span>
+<span class="font-bold">$30,400</span>
+</div>
+<div class="flex justify-between text-sm py-3">
+<span class="text-slate-400">Application Fee</span>
+<span class="font-bold text-primary">$595</span>
+</div>
+</div>
+<button class="w-full py-4 bg-primary text-white rounded-xl font-bold hover:bg-orange-500 transition-all shadow-xl shadow-primary/20">Apply for Finance</button>
+<p class="text-[10px] text-slate-500 mt-6 text-center leading-relaxed italic">
+                            *This calculator is an estimate only and does not constitute an offer of credit. Subject to approval.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Comparison Table -->
+<section class="py-24 container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-extrabold mb-4">Compare Our <span class="text-primary">Asset Programs</span></h2>
+<p class="text-slate-500 max-w-xl mx-auto">Select the financing structure that best aligns with your fiscal strategy and asset lifecycle.</p>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-separate border-spacing-y-4">
+<thead>
+<tr class="text-slate-400 uppercase text-xs tracking-[0.2em] font-bold">
+<th class="px-8 py-4">Loan Structure</th>
+<th class="px-8 py-4">Rate Type</th>
+<th class="px-8 py-4 text-center">Standard Rate</th>
+<th class="px-8 py-4 text-center">Max Term</th>
+<th class="px-8 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody>
+<!-- Row 1 -->
+<tr class="liquid-glass group cursor-pointer">
+<td class="px-8 py-6 rounded-l-2xl">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/5 flex items-center justify-center text-primary">
+<span class="material-icons text-xl">account_balance_wallet</span>
+</div>
+<div>
+<div class="font-bold text-slate-900 dark:text-white">Chattel Mortgage</div>
+<div class="text-xs text-slate-500">Ownership from day one</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-slate-600 dark:text-slate-400">Fixed or Variable</td>
+<td class="px-8 py-6 text-center">
+<span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-sm font-bold">From 5.25%</span>
+</td>
+<td class="px-8 py-6 text-center font-semibold">7 Years</td>
+<td class="px-8 py-6 text-right rounded-r-2xl">
+<button class="px-4 py-2 text-primary font-bold hover:underline">Details</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="liquid-glass group cursor-pointer">
+<td class="px-8 py-6 rounded-l-2xl">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/5 flex items-center justify-center text-primary">
+<span class="material-icons text-xl">history_edu</span>
+</div>
+<div>
+<div class="font-bold text-slate-900 dark:text-white">Finance Lease</div>
+<div class="text-xs text-slate-500">Tax effective leasing</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-slate-600 dark:text-slate-400">Fixed</td>
+<td class="px-8 py-6 text-center">
+<span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-sm font-bold">From 5.80%</span>
+</td>
+<td class="px-8 py-6 text-center font-semibold">5 Years</td>
+<td class="px-8 py-6 text-right rounded-r-2xl">
+<button class="px-4 py-2 text-primary font-bold hover:underline">Details</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="liquid-glass group cursor-pointer">
+<td class="px-8 py-6 rounded-l-2xl">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/5 flex items-center justify-center text-primary">
+<span class="material-icons text-xl">event_repeat</span>
+</div>
+<div>
+<div class="font-bold text-slate-900 dark:text-white">Novated Leasing</div>
+<div class="text-xs text-slate-500">Salary sacrificed vehicles</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-slate-600 dark:text-slate-400">Fixed</td>
+<td class="px-8 py-6 text-center">
+<span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-sm font-bold">From 6.10%</span>
+</td>
+<td class="px-8 py-6 text-center font-semibold">5 Years</td>
+<td class="px-8 py-6 text-right rounded-r-2xl">
+<button class="px-4 py-2 text-primary font-bold hover:underline">Details</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="liquid-glass group cursor-pointer">
+<td class="px-8 py-6 rounded-l-2xl">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-white/5 flex items-center justify-center text-primary">
+<span class="material-icons text-xl">precision_manufacturing</span>
+</div>
+<div>
+<div class="font-bold text-slate-900 dark:text-white">Operating Lease</div>
+<div class="text-xs text-slate-500">For industrial equipment</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-slate-600 dark:text-slate-400">Variable</td>
+<td class="px-8 py-6 text-center">
+<span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-sm font-bold">From 6.50%</span>
+</td>
+<td class="px-8 py-6 text-center font-semibold">10 Years</td>
+<td class="px-8 py-6 text-right rounded-r-2xl">
+<button class="px-4 py-2 text-primary font-bold hover:underline">Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 container mx-auto px-6">
+<div class="relative bg-slate-900 rounded-3xl p-12 lg:p-24 overflow-hidden text-center">
+<div class="absolute inset-0 opacity-30">
+<img class="w-full h-full object-cover" data-alt="Abstract golden currency coins in soft focus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD0Hog0-MxICwyyAiG63hwoldkzkhzObIbxrqHSfulWt7PJeKoypN-s9E5fn7xlY8BQe_ZuzYnfavQO3YhSyNYuazRUhq16IKn7G5WqoXoSKUH1Fr-TNnL9EbJ_u9uXm7bSjC3-geYLezdmxya4OmzhRaQ1raZnD5Rk5kvu7FG6hV-Qg9btSrKUY4AaqudBIVAWwh-e_HEzQ-KfGKjeTUUEALzcx8htpVRsZWb75lJfr45DlHnC9SF-eiCr8_ByZPapPv7xMKNamAo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-3xl mx-auto">
+<h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8">Ready to secure your <span class="text-primary">next milestone?</span></h2>
+<p class="text-slate-400 text-lg mb-12">Our advisors are standing by to design a financing structure as unique as the asset you're acquiring. Let's build your future together.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<button class="px-10 py-5 bg-primary text-white rounded-xl font-bold text-xl hover:scale-105 transition-all shadow-2xl shadow-primary/20">Book a Consultation</button>
+<button class="px-10 py-5 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-xl font-bold text-xl hover:bg-white/20 transition-all">Download Brochure</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background-light dark:bg-background-dark py-16 border-t border-slate-200 dark:border-white/5">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-2 mb-6">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons text-white text-sm">account_balance</span>
+</div>
+<span class="text-lg font-extrabold tracking-tight text-slate-900 dark:text-white uppercase">Ownest<span class="text-primary">Finance</span></span>
+</div>
+<p class="text-slate-500 max-w-sm leading-relaxed mb-8">Providing elite financial advisory and lending services for high-net-worth individuals and growth-oriented businesses across the globe.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-icons text-xl text-[18px]">facebook</span></a>
+<a class="w-10 h-10 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-icons text-xl text-[18px]">alternate_email</span></a>
+<a class="w-10 h-10 rounded-full border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-icons text-xl text-[18px]">share</span></a>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-widest text-sm">Services</h4>
+<ul class="space-y-4 text-slate-500 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Residential Lending</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Asset Finance</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Commercial Loans</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Debt Restructuring</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-6 uppercase tracking-widest text-sm">Global Offices</h4>
+<ul class="space-y-4 text-slate-500 text-sm">
+<li class="flex items-start gap-2"><span class="material-icons text-primary text-sm mt-0.5">place</span> Sydney, Australia</li>
+<li class="flex items-start gap-2"><span class="material-icons text-primary text-sm mt-0.5">place</span> London, UK</li>
+<li class="flex items-start gap-2"><span class="material-icons text-primary text-sm mt-0.5">place</span> New York, USA</li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-slate-200 dark:border-white/5 text-[10px] text-slate-400 uppercase tracking-widest">
+<p>© 2024 Ownest Finance. All rights reserved.</p>
+<div class="flex gap-8 mt-4 md:mt-0">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Credit Guide</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

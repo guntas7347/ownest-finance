@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ownest Finance | Finance Your Future</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e27b30",
+                        "primary-dark": "#5e391c",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#211811",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .liquid-glass-gradient {
+            background: linear-gradient(135deg, rgba(226, 123, 48, 0.1) 0%, rgba(255, 255, 255, 0.4) 100%);
+        }
+        .text-brown {
+            color: #5e391c;
+        }
+        .slider-thumb::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #e27b30;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .timeline-path {
+            background-image: linear-gradient(to right, transparent, #e27b30 15%, #e27b30 85%, transparent);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-primary-dark antialiased">
+<nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between glass-card px-6 py-3 rounded-full shadow-sm">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons-round text-white text-xl">auto_graph</span>
+</div>
+<span class="font-extrabold text-xl tracking-tight text-brown">Ownest Finance</span>
+</div>
+<div class="hidden md:flex items-center gap-8 font-medium">
+<a class="text-brown hover:text-primary transition-colors" href="#">Asset Loan</a>
+<a class="text-brown hover:text-primary transition-colors" href="#">Other Loans</a>
+<a class="text-brown hover:text-primary transition-colors" href="#">About</a>
+<a class="text-brown hover:text-primary transition-colors" href="#">Resources</a>
+</div>
+<button class="bg-primary hover:bg-orange-600 text-white font-bold py-2.5 px-6 rounded-full transition-all shadow-lg shadow-orange-500/20 active:scale-95">
+                Get Free Consultation
+            </button>
+</div>
+</nav>
+<section class="relative pt-32 pb-20 overflow-hidden min-h-screen flex items-center">
+<div class="absolute top-0 right-0 w-1/2 h-full -z-10 bg-gradient-to-l from-orange-50/50 to-transparent"></div>
+<div class="absolute -top-20 -right-20 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px]"></div>
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-8">
+<div class="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-bold tracking-wide">
+                    TRUSTED ASSET LENDING
+                </div>
+<h1 class="text-6xl md:text-8xl font-extrabold text-brown leading-none tracking-tighter">
+                    Finance <br/>Your <span class="text-primary italic">Future</span>
+</h1>
+<p class="text-xl text-brown/70 max-w-lg leading-relaxed">
+                    Bespoke financial architecture for high-net-worth individuals. Experience the seamless synergy of liquid-glass aesthetics and solid financial growth.
+                </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="bg-primary text-white font-bold py-4 px-10 rounded-xl shadow-xl shadow-orange-500/30 hover:-translate-y-1 transition-transform">
+                        Start Application
+                    </button>
+<button class="bg-white/50 backdrop-blur-md border border-white text-brown font-bold py-4 px-10 rounded-xl hover:bg-white transition-all">
+                        View Products
+                    </button>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute inset-0 bg-primary/10 blur-3xl rounded-full scale-75 group-hover:scale-100 transition-transform duration-700"></div>
+<div class="relative w-full aspect-square flex items-center justify-center">
+<img alt="3D liquid glass bird in flight" class="w-full h-full object-contain transform group-hover:rotate-2 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXNInfceEFr6M4oDo8gZQzcggE-GkU9l_jCEIm3vd2rH4JkRkknkEwtiAJxiVUJxvSBiPCmK4aREyNsqcHKgQVlOYVx-8WrTNBNoKjL5ZW6DqaQboyV56ExJm8n4k75gPluORnxIhbdIjH4dviZmZquc84WjJK01JaNtT7IPJst_hV8IF9VrmFhaQu3C7w4cAu7zdOWLY2OLufC43yhymacFjNv9xZv4mJ-p5LFbvVTSa-qgmwUZIIzNsHJGN1dBoNQLq1It8Ey_R2"/>
+</div>
+<div class="absolute -top-10 right-0 glass-card p-4 rounded-2xl shadow-xl transform hover:-translate-y-2 transition-transform">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center">
+<span class="material-icons-round text-blue-500">home</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-brown/50 uppercase tracking-widest">Home Loan</p>
+<div class="flex items-center gap-2">
+<p class="text-xl font-black text-brown">5.4%</p>
+<span class="material-icons-round text-green-500 text-sm">trending_down</span>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute top-1/2 -right-4 glass-card p-4 rounded-2xl shadow-xl transform hover:-translate-y-2 transition-transform">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-icons-round text-primary">account_balance</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-brown/50 uppercase tracking-widest">Asset Loan</p>
+<div class="flex items-center gap-2">
+<p class="text-xl font-black text-brown">6.2%</p>
+<span class="material-icons-round text-red-500 text-sm">trending_up</span>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-1/4 -left-8 glass-card p-4 rounded-2xl shadow-xl transform hover:-translate-y-2 transition-transform">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center">
+<span class="material-icons-round text-emerald-500">currency_exchange</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-brown/50 uppercase tracking-widest">USD/AUD</p>
+<div class="flex items-center gap-2">
+<p class="text-xl font-black text-brown">1.54</p>
+<span class="material-symbols-outlined text-green-500 text-sm font-bold">arrow_upward</span>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-8 right-1/4 glass-card p-4 rounded-2xl shadow-xl transform hover:-translate-y-2 transition-transform">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center">
+<span class="material-icons-round text-purple-500">euro_symbol</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-brown/50 uppercase tracking-widest">EUR/AUD</p>
+<div class="flex items-center gap-2">
+<p class="text-xl font-black text-brown">1.62</p>
+<span class="material-symbols-outlined text-red-500 text-sm font-bold">arrow_downward</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-12 border-y border-brown/5 bg-white/30 overflow-hidden">
+<div class="max-w-7xl mx-auto px-6">
+<p class="text-center text-brown/40 font-bold text-xs uppercase tracking-[0.3em] mb-10">Strategic Global Partners</p>
+<div class="flex flex-nowrap items-center justify-between gap-12 grayscale opacity-40 hover:opacity-80 transition-opacity overflow-x-auto hide-scrollbar">
+<img class="h-8 flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPZouahtkaGK-JIiBuB824BLFQX81MIuUFoHCs5mHibpt3PMosM1_jssemvFWoF6ZMinN8PRXALddgfu0-Q5XHV3icONW4BcJsUYYbthOpZVCVjSLdAxeoFJet8csSbbs-snk9h3PU7WylnWn_4bO_PQGGC0a32wpqbcKcW6EP3svoP5RMh9S8QNmytJC48uxxHblJZBeBBeAimh8q7wgMzxRBh9le74VQhv7lQWbUsM0SNs72BlWFiGnSen-J1qHkTmhm2Wsj6Az0"/>
+<img class="h-8 flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxI33BXuswgIZLWYLpKbfeSltmg3EqJ67aQcrMtMpML0WKszvQ7bp4IWWg7RTCWUALqO5UQ8vZ2TOBaQQMMd8FfSPLpeZX9e-Bznn30NMEDP38tJE6pbFVfh8R0JmLf8HBaRDA9F8oQp8aIOECsn2tdXFVgavMMU5aUobt2JyCGJsZS2OshDkVj-5K7WHykkcsH1QdodhApNh0m3f3SSy8H1HBXAVgcDTsT7eq-tEhCStOGM6PutfPxocoOkaC5sMtra8c1g7A6mKv"/>
+<img class="h-8 flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9EgK8hFWemTzfM3waBUs57pV1-7Sv8Ew-yfytYq8FntA8I6fdRZWfDirxBuW74AW71ho3Y_YIrTJBWhAFXdwwEiJ7De8yJETMxVmAO3M7UYn5Ok0MSfXE2VsA-UD1JgjgqZiiiBoZJsi_Rt8YIMWKYf9x50L9pjiKT_rDz_ZmmT6xn-0okZ5nX2h5C7ai1gwF_JWC4WWRGCZ_F9mLFZem5Oy6qAY8qAZ1ht8dpw58DA02L9wu6Kt00B-APs0giPLnp9qC79Z4j1Yc"/>
+<img class="h-8 flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjHfoke0L7mGap3LyC98-87XyeQXYF9DLH67K4RvJDQyH37LRbdXW3AND0-dMnz3U1yZZIhNNySlkQrEfIAHrlj4CJsGEXD7tLMRAsbpP1g5GbnGljaHaACPaBBr0y7dWQ6u-b9DYs1Of5ik1hE8safJuITOKzEjNyT71Ev5Rti3X1S3QRf2-yRWoXxNSaRYfhR12kdnxpStwFbcO4pt9seVT-o8VypPCXDYXrQnCYETpSa-B83RZhgyAgVJZyUsR1hU1IDNMx0p-M"/>
+<img class="h-8 flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFtsj41adXFso2apj5N9TLO6ORpD8LqpefCWQ1a6XDeRhimN4ULfIgi1U4L7Pb-OBRqGrvYBZS_HrZJMMveKGwOQszsoh2JSlUCkSgmOW99br0jFQeDVqjrdRPG_SZmqqvJA1z8xBmCuIEKqm7qJ5v93wHvqaegryeykNmoGjZLKGWdkLA0jBVJKN84mUfIEHTvCJ5Mi37_eRY9EtekiePYe668sFxgV4spYgqoFw3x49u5nT5s-ebmtxIcXc5gtml3haWehw71z2l"/>
+<img class="h-8 flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9HGXVhOVIMUlDpGW-UlQAWiPmicJgtm9zFPE8wXbrwr54OqcbZjysBfPQCuSEv87fhOOKBsezvE6OWakDW6O3hi-soD52_B14mBnPjMM690TU6YruhrWaspK7J6oUPMbOlbiyk5SjPF-eRUWmQrUy30WBFqv59BcgIsHbEJs1qW5a1vVCwi9i-RnlZPGyNNqw0nqsHB1b68CTFMavCkQlOyDjYng4iCgL-ImEGu4MdoZ45iPD3a252arQG8EdpV0jvfO_PFoAakZ5"/>
+</div>
+</div>
+</section>
+<section class="py-24 bg-white relative">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-20">
+<h2 class="text-5xl font-extrabold text-brown tracking-tight">Our Simple 4-Step Process</h2>
+<p class="mt-4 text-xl text-brown/60">The architectural journey to your financial empowerment.</p>
+</div>
+<div class="relative">
+<div class="absolute top-1/4 left-0 w-full h-[2px] timeline-path hidden lg:block"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+<div class="relative flex flex-col items-center text-center group">
+<div class="w-20 h-20 glass-card rounded-2xl flex items-center justify-center mb-6 border-primary/20 group-hover:scale-110 transition-transform relative z-10">
+<span class="material-symbols-outlined text-primary text-4xl">chat_bubble</span>
+<div class="absolute -top-3 -right-3 w-8 h-8 bg-primary text-white text-xs font-black rounded-full flex items-center justify-center border-4 border-white">1</div>
+</div>
+<h3 class="text-xl font-bold text-brown mb-3">Consultation</h3>
+<p class="text-brown/60 leading-relaxed px-4">Expert dialogue to understand your unique portfolio and long-term goals.</p>
+</div>
+<div class="relative flex flex-col items-center text-center group">
+<div class="w-20 h-20 glass-card rounded-2xl flex items-center justify-center mb-6 border-primary/20 group-hover:scale-110 transition-transform relative z-10">
+<span class="material-symbols-outlined text-primary text-4xl">description</span>
+<div class="absolute -top-3 -right-3 w-8 h-8 bg-primary text-white text-xs font-black rounded-full flex items-center justify-center border-4 border-white">2</div>
+</div>
+<h3 class="text-xl font-bold text-brown mb-3">Application</h3>
+<p class="text-brown/60 leading-relaxed px-4">Seamless digital documentation and high-speed asset verification.</p>
+</div>
+<div class="relative flex flex-col items-center text-center group">
+<div class="w-20 h-20 glass-card rounded-2xl flex items-center justify-center mb-6 border-primary/20 group-hover:scale-110 transition-transform relative z-10">
+<span class="material-symbols-outlined text-primary text-4xl">verified_user</span>
+<div class="absolute -top-3 -right-3 w-8 h-8 bg-primary text-white text-xs font-black rounded-full flex items-center justify-center border-4 border-white">3</div>
+</div>
+<h3 class="text-xl font-bold text-brown mb-3">Approval</h3>
+<p class="text-brown/60 leading-relaxed px-4">Instant preliminary decision followed by formal luxury-tier underwriting.</p>
+</div>
+<div class="relative flex flex-col items-center text-center group">
+<div class="w-20 h-20 glass-card rounded-2xl flex items-center justify-center mb-6 border-primary/20 group-hover:scale-110 transition-transform relative z-10">
+<span class="material-symbols-outlined text-primary text-4xl">payments</span>
+<div class="absolute -top-3 -right-3 w-8 h-8 bg-primary text-white text-xs font-black rounded-full flex items-center justify-center border-4 border-white">4</div>
+</div>
+<h3 class="text-xl font-bold text-brown mb-3">Funding</h3>
+<p class="text-brown/60 leading-relaxed px-4">Rapid deployment of capital directly to your designated accounts.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 relative overflow-hidden bg-background-light">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-20 items-center">
+<div class="space-y-6">
+<h2 class="text-5xl font-extrabold text-brown tracking-tight">Precision Wealth <br/>Planning.</h2>
+<p class="text-lg text-brown/60">Our intelligent calculator provides immediate clarity on your borrowing capacity, tailored to modern asset valuation.</p>
+<ul class="space-y-4 pt-4">
+<li class="flex items-center gap-3 text-brown font-semibold">
+<span class="material-icons-round text-primary">check_circle</span>
+                            Real-time interest rate sync
+                        </li>
+<li class="flex items-center gap-3 text-brown font-semibold">
+<span class="material-icons-round text-primary">check_circle</span>
+                            No hidden processing fees
+                        </li>
+<li class="flex items-center gap-3 text-brown font-semibold">
+<span class="material-icons-round text-primary">check_circle</span>
+                            Customizable repayment structures
+                        </li>
+</ul>
+</div>
+<div class="glass-card p-10 rounded-3xl shadow-2xl relative overflow-hidden">
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="space-y-10">
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<label class="text-sm font-bold text-brown/60 uppercase">Loan Amount</label>
+<span class="text-3xl font-black text-brown">$500,000</span>
+</div>
+<input class="w-full h-2 bg-brown/10 rounded-full appearance-none slider-thumb cursor-pointer" max="2000000" min="10000" step="10000" type="range" value="500000"/>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<label class="text-sm font-bold text-brown/60 uppercase">Loan Term</label>
+<span class="text-3xl font-black text-brown">15 Years</span>
+</div>
+<input class="w-full h-2 bg-brown/10 rounded-full appearance-none slider-thumb cursor-pointer" max="30" min="1" step="1" type="range" value="15"/>
+</div>
+<div class="bg-primary-dark/5 p-8 rounded-2xl border border-brown/5 space-y-2">
+<p class="text-center text-sm font-bold text-brown/60 uppercase">Estimated Monthly Payment</p>
+<p class="text-center text-5xl font-black text-primary">$3,420.50</p>
+<p class="text-center text-xs text-brown/40 pt-4 italic">Based on indicative rate of 4.25% p.a.</p>
+</div>
+<button class="w-full bg-primary text-white font-bold py-5 rounded-xl text-lg hover:shadow-2xl hover:shadow-orange-500/40 transition-all">
+                            Check Eligibility Now
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-brown/5">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex justify-between items-end mb-16">
+<div class="space-y-4">
+<h2 class="text-5xl font-extrabold text-brown">Shared Success.</h2>
+<p class="text-xl text-brown/60">Voices from our global community of investors.</p>
+</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full border border-brown/10 flex items-center justify-center hover:bg-white transition-all text-brown">
+<span class="material-icons-round">west</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-brown/10 flex items-center justify-center hover:bg-white transition-all text-brown">
+<span class="material-icons-round">east</span>
+</button>
+</div>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="glass-card p-8 rounded-2xl border border-white/50 hover:-translate-y-2 transition-transform duration-500">
+<div class="flex gap-1 mb-6">
+<span class="material-icons-round text-primary text-sm">star</span>
+<span class="material-icons-round text-primary text-sm">star</span>
+<span class="material-icons-round text-primary text-sm">star</span>
+<span class="material-icons-round text-primary text-sm">star</span>
+<span class="material-icons-round text-primary text-sm">star</span>
+</div>
+<p class="text-lg text-brown leading-relaxed mb-8 italic">"The liquid-glass interface is just the surface. Their actual financial expertise helped me secure a $2M asset loan in record time."</p>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdtu8fpdbh0ahzbaOCQpkik2pYOY7w7ql5L3YkJNypW3gVYGs_i0WLKUMpsSy-FjgTxRi5PMtb7yqDym5rP7Ar9ICeQmJX5S6xyXXwDxPxChnXGOyp7bLV2zTLQYJJK00rNylk_6dLe7vzqsZk6xjO-QzBh1a5wyR2pTa7RykBYk_KYouCEtYabozt-LDhuU2NrY7Iz8FjywwFBOU_5bVY7RUxuFAPgsN-5QwXA-w4YkZG7CLH6ZwrD4WndqqtZu3Aoiy4lsKUMtRX"/>
+<div>
+<p class="font-bold text-brown">Marcus Chen</p>
+<p class="text-xs text-brown/50 uppercase font-bold tracking-wider">Property Developer</p>
+</div>
+</div>
+</div>
+<div class="glass-card p-8 rounded-2xl border border-white/50 hover:-translate-y-2 transition-transform duration-500 bg-white/60">
+<div class="flex gap-1 mb-6">
+<span class="material-icons-round text-primary text-sm">star</span>
+<span class="material-icons-round text-primary text-sm">star</span>
+<span class="material-icons-round text-primary text-sm">star</span>
+<span class="material-icons-round text-primary text-sm">star</span>
+<span class="material-icons-round text-primary text-sm">star</span>
+</div>
+<p class="text-lg text-brown leading-relaxed mb-8 italic">"Smooth, transparent, and remarkably high-end. Ownest doesn't just provide loans; they build long-term partnerships."</p>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvbcy8B5mEUao7l7_5qYiwx84toZryprW7x61vV7dPqF21ovQwuXXOBUf-X1COrusMGJga3Bfyf_WqJbma7-oAdwLg5oPOplsi1FmhNzKe1j_yRkWw_0sFFs-RPEcV_EkmBdj3dEvHBHxxIE4s3V3MyuJAsGvX3t_esR2fhqG8Y55SFfyLkZJsFjfMoTcIs7B8bHAucrfup6U34sEuHCjwYUth1_1EO5qgGaoWKYkNeth1LOPrSXCx5M85UNCH0OLUoSoCDIEV05Uq"/>
+<div>
+<p class="font-bold text-brown">Elena Rodriguez</p>
+<p class="text-xs text-brown/50 uppercase font-bold tracking-wider">Tech Entrepreneur</p>
+</div>
+</div>
+</div>
+<div class="glass-card p-8 rounded-2xl border border-white/50 hover:-translate-y-2 transition-transform duration-500">
+<div class="flex gap-1 mb-6">
+<span class="material-icons-round text-primary text-sm">star</span>
+<span class="material-icons-round text-primary text-sm">star</span>
+<span class="material-icons-round text-primary text-sm">star</span>
+<span class="material-icons-round text-primary text-sm">star</span>
+<span class="material-icons-round text-primary text-sm">star</span>
+</div>
+<p class="text-lg text-brown leading-relaxed mb-8 italic">"The best asset financing experience I've had in 20 years of investing. The calculator was pinpoint accurate."</p>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAETLbYJNaM1jFm090NW158yXuRzxMQUheSTv-p4DhpEh5CbkQuwtqdMbTn6TPF6BypvpRS_UOrMKNJPGAq0YnuRmyq2pwnw4xToAOanlnOGvVNSgfWZ27iVi2kawuv4Xvnu59auVrmKOmL9ajWNqhIlPRbahmrQSDVzekSK306dSbryvw_tXMcNWypN0_vPgKpkT-1wIM7FuSFBA7kQL8ZLJMRdeW1v2634IHOpfeuifVZbJQPrCRX0ahHaQUFtRt8BPUYS6lfiMZZ"/>
+<div>
+<p class="font-bold text-brown">David Sterling</p>
+<p class="text-xs text-brown/50 uppercase font-bold tracking-wider">Capital Investor</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 max-w-4xl mx-auto px-6">
+<div class="text-center mb-16 space-y-4">
+<h2 class="text-5xl font-extrabold text-brown">Clear Answers.</h2>
+<p class="text-xl text-brown/60">Everything you need to know about our premium lending.</p>
+</div>
+<div class="space-y-4">
+<div class="group">
+<div class="p-6 rounded-2xl bg-white border border-brown/5 hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex justify-between items-center">
+<h3 class="text-xl font-bold text-brown">What are the eligibility requirements for an asset loan?</h3>
+<span class="material-icons-round text-primary group-hover:rotate-180 transition-transform">expand_more</span>
+</div>
+<div class="mt-4 text-brown/70 leading-relaxed overflow-hidden max-h-0 group-hover:max-h-40 transition-all duration-300">
+                        Our asset loans are available to individuals with verifiable luxury assets or real estate portfolios. Minimum asset valuation usually starts at $500,000 for standard applications.
+                    </div>
+</div>
+</div>
+<div class="group">
+<div class="p-6 rounded-2xl bg-white border border-brown/5 hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex justify-between items-center">
+<h3 class="text-xl font-bold text-brown">How long does the consultation process take?</h3>
+<span class="material-icons-round text-primary group-hover:rotate-180 transition-transform">expand_more</span>
+</div>
+<div class="mt-4 text-brown/70 leading-relaxed overflow-hidden max-h-0 group-hover:max-h-40 transition-all duration-300">
+                        Initial consultations typically take 30-45 minutes. We aim to provide an indicative approval within 24-48 hours of document submission.
+                    </div>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-primary-dark text-white/90 py-20">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-4 gap-12 pb-16 border-b border-white/10">
+<div class="col-span-2 space-y-6">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons-round text-white text-xl">auto_graph</span>
+</div>
+<span class="font-extrabold text-2xl tracking-tight text-white">Ownest Finance</span>
+</div>
+<p class="max-w-md text-white/60 leading-relaxed">
+                        Redefining the architecture of modern wealth. We provide the capital and the clarity needed to navigate complex financial landscapes.
+                    </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<img class="w-5 h-5 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAh5yLzDEt1qEvtgtdyvkMRW2hQ1jyhFO9N08VBNLTJaDx78gPYrlKSlawrvLYingKaC64SZHU5GvkP1YrOXrKDBRFp_8HJu_fKiy2B4szGYoabITTtweA7fCoFeWqoo2Rzy2AuAL93eQ-R1bM52zpnqJ8eIEGwk8zNubgLqFCNY3tREV4MWlbgPrKOWgtlBRIf25wcK-XnMkzOOHqhV7khCulO2KELMu5kt1hDdMSDSP3DUoWdGmW0tW6apU6fU8sJnCfEo0w4-YCf"/>
+</a>
+<a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<img class="w-5 h-5 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAtyceKYzFFWwRe_Y_0fgd7pX9YzU7ajhIRPyGwmoTXmAiPCGAu2OjQTFXZFo9sERrDlQF8co1EUTkIsDtMClhWZq7d80gFWVXUx4EDKgTXu3ctAltZGLkB_YRUMFO5BjUSWRr9JlFLpzVmmL7uZb71-YW4hMCB6cG6VQYOSGEopNhbQgLdAe30QrtJkP7sZDDvOG-LzSE1WNv7AZ3g8XIHvCuVuWJ-QRmOSzfSoV3OONQVYbutZPNn87QU78loK-D5m0riwbOPYaq"/>
+</a>
+<a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<img class="w-5 h-5 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhYjcTNN-YaNYR1uznMCg2L5NOzWm3DYab1_ss_W5Lwr9k2VVi32TKvTmaQ6N95YGydrrWdmYDbw9Kb-CbMpiPlmNbjIgYRT3lWUijUoD9Z1asuVVaoHL9ogNqDQaJu8NXr9sBXa_z_UQUOqgK56p2u0XP7TcH2cafqIef2OIQJziK9XHmwCbG1ZxxWBHoWFpSnLbHUi2a5JL8YURcJOAIl-WLNkLOZCPpdRrAqpoSt-Nv2KO1icmbuzX3tmzP7dpFqBhreGHgsuR5"/>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-white mb-6 uppercase text-xs tracking-widest">Solutions</h4>
+<ul class="space-y-4 text-white/50 font-medium">
+<li><a class="hover:text-primary transition-colors" href="#">Asset Loans</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Home Financing</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Bridge Loans</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Wealth Management</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-white mb-6 uppercase text-xs tracking-widest">Company</h4>
+<ul class="space-y-4 text-white/50 font-medium">
+<li><a class="hover:text-primary transition-colors" href="#">Our Story</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Expert Team</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-white/40">
+<p>© 2024 Ownest Finance. All rights reserved.</p>
+<div class="flex gap-8">
+<span>Credit License: #493021</span>
+<span>ABN: 12 345 678 910</span>
+</div>
+</div>
+</div>
+</footer>
+
+</body></html>

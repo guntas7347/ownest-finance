@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Book an Appointment | Ownest Finance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e27b32",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#211811",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(226, 123, 50, 0.05);
+        }
+        .liquid-glass-dark {
+            background: rgba(33, 24, 17, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(226, 123, 50, 0.1);
+        }
+        .glass-gradient {
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Navigation Header -->
+<nav class="sticky top-0 z-50 w-full py-6 px-8 flex justify-between items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="flex items-center space-x-2">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="text-white font-bold text-xl">O</span>
+</div>
+<span class="text-2xl font-extrabold tracking-tight text-slate-800 dark:text-white uppercase">Ownest<span class="text-primary">Finance</span></span>
+</div>
+<div class="flex items-center space-x-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Services</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Insights</a>
+<a class="px-6 py-2 border border-primary/30 rounded-full text-sm font-semibold text-primary hover:bg-primary hover:text-white transition-all" href="#">Portal Login</a>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-6 py-12">
+<div class="flex flex-col lg:flex-row gap-12">
+<!-- Sidebar: Consultant & Progress -->
+<aside class="w-full lg:w-1/3 space-y-8">
+<!-- Consultant Card -->
+<div class="liquid-glass dark:liquid-glass-dark rounded-xl p-8 sticky top-32">
+<div class="relative w-24 h-24 mb-6 mx-auto lg:mx-0">
+<img alt="Lead Consultant" class="w-full h-full object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-500 shadow-xl" data-alt="Professional headshot of a male finance consultant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKJ0rBt5r6Le4Ql_fQNPVr0qktb39_Tp8DfiLSPd1FcwBVyPnffix9bJC7nZBVU7_0J1r7UsNeoJ2tV7p4fp8Uz8TE7y8haJpJ4mWJ4_Rymnt7gRsQxb363F7nlDCmuv0VqF_wWG58fRmhmkaehfdG0jOVi2PUyVsAsLxYHvx7k-I2VlViCzxFXgTfKp1u3n5Yfeco3eZLmDIor9iB_zZbJthgNQ8TKyKlz0mZV4tCvtiLE9L5Gufmz40PllnB0NnLRkYUuZxR7Qwz"/>
+<div class="absolute -bottom-2 -right-2 w-6 h-6 bg-green-500 border-4 border-white dark:border-background-dark rounded-full"></div>
+</div>
+<h2 class="text-2xl font-bold mb-1">Marcus Sterling</h2>
+<p class="text-primary font-semibold text-sm mb-4 uppercase tracking-wider">Senior Wealth Strategist</p>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
+                        Specializing in ultra-high-net-worth portfolio management and bespoke fiscal structural planning for the modern era.
+                    </p>
+<!-- Booking Progress -->
+<div class="space-y-6">
+<div class="flex items-center space-x-4">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs">1</div>
+<div class="w-0.5 h-10 bg-primary/20"></div>
+</div>
+<span class="font-bold text-sm">Select Service</span>
+</div>
+<div class="flex items-center space-x-4">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs">2</div>
+<div class="w-0.5 h-10 bg-primary/20"></div>
+</div>
+<span class="font-bold text-sm">Pick Date &amp; Time</span>
+</div>
+<div class="flex items-center space-x-4 opacity-40">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-500 flex items-center justify-center text-xs">3</div>
+</div>
+<span class="font-bold text-sm">Personal Details</span>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-primary/10">
+<div class="flex items-center space-x-3 text-slate-500 dark:text-slate-400 text-xs">
+<span class="material-icons text-primary text-lg">verified_user</span>
+<span>Secure encrypted booking process</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Booking Area -->
+<div class="w-full lg:w-2/3 space-y-8">
+<header class="mb-8">
+<h1 class="text-4xl font-extrabold mb-2 tracking-tight">Reserve Your Strategy Session</h1>
+<p class="text-slate-500 dark:text-slate-400">Secure your spot for a private consultation with Marcus.</p>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Liquid Glass Calendar -->
+<div class="liquid-glass dark:liquid-glass-dark rounded-xl p-6">
+<div class="flex items-center justify-between mb-8">
+<button class="p-2 hover:bg-primary/10 rounded-lg transition-colors">
+<span class="material-icons text-primary">chevron_left</span>
+</button>
+<h3 class="font-bold text-lg">October 2024</h3>
+<button class="p-2 hover:bg-primary/10 rounded-lg transition-colors">
+<span class="material-icons text-primary">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest">
+<div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div><div>Su</div>
+</div>
+<div class="grid grid-cols-7 gap-1">
+<!-- Empty spacers for calendar alignment -->
+<div class="aspect-square"></div><div class="aspect-square"></div>
+<!-- Calendar Days -->
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">1</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">2</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">3</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm text-slate-300 pointer-events-none">4</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm text-slate-300 pointer-events-none">5</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">6</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">7</button>
+<button class="aspect-square flex items-center justify-center rounded-lg bg-primary text-white shadow-lg shadow-primary/30 font-bold text-sm">8</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">9</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">10</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm text-slate-300 pointer-events-none">11</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm text-slate-300 pointer-events-none">12</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">13</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">14</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">15</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">16</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">17</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm text-slate-300 pointer-events-none">18</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm text-slate-300 pointer-events-none">19</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">20</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">21</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">22</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">23</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm">24</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm text-slate-300 pointer-events-none">25</button>
+<button class="aspect-square flex items-center justify-center rounded-lg hover:bg-primary/10 transition-all text-sm text-slate-300 pointer-events-none">26</button>
+</div>
+</div>
+<!-- Time Slots Selection -->
+<div class="space-y-6">
+<div class="liquid-glass dark:liquid-glass-dark rounded-xl p-6 h-full">
+<h3 class="font-bold text-lg mb-6 flex items-center">
+<span class="material-icons text-primary mr-2">schedule</span>
+                                Available Slots
+                            </h3>
+<div class="grid grid-cols-1 gap-3">
+<button class="group flex items-center justify-between p-4 rounded-xl border border-primary/10 hover:border-primary/50 hover:bg-primary/5 transition-all">
+<span class="text-sm font-semibold">09:00 AM - 10:00 AM</span>
+<span class="material-icons text-slate-300 group-hover:text-primary transition-colors">check_circle</span>
+</button>
+<button class="group flex items-center justify-between p-4 rounded-xl border-2 border-primary bg-primary/5 transition-all">
+<span class="text-sm font-bold text-primary">10:30 AM - 11:30 AM</span>
+<span class="material-icons text-primary">check_circle</span>
+</button>
+<button class="group flex items-center justify-between p-4 rounded-xl border border-primary/10 hover:border-primary/50 hover:bg-primary/5 transition-all">
+<span class="text-sm font-semibold">02:00 PM - 03:00 PM</span>
+<span class="material-icons text-slate-300 group-hover:text-primary transition-colors">check_circle</span>
+</button>
+<button class="group flex items-center justify-between p-4 rounded-xl border border-primary/10 hover:border-primary/50 hover:bg-primary/5 transition-all">
+<span class="text-sm font-semibold">04:30 PM - 05:30 PM</span>
+<span class="material-icons text-slate-300 group-hover:text-primary transition-colors">check_circle</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Action Area -->
+<div class="liquid-glass dark:liquid-glass-dark rounded-xl p-8 flex flex-col md:flex-row items-center justify-between border-t-4 border-primary">
+<div class="mb-6 md:mb-0">
+<p class="text-xs uppercase tracking-widest text-slate-400 font-bold mb-1">Current Selection</p>
+<h4 class="text-xl font-extrabold">Wealth Strategy Session</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm">October 8th, 2024 at 10:30 AM</p>
+</div>
+<button class="w-full md:w-auto px-12 py-4 bg-primary text-white rounded-lg font-bold text-lg hover:shadow-2xl hover:shadow-primary/40 active:scale-[0.98] transition-all transform flex items-center justify-center space-x-2">
+<span>Confirm Appointment</span>
+<span class="material-icons">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Background Decorative Elements -->
+<div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
+<div class="absolute top-[-10%] right-[-5%] w-96 h-96 bg-primary/10 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-[-10%] left-[-5%] w-[30rem] h-[30rem] bg-primary/5 rounded-full blur-[120px]"></div>
+</div>
+</body></html>

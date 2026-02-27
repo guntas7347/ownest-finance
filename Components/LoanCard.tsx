@@ -17,7 +17,7 @@ const LoanCard = ({
 }: LoanCardProps) => {
   return (
     <div
-      className={`glass-card p-5 rounded-3xl shadow-lg border-white w-44 transition-all duration-300 hover:scale-105 hover:bg-white/40 ${className}`}
+      className={`glass-card p-5 rounded-xl shadow-lg border-white w-52 transition-all duration-300 hover:scale-105 hover:bg-white/40 ${className}`}
     >
       <div className="flex justify-between items-start mb-4">
         <p className="text-[10px] font-black text-primary uppercase tracking-widest truncate pr-2">
@@ -36,7 +36,7 @@ const LoanCard = ({
         </p>
         <p className="text-[10px] font-bold text-brown/40 truncate">{subtext}</p>
       </div>
-    </div>
+    </div >
   );
 };
 

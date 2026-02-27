@@ -5,7 +5,7 @@ import { scrapeMarketRates } from "@/lib/scraper";
 import Hero from "@/Components/Hero";
 import MarketRates from "@/Components/MarketRates";
 import Partners from "@/Components/Partners";
-import Calculator from "@/Components/Calculator";
+import SimpleCalculator from "@/Components/SimpleCalculator";
 import Testimonials from "@/Components/Testimonials";
 import FAQ from "@/Components/FAQ";
 
@@ -16,9 +16,9 @@ export default async function Home() {
   return (
     <>
       <Hero data={data} />
-      <MarketRates data={data} />
-      <Partners />
-      <Calculator />
+      <Partners />    <MarketRates data={data} />
+
+      <SimpleCalculator />
       <Testimonials />
       <FAQ />
     </>

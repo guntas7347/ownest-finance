@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Refinance Loans - Ownest Finance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#5e391c",
+                "background-light": "#f8f7f6",
+                "background-dark": "#1f1813",
+              },
+              fontFamily: {
+                "display": ["Manrope"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+<style>
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(94, 57, 28, 0.05);
+        }
+        .liquid-bg {
+            background: radial-gradient(circle at 0% 0%, rgba(94, 57, 28, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, rgba(94, 57, 28, 0.08) 0%, transparent 50%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #5e391c 0%, #a17a5d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 selection:bg-primary/20 selection:text-primary">
+<!-- Header Navigation -->
+<nav class="fixed top-0 w-full z-50 liquid-glass border-b border-primary/5">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons text-white">account_balance</span>
+</div>
+<span class="text-xl font-extrabold tracking-tight text-primary">OWNEST <span class="font-light">FINANCE</span></span>
+</div>
+<div class="hidden md:flex items-center gap-8 font-medium text-sm uppercase tracking-widest text-primary/80">
+<a class="hover:text-primary transition-colors" href="#">Solutions</a>
+<a class="hover:text-primary transition-colors" href="#">Advisory</a>
+<a class="hover:text-primary transition-colors" href="#">Resources</a>
+<button class="bg-primary text-white px-6 py-2.5 rounded-full hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">Client Login</button>
+</div>
+</div>
+</nav>
+<main class="pt-20 liquid-bg">
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-24 pb-16 px-6">
+<div class="max-w-4xl mx-auto text-center">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+<span class="material-icons text-sm">auto_graph</span>
+                    Optimize Your Assets
+                </div>
+<h1 class="text-5xl md:text-7xl font-extrabold text-primary mb-8 leading-[1.1]">
+                    Stop Paying <br/><span class="gradient-text italic">Too Much</span>
+</h1>
+<p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    Refinance with Ownest Finance and unlock your home's equity while lowering your monthly commitments with our exclusive private lending network.
+                </p>
+</div>
+</section>
+<!-- Savings Calculator -->
+<section class="px-6 py-12 relative">
+<div class="max-w-5xl mx-auto">
+<div class="liquid-glass rounded-3xl p-8 md:p-12 border border-white/50">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div>
+<h2 class="text-3xl font-bold text-primary mb-6">Savings Calculator</h2>
+<p class="text-slate-600 dark:text-slate-400 mb-8">Adjust the sliders to see how much you could potentially save on your monthly mortgage repayments.</p>
+<div class="space-y-8">
+<div>
+<div class="flex justify-between mb-3 font-semibold text-primary">
+<span>Current Loan Balance</span>
+<span>$750,000</span>
+</div>
+<input class="w-full h-1.5 bg-primary/20 rounded-full appearance-none cursor-pointer accent-primary" max="2000000" min="100000" type="range" value="750000"/>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div>
+<div class="flex justify-between mb-3 font-semibold text-primary">
+<span>Current Rate</span>
+<span>6.4%</span>
+</div>
+<input class="w-full h-1.5 bg-primary/20 rounded-full appearance-none cursor-pointer accent-primary" max="10" min="1" step="0.1" type="range" value="6.4"/>
+</div>
+<div>
+<div class="flex justify-between mb-3 font-semibold text-primary">
+<span>Target Rate</span>
+<span>4.2%</span>
+</div>
+<input class="w-full h-1.5 bg-primary/20 rounded-full appearance-none cursor-pointer accent-primary" max="10" min="1" step="0.1" type="range" value="4.2"/>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-primary/5 rounded-2xl p-8 border border-primary/10 text-center relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-icons text-8xl">trending_down</span>
+</div>
+<h3 class="text-sm font-bold uppercase tracking-[0.2em] text-primary/60 mb-2">Estimated Monthly Savings</h3>
+<div class="text-6xl font-extrabold text-primary mb-4 tracking-tighter">$982</div>
+<p class="text-primary/70 font-medium mb-8">That's $11,784 back in your pocket every year.</p>
+<button class="w-full bg-primary text-white py-4 rounded-xl font-bold shadow-xl shadow-primary/30 hover:-translate-y-1 transition-transform">
+                                Secure This Rate
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Steps -->
+<section class="py-24 px-6">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-extrabold text-primary mb-4">The Seamless Journey</h2>
+<p class="text-slate-600 dark:text-slate-400">Experience a high-end, touchless transition from high rates to smarter finance.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Step 1 -->
+<div class="liquid-glass rounded-3xl p-8 relative group hover:bg-white/60 transition-colors">
+<div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-icons text-primary text-3xl">fact_check</span>
+</div>
+<div class="absolute top-8 right-8 text-6xl font-black text-primary/5">01</div>
+<h3 class="text-xl font-bold text-primary mb-4">Health Check</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Our advisors perform a comprehensive review of your current debt structure and equity position to identify immediate optimization opportunities.
+                        </p>
+</div>
+<!-- Step 2 -->
+<div class="liquid-glass rounded-3xl p-8 relative group hover:bg-white/60 transition-colors">
+<div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-icons text-primary text-3xl">verified_user</span>
+</div>
+<div class="absolute top-8 right-8 text-6xl font-black text-primary/5">02</div>
+<h3 class="text-xl font-bold text-primary mb-4">Lender Selection</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Access our exclusive network of premium lenders and private institutional rates that aren't available to the general public marketplace.
+                        </p>
+</div>
+<!-- Step 3 -->
+<div class="liquid-glass rounded-3xl p-8 relative group hover:bg-white/60 transition-colors">
+<div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-icons text-primary text-3xl">sync_alt</span>
+</div>
+<div class="absolute top-8 right-8 text-6xl font-black text-primary/5">03</div>
+<h3 class="text-xl font-bold text-primary mb-4">Seamless Switch</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            We handle 100% of the paperwork and institutional logistics. Your only task is to watch your monthly commitments decrease.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Image Callout Section -->
+<section class="max-w-7xl mx-auto px-6 py-12">
+<div class="relative h-[450px] rounded-[2rem] overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Modern high-end luxury residential interior with warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArhgSTl8y96Di1OSUlfZldN_SpwlMAhRrnzbgHEdZIFUp0Y2_p1s86e3Tm_J-QV_gewojUKVBFywToikv2CjjmheYGf4_g4c6VpDfI1PFpHtSZLzrdyX8opzkSf0vGNYjLgPRkocq0jL9lu4dJ40StUVh2k3t8cu5quPKi9R1tUUl80KvkVSqaOhTESUMOroWvWCaXFJcCN6kcghcpy8aijQU8Hd1L5f0oiEMwz1PRdsKMqukx4LWTvRS6ooeMFTHX3VPugmJDy12g"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent flex items-center px-12 md:px-24">
+<div class="max-w-lg">
+<h2 class="text-4xl font-bold text-white mb-6">Designed for Sophisticated Borrowers</h2>
+<p class="text-white/80 text-lg mb-8">Ownest Finance specializes in complex financial profiles, ensuring every asset works as hard as you do.</p>
+<button class="bg-white text-primary px-8 py-3 rounded-full font-bold hover:bg-background-light transition-colors">Consult an Advisor</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-24 px-6">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div>
+<h2 class="text-4xl font-extrabold text-primary mb-4">Success Stories</h2>
+<p class="text-slate-600 dark:text-slate-400">Join over 1,200 clients who optimized their mortgage this year.</p>
+</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+<span class="material-icons">chevron_left</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+<span class="material-icons">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="p-10 liquid-glass rounded-3xl">
+<div class="flex text-primary mb-6">
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+</div>
+<p class="text-xl italic text-slate-700 dark:text-slate-300 mb-8 font-light">
+                            "Ownest reduced our monthly repayments by $640. The process was entirely digital and remarkably discreet."
+                        </p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-slate-200">
+<img class="w-full h-full object-cover" data-alt="Portrait of a professional man in a suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIEQhivRnGzZerp56L-azHcEOQA0gqWTPpV1T3KMXvWIX93_ukM7oUzky313gc1NIxWCEkmQ7c9KqrTtColtqlka7JHJdeHni9efzJJhZVBOi4iN4DszGit7WNGM7VAk30YK-X7_YlHCRY2cqGfHEyziobUZOluu5lwplHpuUbSuXChHa2Etgi4vWvs5gFTMKjUh-d1Si5JbFDtRkEskheZQ9TrQBDuULauLadXoxntkE1B5I6ZRNIhmrSJoNkfZGsPXx2In1UtizI"/>
+</div>
+<div>
+<div class="font-bold text-primary">Marcus H.</div>
+<div class="text-sm text-slate-500">Managing Director</div>
+</div>
+</div>
+</div>
+<div class="p-10 liquid-glass rounded-3xl">
+<div class="flex text-primary mb-6">
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+</div>
+<p class="text-xl italic text-slate-700 dark:text-slate-300 mb-8 font-light">
+                            "We were able to consolidate $120k in high-interest debt into our mortgage while still lowering our overall rate. Pure genius."
+                        </p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-slate-200">
+<img class="w-full h-full object-cover" data-alt="Portrait of a smiling professional woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGw3W5ZHDOD5tAzTXK8WDtJ--fKR6v0HxWHaxPhCRr8fQKop5j-jSf3oGEyDXMTzhhZhd_j5b_OGzsN5i-euHufIJG7xLzB6n1MccFHTp0Xy7HJqiRUz8Hs2NYQSTsE7RRN5QiB_BgwmlcB7Fa_dr4LhgsTMe4k_ckPLm0qOAOMQpolaFzVirQFulbGwMfWZWcUAcFADOiiVgsYoocUTOZw-Y9F8TwLhwNTE4UAPpIms4zG23rZNhqBfF27WRpU0MN_gJZUHAq9MlR"/>
+</div>
+<div>
+<div class="font-bold text-primary">Elena G.</div>
+<div class="text-sm text-slate-500">Tech Lead</div>
+</div>
+</div>
+</div>
+<div class="p-10 liquid-glass rounded-3xl">
+<div class="flex text-primary mb-6">
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+<span class="material-icons">star</span>
+</div>
+<p class="text-xl italic text-slate-700 dark:text-slate-300 mb-8 font-light">
+                            "The savings calculator was spot on. Our actual savings were even higher after their advisor negotiated a custom package."
+                        </p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-slate-200">
+<img class="w-full h-full object-cover" data-alt="Portrait of an executive male" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqJoJSqG6OqXYAvAW6Xpr0f6EW5QpmLxjKRoq1zb38-nHvks-p7_AVSPd1FHPFL6FB_LhcQ62YTn7rpu9C1ZHlPtHnmbdM2i13rUH7rPZzMWLtvJ-kLnEXOHAMxQqfmGEJqz8ia4J2Y-LbWtiO2dYgK49uFMzd3XLPoJOC6dx1pLnaXe-QW2c9--rE5lGhj3iqLo-ZNnV6nG54rgaJJEYEPw9Cb_ocyJrtqAafXOAzb4qb3dYf8-W6qX6T2JlZ_Za-0pPcyMfJ7wsC"/>
+</div>
+<div>
+<div class="font-bold text-primary">David S.</div>
+<div class="text-sm text-slate-500">Business Owner</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 px-6 bg-primary">
+<div class="max-w-4xl mx-auto text-center">
+<h2 class="text-4xl font-extrabold text-white mb-6">Ready to stop overpaying?</h2>
+<p class="text-white/70 text-lg mb-12 max-w-xl mx-auto">Get a personalized refinancing report within 24 hours. No commitment, just pure financial insight.</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+<button class="w-full sm:w-auto px-10 py-4 bg-white text-primary rounded-full font-bold hover:bg-background-light transition-all">Start Free Assessment</button>
+<button class="w-full sm:w-auto px-10 py-4 bg-primary/20 text-white border border-white/20 rounded-full font-bold hover:bg-white/10 transition-all">Speak with an Expert</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Sticky Bottom Bar -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-lg">
+<div class="liquid-glass rounded-full px-6 py-4 flex items-center justify-between border border-primary/20 shadow-2xl">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+<span class="text-sm font-semibold text-primary">New low rates available</span>
+</div>
+<a class="text-sm font-bold text-primary flex items-center gap-1 group" href="#">
+                Check My Rate 
+                <span class="material-icons text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-background-light dark:bg-background-dark py-16 px-6 border-t border-primary/10">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-icons text-white text-lg">account_balance</span>
+</div>
+<span class="font-extrabold text-primary">OWNEST</span>
+</div>
+<p class="text-slate-500 text-sm leading-relaxed">
+                    Premium financial advisory and mortgage optimization for high-net-worth individuals.
+                </p>
+</div>
+<div>
+<h4 class="font-bold text-primary mb-6">Quick Links</h4>
+<ul class="space-y-4 text-sm text-slate-500">
+<li><a class="hover:text-primary transition-colors" href="#">How it Works</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Our Lenders</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Calculators</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-primary mb-6">Contact</h4>
+<ul class="space-y-4 text-sm text-slate-500">
+<li class="flex items-center gap-2"><span class="material-icons text-sm">call</span> 1-800-OWNEST-FIN</li>
+<li class="flex items-center gap-2"><span class="material-icons text-sm">email</span> hello@ownest.finance</li>
+<li class="flex items-center gap-2"><span class="material-icons text-sm">location_on</span> Level 42, 101 Financial St.</li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-primary mb-6">Newsletter</h4>
+<div class="flex gap-2">
+<input class="bg-white/50 border border-primary/20 rounded-lg px-4 py-2 text-sm flex-grow focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Email address" type="email"/>
+<button class="bg-primary text-white px-4 rounded-lg"><span class="material-icons text-sm">send</span></button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-primary/5 text-center text-xs text-slate-400">
+            © 2024 Ownest Finance. All rights reserved. Registered Credit Provider #992831.
+        </div>
+</footer>
+</body></html>
