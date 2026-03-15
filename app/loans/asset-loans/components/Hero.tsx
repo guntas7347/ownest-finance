@@ -1,44 +1,82 @@
-"use client";
-
-import React from "react";
-import Button from "@/Components/Button";
-import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { Car, Truck, Tractor, Wrench, ArrowRight } from "lucide-react";
 
 export default function Hero() {
-    return (
-        <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0 opacity-20 pointer-events-none">
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
+  return (
+    <section className="bg-gradient-to-br from-white to-orange-50 dark:from-background-dark dark:to-[#2a1e15] py-20 lg:py-32 overflow-hidden border-b border-gray-100 dark:border-white/5">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-3xl mb-16">
+          <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gray-900 dark:text-white">
+            Drive Growth with Tailored Asset Finance.
+          </h1>
+          <p className="text-xl text-neutral-600 dark:text-gray-300 leading-relaxed">
+            Elevate your lifestyle and operational capacity with bespoke lending
+            solutions tailored for your next purchase.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Option 1 */}
+          <div className="bg-white dark:bg-[#2a1e15] p-8 rounded-xl shadow-sm border border-neutral-100 dark:border-white/10 hover:border-primary/30 dark:hover:border-[#e27b30]/50 transition-all group cursor-pointer lg:col-span-1 md:col-span-1 flex flex-col">
+            <div className="w-12 h-12 bg-orange-50 dark:bg-white/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#e27b30] transition-colors">
+              <Car className="text-[#e27b30] group-hover:text-white w-6 h-6" />
             </div>
-            <div className="container max-w-7xl mx-auto px-6 relative z-10 text-center">
-                <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6 border border-primary/20">
-                    Bespoke Financial Solutions
-                </span>
-                <h1 className="text-5xl md:text-7xl font-extrabold text-brown mb-6 leading-tight">
-                    Tailored Asset <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">
-                        Finance Excellence
-                    </span>
-                </h1>
-                <p className="max-w-2xl mx-auto text-lg text-brown/60 dark:text-white/60 mb-10 leading-relaxed font-light">
-                    Elevate your lifestyle and operational capacity with bespoke lending
-                    solutions for luxury vehicles, marine vessels, and high-performance
-                    industrial equipment.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Button size="lg" className="w-full sm:w-auto">
-                        Get Started <ArrowRight className="ml-2 w-5 h-5" />
-                    </Button>
-                    <Button
-                        variant="secondary"
-                        size="lg"
-                        className="w-full sm:w-auto text-brown"
-                    >
-                        View Rates
-                    </Button>
-                </div>
+            <h3 className="font-bold text-lg mb-2 text-gray-900 dark:text-white">
+              Car Loans
+            </h3>
+            <p className="text-sm text-neutral-500 dark:text-gray-400 mb-6 flex-grow">
+              Finance your new or used vehicle with competitive rates.
+            </p>
+            <span className="text-[#e27b30] text-xs font-bold uppercase tracking-widest flex items-center gap-2 mt-auto">
+              Explore <ArrowRight className="w-4 h-4 ml-1" />
+            </span>
+          </div>
+          {/* Option 2 */}
+          <div className="bg-white dark:bg-[#2a1e15] p-8 rounded-xl shadow-sm border border-neutral-100 dark:border-white/10 hover:border-primary/30 dark:hover:border-[#e27b30]/50 transition-all group cursor-pointer flex flex-col">
+            <div className="w-12 h-12 bg-orange-50 dark:bg-white/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#e27b30] transition-colors">
+              <Truck className="text-[#e27b30] group-hover:text-white w-6 h-6" />
             </div>
-        </section>
-    );
+            <h3 className="font-bold text-lg mb-2 text-gray-900 dark:text-white">
+              Truck Loans
+            </h3>
+            <p className="text-sm text-neutral-500 dark:text-gray-400 mb-6 flex-grow">
+              Expand your fleet with specialized transport financing.
+            </p>
+            <span className="text-[#e27b30] text-xs font-bold uppercase tracking-widest flex items-center gap-2 mt-auto">
+              Explore <ArrowRight className="w-4 h-4 ml-1" />
+            </span>
+          </div>
+          {/* Option 3 */}
+          <div className="bg-white dark:bg-[#2a1e15] p-8 rounded-xl shadow-sm border border-neutral-100 dark:border-white/10 hover:border-primary/30 dark:hover:border-[#e27b30]/50 transition-all group cursor-pointer flex flex-col">
+            <div className="w-12 h-12 bg-orange-50 dark:bg-white/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#e27b30] transition-colors">
+              <Tractor className="text-[#e27b30] group-hover:text-white w-6 h-6" />
+            </div>
+            <h3 className="font-bold text-lg mb-2 text-gray-900 dark:text-white">
+              Commercial Vehicles
+            </h3>
+            <p className="text-sm text-neutral-500 dark:text-gray-400 mb-6 flex-grow">
+              Keep your business moving with commercial options.
+            </p>
+            <span className="text-[#e27b30] text-xs font-bold uppercase tracking-widest flex items-center gap-2 mt-auto">
+              Explore <ArrowRight className="w-4 h-4 ml-1" />
+            </span>
+          </div>
+          {/* Option 4 */}
+          <div className="bg-white dark:bg-[#2a1e15] p-8 rounded-xl shadow-sm border border-neutral-100 dark:border-white/10 hover:border-primary/30 dark:hover:border-[#e27b30]/50 transition-all group cursor-pointer flex flex-col">
+            <div className="w-12 h-12 bg-orange-50 dark:bg-white/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#e27b30] transition-colors">
+              <Wrench className="text-[#e27b30] group-hover:text-white w-6 h-6" />
+            </div>
+            <h3 className="font-bold text-lg mb-2 text-gray-900 dark:text-white">
+              Equipment Finance
+            </h3>
+            <p className="text-sm text-neutral-500 dark:text-gray-400 mb-6 flex-grow">
+              Secure heavy machinery and business equipment.
+            </p>
+            <span className="text-[#e27b30] text-xs font-bold uppercase tracking-widest flex items-center gap-2 mt-auto">
+              Explore <ArrowRight className="w-4 h-4 ml-1" />
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

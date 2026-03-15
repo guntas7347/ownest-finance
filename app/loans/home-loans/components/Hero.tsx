@@ -1,39 +1,104 @@
 import Link from "next/link";
-import { PlayCircle } from "lucide-react";
+import {
+  Key,
+  TrendingUp,
+  RefreshCw,
+  Hammer,
+  Home,
+  ArrowRight,
+} from "lucide-react";
 
 export default function Hero() {
-    return (
-        <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
-            <div className="absolute inset-0 z-0">
-                <img
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIxw3_AatR8tvAO12z-JQpVcfs5bEkeKUSVqIROE8TFcw7Mytj9l8J4MJ_I9tzym-DlUTrWKzHxStDDyNTY4oPCUMtFlNFJr4oWoXjHVpzJ9Q-3TR4TVqomO15gn9xhWQ8Oy9tLnAoAmmY4S4tWUe528Ea1tPGVg3clKqFsRU3wSk7ylOxayIN48o2gxQXAMPDnkyQ0B87cOrjaA9Sx8bboqCP-s8UwJiaAbssbMtHV77cqFlL_blaT78ZXI8exisKqxnAxVO7MYZF"
-                    alt="Modern luxury home"
-                    className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-background-light/90 via-background-light/40 to-transparent dark:from-background-dark/90 dark:via-background-dark/60"></div>
+  return (
+    <section className="bg-gradient-to-br from-white to-orange-50 dark:from-background-dark dark:to-[#2a1e15] py-20 lg:py-32 overflow-hidden border-b border-gray-100 dark:border-white/5">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-3xl mb-16">
+          <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gray-900 dark:text-white">
+            Expert Guidance for Your Home Ownership Journey.
+          </h1>
+          <p className="text-xl text-neutral-600 dark:text-gray-300 leading-relaxed">
+            Whether it's your first key or your next investment, we simplify the
+            lending process with access to over 40+ lenders.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          {/* Option 1 */}
+          <div className="bg-white dark:bg-[#2a1e15] p-8 rounded-xl shadow-sm border border-neutral-100 dark:border-white/10 hover:border-primary/30 dark:hover:border-[#e27b30]/50 transition-all group cursor-pointer lg:col-span-1 md:col-span-1 flex flex-col">
+            <div className="w-12 h-12 bg-orange-50 dark:bg-white/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#e27b30] transition-colors">
+              <Key className="text-[#e27b30] group-hover:text-white w-6 h-6" />
             </div>
-            <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-xl glass-card p-10 rounded-xl shadow-2xl">
-                    <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4">
-                        Premium Financing
-                    </span>
-                    <h1 className="text-5xl md:text-6xl font-extrabold text-primary-dark dark:text-white mb-6 leading-[1.1]">
-                        Own your future, beautifully.
-                    </h1>
-                    <p className="text-lg text-primary-dark/80 dark:text-gray-200 mb-8 leading-relaxed">
-                        Experience a new standard of home financing. Bespoke loan solutions
-                        crafted for those who value precision, speed, and elegance.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4">
-                        <button className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-bold text-base transition-all shadow-lg hover:shadow-primary/25">
-                            Apply Now
-                        </button>
-                        <button className="glass-card border-primary/20 hover:bg-white/50 px-8 py-4 rounded-lg font-bold text-base transition-all flex items-center justify-center gap-2 text-primary-dark dark:text-white">
-                            <PlayCircle className="w-5 h-5" /> View Rates
-                        </button>
-                    </div>
-                </div>
+            <h3 className="font-bold text-lg mb-2 text-gray-900 dark:text-white">
+              First Home Buyers
+            </h3>
+            <p className="text-sm text-neutral-500 dark:text-gray-400 mb-6 flex-grow">
+              Start your journey with confidence and expert help.
+            </p>
+            <span className="text-[#e27b30] text-xs font-bold uppercase tracking-widest flex items-center gap-2 mt-auto">
+              Explore <ArrowRight className="w-4 h-4 ml-1" />
+            </span>
+          </div>
+          {/* Option 2 */}
+          <div className="bg-white dark:bg-[#2a1e15] p-8 rounded-xl shadow-sm border border-neutral-100 dark:border-white/10 hover:border-primary/30 dark:hover:border-[#e27b30]/50 transition-all group cursor-pointer flex flex-col">
+            <div className="w-12 h-12 bg-orange-50 dark:bg-white/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#e27b30] transition-colors">
+              <TrendingUp className="text-[#e27b30] group-hover:text-white w-6 h-6" />
             </div>
-        </section>
-    );
+            <h3 className="font-bold text-lg mb-2 text-gray-900 dark:text-white">
+              Investors
+            </h3>
+            <p className="text-sm text-neutral-500 dark:text-gray-400 mb-6 flex-grow">
+              Strategically build your property portfolio today.
+            </p>
+            <span className="text-[#e27b30] text-xs font-bold uppercase tracking-widest flex items-center gap-2 mt-auto">
+              Explore <ArrowRight className="w-4 h-4 ml-1" />
+            </span>
+          </div>
+          {/* Option 3 */}
+          <div className="bg-white dark:bg-[#2a1e15] p-8 rounded-xl shadow-sm border border-neutral-100 dark:border-white/10 hover:border-primary/30 dark:hover:border-[#e27b30]/50 transition-all group cursor-pointer flex flex-col">
+            <div className="w-12 h-12 bg-orange-50 dark:bg-white/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#e27b30] transition-colors">
+              <RefreshCw className="text-[#e27b30] group-hover:text-white w-6 h-6" />
+            </div>
+            <h3 className="font-bold text-lg mb-2 text-gray-900 dark:text-white">
+              Refinancing
+            </h3>
+            <p className="text-sm text-neutral-500 dark:text-gray-400 mb-6 flex-grow">
+              Lower your rate and unlock equity faster.
+            </p>
+            <span className="text-[#e27b30] text-xs font-bold uppercase tracking-widest flex items-center gap-2 mt-auto">
+              Explore <ArrowRight className="w-4 h-4 ml-1" />
+            </span>
+          </div>
+          {/* Option 4 */}
+          <div className="bg-white dark:bg-[#2a1e15] p-8 rounded-xl shadow-sm border border-neutral-100 dark:border-white/10 hover:border-primary/30 dark:hover:border-[#e27b30]/50 transition-all group cursor-pointer flex flex-col">
+            <div className="w-12 h-12 bg-orange-50 dark:bg-white/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#e27b30] transition-colors">
+              <Hammer className="text-[#e27b30] group-hover:text-white w-6 h-6" />
+            </div>
+            <h3 className="font-bold text-lg mb-2 text-gray-900 dark:text-white">
+              Construction Loans
+            </h3>
+            <p className="text-sm text-neutral-500 dark:text-gray-400 mb-6 flex-grow">
+              Build your dream home with staged funding.
+            </p>
+            <span className="text-[#e27b30] text-xs font-bold uppercase tracking-widest flex items-center gap-2 mt-auto">
+              Explore <ArrowRight className="w-4 h-4 ml-1" />
+            </span>
+          </div>
+          {/* Option 5 */}
+          <div className="bg-white dark:bg-[#2a1e15] p-8 rounded-xl shadow-sm border border-neutral-100 dark:border-white/10 hover:border-primary/30 dark:hover:border-[#e27b30]/50 transition-all group cursor-pointer flex flex-col">
+            <div className="w-12 h-12 bg-orange-50 dark:bg-white/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#e27b30] transition-colors">
+              <Home className="text-[#e27b30] group-hover:text-white w-6 h-6" />
+            </div>
+            <h3 className="font-bold text-lg mb-2 text-gray-900 dark:text-white">
+              Upgrades
+            </h3>
+            <p className="text-sm text-neutral-500 dark:text-gray-400 mb-6 flex-grow">
+              Moving up? We'll bridge the gap seamlessly.
+            </p>
+            <span className="text-[#e27b30] text-xs font-bold uppercase tracking-widest flex items-center gap-2 mt-auto">
+              Explore <ArrowRight className="w-4 h-4 ml-1" />
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

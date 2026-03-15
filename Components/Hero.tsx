@@ -1,95 +1,90 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import Button from "@/Components/Button";
-import LoanCard from "@/Components/LoanCard";
+import React from "react";
 import { MarketRatesProps } from "./MarketRates";
+import { TrendingDown, Minus, BarChart2 } from "lucide-react";
 
 export default function Hero({ data }: MarketRatesProps) {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const sectionRef = useRef<HTMLElement>(null);
-
-    const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
-        if (sectionRef.current) {
-            const rect = sectionRef.current.getBoundingClientRect();
-            setMousePosition({
-                x: event.clientX - rect.left,
-                y: event.clientY - rect.top,
-            });
-        }
-    };
-
-    return (
-        <section
-            ref={sectionRef}
-            onMouseMove={handleMouseMove}
-            className="relative py-24 bg-light min-h-screen dark:bg-dark overflow-hidden flex items-center"
-        >
-
-
-            <div
-                className="absolute inset-0 pointer-events-none z-20
-  bg-[linear-gradient(to_right,#4b556340_1px,transparent_1px),
-      linear-gradient(to_bottom,#4b556340_1px,transparent_1px)]
-  bg-[size:50px_50px]"
-            /><div
-                className="absolute inset-0 pointer-events-none z-10 bg-[url('/dollars.jpg')] bg-cover bg-center"
-                style={{
-                    maskImage: `radial-gradient(300px circle at ${mousePosition.x}px ${mousePosition.y}px, black, transparent)`,
-                    WebkitMaskImage: `radial-gradient(300px circle at ${mousePosition.x}px ${mousePosition.y}px, black, transparent)`,
-                }}
-            />
-
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 items-center relative z-20 w-full">
-                <div className="space-y-6 lg:max-w-xl">
-
-                    <h1 className="text-5xl font-extrabold text-brown leading-none tracking-tighter">
-                        Finance
-                        Your <span className="text-primary italic">Future</span>
-                    </h1>
-
-                    <p className="text-lg text-brown/70 dark:text-white/70 max-w-md leading-relaxed">
-                        Bespoke financial architecture for high-net-worth individuals.
-                        Experience the seamless synergy of liquid-glass aesthetics and
-                        solid financial growth.
-                    </p>
-
-                    <div className="flex flex-wrap gap-4 pt-4">
-                        <Button size="lg" className="shadow-xl shadow-orange-500/30 hover:-translate-y-1">
-                            Start Application
-                        </Button>
-
-                        <Button variant="secondary" size="lg">
-                            View Products
-                        </Button>
-                    </div>
+  return (
+    <section className="relative pt-20 pb-32 overflow-hidden bg-white dark:bg-background-dark">
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-16 items-center">
+        <div className="lg:col-span-7">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-xs font-semibold uppercase tracking-wider mb-6 text-gray-900 dark:text-gray-200">
+            <span className="w-2 h-2 rounded-full bg-[#e27b30]"></span>
+            The New Standard in Finance
+          </div>
+          <h1 className="text-6xl lg:text-7xl font-bold leading-[1.1] mb-8 text-gray-900 dark:text-white">
+            Smart lending for <br />
+            <span className="text-[#e27b30] italic">modern</span> Australians.
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-xl mb-10 leading-relaxed">
+            Ownest Finance combines sophisticated technology with human
+            expertise to secure the most competitive financial structures in the
+            market.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button className="bg-gray-900 text-white dark:bg-white dark:text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-black dark:hover:bg-gray-200 transition-colors">
+              Get My Free Quote
+            </button>
+            <button className="border border-gray-200 dark:border-white/20 px-8 py-4 rounded-full font-semibold hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-gray-900 dark:text-white">
+              View Current Rates
+            </button>
+          </div>
+        </div>
+        <div className="lg:col-span-5 relative">
+          <div className="bg-white dark:bg-[#2a1e15] rounded-2xl shadow-2xl border border-gray-200 dark:border-white/10 p-8 relative z-10 backdrop-blur-md">
+            <h3 className="font-bold text-lg mb-6 flex items-center gap-2 text-gray-900 dark:text-white">
+              <BarChart2 className="w-5 h-5 text-[#e27b30]" />
+              Market Snapshot
+            </h3>
+            <div className="space-y-6">
+              <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-white/5 rounded-xl">
+                <div>
+                  <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-tighter">
+                    Home Loans
+                  </p>
+                  <p className="font-bold text-xl text-gray-900 dark:text-white">
+                    5.84%{" "}
+                    <span className="text-sm font-normal text-gray-400">
+                      p.a.
+                    </span>
+                  </p>
                 </div>
+                <TrendingDown className="w-6 h-6 text-green-500" />
+              </div>
+              <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-white/5 rounded-xl">
+                <div>
+                  <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-tighter">
+                    Asset Finance
+                  </p>
+                  <p className="font-bold text-xl text-gray-900 dark:text-white">
+                    6.25%{" "}
+                    <span className="text-sm font-normal text-gray-400">
+                      p.a.
+                    </span>
+                  </p>
+                </div>
+                <Minus className="w-6 h-6 text-gray-400" />
+              </div>
+              <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-white/5 rounded-xl">
+                <div>
+                  <p className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-tighter">
+                    Business Loans
+                  </p>
+                  <p className="font-bold text-xl text-gray-900 dark:text-white">
+                    7.10%{" "}
+                    <span className="text-sm font-normal text-gray-400">
+                      p.a.
+                    </span>
+                  </p>
+                </div>
+                <TrendingDown className="w-6 h-6 text-green-500" />
+              </div>
             </div>
-
-            {/* Static Cards Right Side */}
-            <div className="hidden absolute md:flex right-12 top-1/2 -translate-y-1/2 flex-col gap-6 z-20">
-                <LoanCard
-                    label="RBA Cash Rate"
-                    value={data?.cashRate ? `${parseFloat(data.cashRate).toFixed(2)}%` : "Loading..."}
-                    badge="Target"
-                    subtext="Current Rate"
-                    className="translate-x-4"
-                />
-                <LoanCard
-                    label="Inflation"
-                    value={data?.inflation ? `${parseFloat(data.inflation).toFixed(2)}%` : "Loading..."}
-                    badge="CPI"
-                    subtext={data?.inflationPeriod || "Quarterly"}
-                    className="-translate-x-4"
-                />
-                <LoanCard
-                    label="Effective Date"
-                    value={data?.cashEffective || "Loading..."}
-                    badge="Next Check"
-                    subtext="RBA Meeting"
-                    className="translate-x-4"
-                />
-            </div>
-        </section>
-    );
+          </div>
+          <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#e27b30]/20 rounded-full blur-3xl -z-10"></div>
+        </div>
+      </div>
+    </section>
+  );
 }
