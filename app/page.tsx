@@ -11,12 +11,13 @@ import FAQ from "@/Components/FAQ";
 
 export default async function Home() {
   const data = await scrapeMarketRates();
-  // console.log(data); 
+  // console.log(data);
 
   return (
     <>
       <Hero data={data} />
-      <Partners />    <MarketRates data={data} />
+      <Partners />
+      <MarketRates data={data} />
 
       <SimpleCalculator />
       <Testimonials />

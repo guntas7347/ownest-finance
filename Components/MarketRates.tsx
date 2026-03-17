@@ -61,20 +61,20 @@ export default function MarketRates({ data }: MarketRatesProps) {
   ];
 
   return (
-    <section className="py-20 bg-surface-50 dark:bg-background-dark border-y border-gray-100 dark:border-white/5 relative overflow-hidden">
+    <section className="py-12 bg-surface-50 dark:bg-background-dark border-y border-gray-100 dark:border-white/5 relative overflow-hidden">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -z-10 transform -translate-x-1/2 translate-y-1/2"></div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-5xl mx-auto px-6 relative z-10">
         <div className="mb-12 text-center max-w-2xl mx-auto">
           <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase rounded-full mb-4">
             Market Intelligence
           </span>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-xl md:text-2xl font-extrabold text-gray-900 dark:text-white mb-3">
             Live Economic Indicators
           </h2>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-gray-600 dark:text-gray-400">
             Stay informed with the latest macroeconomic data and exchange rates
             driving the Australian financial landscape.
           </p>

@@ -34,15 +34,15 @@ export default function SimpleCalculator() {
   }, [amount, term, interestRate]);
 
   return (
-    <section className="py-24 bg-background-light dark:bg-background-dark relative overflow-hidden">
+    <section className="py-16 bg-background-light dark:bg-background-dark relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Text Content */}
           <div className="space-y-8">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-brown dark:text-white leading-tight">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-brown dark:text-white leading-tight">
               Calculate Your <span className="text-primary">Potential.</span>
             </h2>
-            <p className="text-lg text-brown/70 dark:text-white/70 leading-relaxed">
+            <p className="text-base text-brown/70 dark:text-white/70 leading-relaxed">
               Get a quick estimate on your repayments. Whether you're buying a
               dream home or a luxury asset, we have the right tools for you.
             </p>
@@ -66,10 +66,10 @@ export default function SimpleCalculator() {
                     <Home className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg text-brown dark:text-white">
+                    <h3 className="font-bold text-base text-brown dark:text-white">
                       Home Loan
                     </h3>
-                    <p className="text-sm text-brown/60 dark:text-white/60">
+                    <p className="text-xs text-brown/60 dark:text-white/60">
                       Standard residential mortgage
                     </p>
                   </div>
@@ -95,10 +95,10 @@ export default function SimpleCalculator() {
                     <Car className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg text-brown dark:text-white">
+                    <h3 className="font-bold text-base text-brown dark:text-white">
                       Asset Loan
                     </h3>
-                    <p className="text-sm text-brown/60 dark:text-white/60">
+                    <p className="text-xs text-brown/60 dark:text-white/60">
                       Vehicles, marine, & equipment
                     </p>
                   </div>
@@ -112,7 +112,7 @@ export default function SimpleCalculator() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-0 pointer-events-none"></div>
             <div className="relative z-10 space-y-8">
               <div className="flex justify-between items-center pb-6 border-b border-brown/10 dark:border-white/10">
-                <span className="text-sm font-bold uppercase tracking-widest text-primary">
+                <span className="text-xs font-bold uppercase tracking-widest text-primary">
                   {activeTab === "home" ? "Home Loan" : "Asset Finance"}{" "}
                   Estimate
                 </span>
@@ -126,7 +126,7 @@ export default function SimpleCalculator() {
                     <label className="text-xs font-bold uppercase text-brown/60 dark:text-white/60 tracking-wider">
                       Loan Amount
                     </label>
-                    <p className="text-2xl font-black text-brown dark:text-white">
+                    <p className="text-xl font-black text-brown dark:text-white">
                       ${amount.toLocaleString()}
                     </p>
                   </div>
@@ -150,7 +150,7 @@ export default function SimpleCalculator() {
                     <label className="text-xs font-bold uppercase text-brown/60 dark:text-white/60 tracking-wider">
                       Loan Term
                     </label>
-                    <p className="text-2xl font-black text-brown dark:text-white">
+                    <p className="text-xl font-black text-brown dark:text-white">
                       {term} Years
                     </p>
                   </div>
@@ -174,11 +174,11 @@ export default function SimpleCalculator() {
                   <div className="bg-primary/5 border border-primary/20 rounded-lg p-3 flex justify-between items-center">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
-                      <span className="text-xs font-bold uppercase text-brown/70 dark:text-white/70 tracking-wider">
+                      <span className="text-[10px] font-bold uppercase text-brown/70 dark:text-white/70 tracking-wider">
                         Current Interest Rate
                       </span>
                     </div>
-                    <span className="text-sm font-black text-primary">
+                    <span className="text-xs font-black text-primary">
                       {interestRate.toFixed(2)}% p.a.
                     </span>
                   </div>
@@ -190,7 +190,7 @@ export default function SimpleCalculator() {
                 <span className="text-xs font-bold uppercase tracking-widest text-brown/50 dark:text-white/50">
                   Estimated Monthly Repayment
                 </span>
-                <div className="text-5xl font-black text-primary drop-shadow-sm">
+                <div className="text-4xl font-black text-primary drop-shadow-sm">
                   $
                   {monthlyRepayment.toLocaleString(undefined, {
                     minimumFractionDigits: 0,
@@ -207,7 +207,7 @@ export default function SimpleCalculator() {
                       : "/loans/asset-loans"
                   }
                 >
-                  <Button className="w-full py-4 text-base font-bold flex items-center justify-center gap-2">
+                  <Button className="w-full py-3 text-sm font-bold flex items-center justify-center gap-2">
                     Open {activeTab === "home" ? "Home" : "Asset"} Loan
                     Calculator
                     <ArrowRight className="w-4 h-4" />
