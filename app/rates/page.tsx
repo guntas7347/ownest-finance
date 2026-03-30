@@ -14,7 +14,7 @@ import {
 
 export default function RatesPage() {
   return (
-    <main className="max-w-7xl mx-auto px-6 py-12 pt-28 bg-background-light dark:bg-background-dark min-h-screen">
+    <main className="max-w-5xl mx-auto px-6 py-12 pt-28 bg-background-light dark:bg-background-dark min-h-screen">
       {/* Hero Header */}
       <header className="mb-16">
         <div className="max-w-3xl">

@@ -11,7 +11,6 @@ import FAQ from "@/Components/FAQ";
 
 export default async function Home() {
   const data = await scrapeMarketRates();
-  // console.log(data);
 
   return (
     <>

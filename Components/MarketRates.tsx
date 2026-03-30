@@ -1,6 +1,6 @@
 import React from "react";
 import MarketRateCard from "@/Components/MarketRateCard";
-import { TrendingUp, Activity } from "lucide-react";
+import { TrendingUp, Activity, RefreshCw } from "lucide-react";
 
 export interface MarketRatesProps {
   data: {
@@ -20,80 +20,117 @@ const toNumber = (v?: string) => {
 export default function MarketRates({ data }: MarketRatesProps) {
   if (!data) return null;
 
-  const cards = [
+  const rateCards = [
     {
       title: "RBA Cash Rate",
       value: toNumber(data.cashRate),
-      type: "rate",
+      type: "rate" as const,
       badge: "Target",
       decimals: 2,
-      icon: <TrendingUp className="w-5 h-5 text-primary opacity-80" />,
-      description: "The official interest rate set by the Reserve Bank.",
+      accentColor: "text-primary",
+      icon: <TrendingUp className="w-4 h-4 text-primary" />,
+      description: "Official rate by the Reserve Bank",
     },
     {
       title: "Cash Rate Effective",
       value: toNumber(data.cashEffective),
-      type: "rate",
+      type: "rate" as const,
       badge: "Effective",
       decimals: 2,
-      icon: <Activity className="w-5 h-5 text-blue-500 opacity-80" />,
-      description: "The actual rate at which overnight funds are traded.",
+      accentColor: "text-blue-500",
+      icon: <Activity className="w-4 h-4 text-blue-500" />,
+      description: "Overnight interbank rate",
     },
     {
-      title: `Inflation (${data.inflationPeriod})`,
+      title: `CPI Inflation`,
       value: toNumber(data.inflation),
-      type: "rate",
+      type: "rate" as const,
       badge: "CPI",
       decimals: 2,
-      icon: <TrendingUp className="w-5 h-5 text-orange-500 opacity-80" />,
-      description: "Annual change in the Consumer Price Index.",
+      accentColor: "text-orange-500",
+      icon: <TrendingUp className="w-4 h-4 text-orange-500" />,
+      description: `Consumer Price Index (${data.inflationPeriod})`,
     },
-
-    ...Object.entries(data.exchangeRates).map(([code, value]) => ({
-      title: `AUD / ${code}`,
-      value: toNumber(value),
-      type: "index" as const,
-      decimals: 4,
-      badge: undefined,
-      description: `Current exchange rate for ${code}.`,
-      icon: undefined as React.ReactNode | undefined,
-    })),
   ];
 
+  const fxCards = Object.entries(data.exchangeRates).map(([code, value]) => ({
+    title: `AUD / ${code}`,
+    value: toNumber(value),
+    type: "index" as const,
+    decimals: 4,
+    badge: undefined,
+    accentColor: "text-gray-700 dark:text-gray-200",
+    description: `Live exchange rate`,
+    icon: undefined as React.ReactNode | undefined,
+  }));
+
   return (
-    <section className="py-12 bg-surface-50 dark:bg-background-dark border-y border-gray-100 dark:border-white/5 relative overflow-hidden">
-      {/* Decorative Background Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -z-10 transform -translate-x-1/2 translate-y-1/2"></div>
+    <section className="py-6 bg-surface-50 dark:bg-background-dark border-y border-gray-100 dark:border-white/5 relative overflow-hidden">
+      {/* Subtle bg accents */}
+      <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 left-0 w-56 h-56 bg-blue-500/5 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/2" />
 
       <div className="max-w-5xl mx-auto px-6 relative z-10">
-        <div className="mb-12 text-center max-w-2xl mx-auto">
-          <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase rounded-full mb-4">
-            Market Intelligence
-          </span>
-          <h2 className="text-xl md:text-2xl font-extrabold text-gray-900 dark:text-white mb-3">
-            Live Economic Indicators
-          </h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Stay informed with the latest macroeconomic data and exchange rates
-            driving the Australian financial landscape.
-          </p>
+        {/* Header row */}
+        <div className="flex items-center justify-between mb-5">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-primary/10 text-primary text-[10px] font-bold tracking-widest uppercase rounded-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                Live Data
+              </span>
+            </div>
+            <h2 className="text-base font-extrabold text-gray-900 dark:text-white">
+              Market Indicators
+            </h2>
+          </div>
+          <RefreshCw className="w-3.5 h-3.5 text-gray-400 animate-spin [animation-duration:8s]" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {cards.map((rate, i) => (
-            <MarketRateCard
-              key={i}
-              title={rate.title}
-              value={rate.value ?? 0}
-              type={rate.type as "rate" | "index"}
-              badge={rate.badge}
-              decimals={rate.decimals}
-              icon={rate.icon}
-              description={rate.description}
-            />
-          ))}
+        {/* Key Rates */}
+        <div className="mb-4">
+          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-1">
+            Key Rates
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            {rateCards.map((card, i) => (
+              <MarketRateCard
+                key={i}
+                title={card.title}
+                value={card.value ?? 0}
+                type={card.type}
+                badge={card.badge}
+                decimals={card.decimals}
+                icon={card.icon}
+                description={card.description}
+                accentColor={card.accentColor}
+              />
+            ))}
+          </div>
         </div>
+
+        {/* FX Rates */}
+        {fxCards.length > 0 && (
+          <div>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-1">
+              Exchange Rates
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+              {fxCards.map((card, i) => (
+                <MarketRateCard
+                  key={i}
+                  title={card.title}
+                  value={card.value ?? 0}
+                  type={card.type}
+                  decimals={card.decimals}
+                  icon={card.icon}
+                  description={card.description}
+                  accentColor={card.accentColor}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

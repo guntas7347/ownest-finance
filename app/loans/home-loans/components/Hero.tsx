@@ -11,7 +11,7 @@ import {
 export default function Hero() {
   return (
     <section className="bg-gradient-to-br from-white to-orange-50 dark:from-background-dark dark:to-[#2a1e15] py-20 lg:py-32 overflow-hidden border-b border-gray-100 dark:border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-6">
         <div className="max-w-3xl mb-16">
           <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gray-900 dark:text-white">
             Expert Guidance for Your Home Ownership Journey.

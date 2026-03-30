@@ -21,7 +21,7 @@ export default function RefinancePage() {
   return (
     <>
       <section className="py-20 bg-gray-50 dark:bg-white/5">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Why Refinance?
@@ -90,7 +90,7 @@ export default function RefinancePage() {
       </section>
       {/* Rates & Savings Section */}
       <section className="py-20">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-5 gap-12">
+        <div className="max-w-5xl mx-auto px-6 grid lg:grid-cols-5 gap-12">
           {/* Rate Snapshot */}
           <div className="lg:col-span-2">
             <div className="bg-white dark:bg-[#2a1e15] p-8 rounded-2xl border-2 border-[#e27b30] ring-4 border-[#e27b30]/20 dark:border-[#e27b30]/30">
@@ -193,7 +193,7 @@ export default function RefinancePage() {
       </section>
       {/* Eligibility & Costs Grid */}
       <section className="py-20 bg-gray-50 dark:bg-white/5 border-y border-gray-200 dark:border-white/10">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
+        <div className="max-w-5xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
           {/* Eligibility */}
           <div>
             <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
@@ -266,14 +266,14 @@ export default function RefinancePage() {
                       $200 – $400
                     </td>
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <td className="p-4 font-medium">
                       Application Fee (New Loan)
                     </td>
                     <td className="p-4 text-right text-gray-600 dark:text-gray-300">
                       $0 – $600
                     </td>
-                  </tr>
+                  </tr> */}
                   <tr>
                     <td className="p-4 font-medium">Valuation Fee</td>
                     <td className="p-4 text-right text-gray-600 dark:text-gray-300">
@@ -306,7 +306,7 @@ export default function RefinancePage() {
       </section>
       {/* Process Timeline */}
       <section className="py-24">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               4 Steps to a Better Loan
@@ -369,7 +369,7 @@ export default function RefinancePage() {
       </section>
       {/* Document List & CTA */}
       <section className="pb-24">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="bg-gray-900 dark:bg-[#1a130f] rounded-3xl overflow-hidden flex flex-col lg:flex-row">
             <div className="lg:w-1/2 p-12 lg:p-16">
               <h3 className="text-3xl font-bold text-white mb-8">

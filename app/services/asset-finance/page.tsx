@@ -22,7 +22,7 @@ export default function AssetFinancePage() {
     <>
       <main>
         <section className="py-20 bg-gray-50 dark:bg-white/5">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-5xl mx-auto px-6">
             <div className="mb-12">
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
                 Finance Solutions
@@ -82,87 +82,9 @@ export default function AssetFinancePage() {
             </div>
           </div>
         </section>
-        <section className="py-24">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="bg-gray-900 dark:bg-[#1a130f] rounded-3xl p-12 lg:p-16 flex flex-col lg:flex-row gap-12">
-              <div className="lg:w-1/3">
-                <h2 className="text-3xl font-extrabold text-white mb-6">
-                  Why Choose Ownest?
-                </h2>
-                <p className="text-gray-400 dark:text-gray-500 mb-8">
-                  We combine industry expertise with rapid technology to get you
-                  moving faster.
-                </p>
-                <button className="bg-[#e27b30] text-white px-6 py-3 rounded font-bold inline-flex items-center gap-2">
-                  Explore All Features
-                  <ArrowRight className="text-sm" />
-                </button>
-              </div>
-              <div className="lg:w-2/3 grid sm:grid-cols-2 gap-8">
-                <div className="flex gap-4">
-                  <BadgeCheck className="text-[#e27b30]" />
-                  <div>
-                    <h4 className="text-white font-bold mb-2">
-                      Competitive Rates
-                    </h4>
-                    <p className="text-gray-400 dark:text-gray-500 text-sm">
-                      Market-leading interest rates through our extensive lender
-                      network.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <Calendar className="text-[#e27b30]" />
-                  <div>
-                    <h4 className="text-white font-bold mb-2">
-                      Flexible Repayments
-                    </h4>
-                    <p className="text-gray-400 dark:text-gray-500 text-sm">
-                      Terms and structures designed to align with your cash flow
-                      cycles.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <Gauge className="text-[#e27b30]" />
-                  <div>
-                    <h4 className="text-white font-bold mb-2">
-                      Fast Approvals
-                    </h4>
-                    <p className="text-gray-400 dark:text-gray-500 text-sm">
-                      Simplified digital application for rapid credit decisions.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <Sparkles className="text-[#e27b30]" />
-                  <div>
-                    <h4 className="text-white font-bold mb-2">
-                      New &amp; Used Assets
-                    </h4>
-                    <p className="text-gray-400 dark:text-gray-500 text-sm">
-                      We finance both brand new and quality pre-owned equipment.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <Briefcase className="text-[#e27b30]" />
-                  <div>
-                    <h4 className="text-white font-bold mb-2">
-                      Business or Personal
-                    </h4>
-                    <p className="text-gray-400 dark:text-gray-500 text-sm">
-                      Solutions for sole traders, large companies, or
-                      individuals.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+
         <section className="py-20 bg-white dark:bg-[#2a1e15]">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-5xl mx-auto px-6">
             <div className="grid lg:grid-cols-3 gap-12">
               <div className="lg:col-span-2">
                 <h2 className="text-3xl font-extrabold mb-8">
@@ -282,6 +204,87 @@ export default function AssetFinancePage() {
             </div>
           </div>
         </section>
+
+        <section className="py-24">
+          <div className="max-w-5xl mx-auto px-6">
+            <div className="bg-gray-900 dark:bg-[#1a130f] rounded-3xl p-12 lg:p-16 flex flex-col lg:flex-row gap-12">
+              <div className="lg:w-1/3">
+                <h2 className="text-3xl font-extrabold text-white mb-6">
+                  Why Choose Ownest?
+                </h2>
+                <p className="text-gray-400 dark:text-gray-500 mb-8">
+                  We combine industry expertise with rapid technology to get you
+                  moving faster.
+                </p>
+                <button className="bg-[#e27b30] text-white px-6 py-3 rounded font-bold inline-flex items-center gap-2">
+                  Explore All Features
+                  <ArrowRight className="text-sm" />
+                </button>
+              </div>
+              <div className="lg:w-2/3 grid sm:grid-cols-2 gap-8">
+                <div className="flex gap-4">
+                  <BadgeCheck className="text-[#e27b30]" />
+                  <div>
+                    <h4 className="text-white font-bold mb-2">
+                      Competitive Rates
+                    </h4>
+                    <p className="text-gray-400 dark:text-gray-500 text-sm">
+                      Market-leading interest rates through our extensive lender
+                      network.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <Calendar className="text-[#e27b30]" />
+                  <div>
+                    <h4 className="text-white font-bold mb-2">
+                      Flexible Repayments
+                    </h4>
+                    <p className="text-gray-400 dark:text-gray-500 text-sm">
+                      Terms and structures designed to align with your cash flow
+                      cycles.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <Gauge className="text-[#e27b30]" />
+                  <div>
+                    <h4 className="text-white font-bold mb-2">
+                      Fast Approvals
+                    </h4>
+                    <p className="text-gray-400 dark:text-gray-500 text-sm">
+                      Simplified digital application for rapid credit decisions.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <Sparkles className="text-[#e27b30]" />
+                  <div>
+                    <h4 className="text-white font-bold mb-2">
+                      New &amp; Used Assets
+                    </h4>
+                    <p className="text-gray-400 dark:text-gray-500 text-sm">
+                      We finance both brand new and quality pre-owned equipment.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <Briefcase className="text-[#e27b30]" />
+                  <div>
+                    <h4 className="text-white font-bold mb-2">
+                      Business or Personal
+                    </h4>
+                    <p className="text-gray-400 dark:text-gray-500 text-sm">
+                      Solutions for sole traders, large companies, or
+                      individuals.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="py-20 bg-gray-50 dark:bg-white/5">
           <div className="max-w-4xl mx-auto px-6">
             <h2 className="text-3xl font-extrabold text-center mb-12">
@@ -372,7 +375,7 @@ export default function AssetFinancePage() {
           </div>
         </section>
         <section className="py-20">
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-5xl mx-auto px-6">
             <div className="bg-[#e27b30] rounded-3xl p-12 text-center text-white relative overflow-hidden">
               <div className="relative z-10">
                 <h2 className="text-3xl lg:text-4xl font-extrabold mb-6">

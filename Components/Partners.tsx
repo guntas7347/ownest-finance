@@ -45,7 +45,7 @@ const PARTNERS = [
 export default function Partners() {
   return (
     <section className="py-12 border-y border-gray-200/50 dark:border-white/5 bg-gray-50/50 dark:bg-white/5 overflow-hidden transition-colors">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-8">
           <p className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase dark:text-gray-400">
             Trusted by Australia's Leading Lenders
@@ -62,7 +62,10 @@ export default function Partners() {
           }}
         >
           {/* Row 1: Starts from index 0, scrolls Standard (Right to Left) */}
-          <div className="flex gap-4 md:gap-6 w-max animate-scroll hover:[animation-play-state:paused] items-center py-2 px-4">
+          <div
+            className="flex gap-4 md:gap-6 w-max animate-scroll hover:[animation-play-state:paused] items-center py-2 px-4"
+            style={{ animationDuration: "60s" }}
+          >
             {/* Duplicate the array twice for seamless loop */}
             {[...PARTNERS, ...PARTNERS].map((partner, index) => (
               <Link
@@ -83,7 +86,7 @@ export default function Partners() {
           {/* Row 2: Starts from last index, scrolls Reverse (Left to Right) */}
           <div
             className="flex gap-4 md:gap-6 w-max animate-scroll hover:[animation-play-state:paused] items-center py-2 px-4"
-            style={{ animationDirection: "reverse" }}
+            style={{ animationDirection: "reverse", animationDuration: "60s" }}
           >
             {[...PARTNERS]
               .reverse()

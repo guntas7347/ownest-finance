@@ -1,492 +1,644 @@
 "use client";
 
-import React, { useState } from "react";
-import { Calculator as CalcIcon, Home, Download } from "lucide-react";
+import React, { useState, useMemo, useCallback } from "react";
+import {
+  Calculator,
+  Home,
+  Car,
+  TrendingDown,
+  ChevronDown,
+  ChevronUp,
+  ArrowRight,
+  Phone,
+  Percent,
+  DollarSign,
+  Clock,
+} from "lucide-react";
+import Link from "next/link";
 
+// ─── Types ──────────────────────────────────────────────────────────────────
+type Tab = "home" | "asset";
+type FreqKey = "monthly" | "fortnightly" | "weekly";
+
+const FREQ: Record<FreqKey, { label: string; n: number }> = {
+  monthly: { label: "Monthly", n: 12 },
+  fortnightly: { label: "Fortnightly", n: 26 },
+  weekly: { label: "Weekly", n: 52 },
+};
+
+// ─── Config per tab ──────────────────────────────────────────────────────────
+const CONFIG = {
+  home: {
+    label: "Home Loan",
+    icon: Home,
+    accentClass: "text-primary",
+    defaultAmount: 600000,
+    defaultRate: 6.35,
+    defaultTerm: 30,
+    minAmount: 50000,
+    maxAmount: 3000000,
+    stepAmount: 10000,
+    maxTerm: 30,
+    minTerm: 5,
+    desc: "Standard residential mortgage repayment estimator",
+    color: "#e27b32",
+  },
+  asset: {
+    label: "Asset Finance",
+    icon: Car,
+    accentClass: "text-blue-500",
+    defaultAmount: 50000,
+    defaultRate: 7.5,
+    defaultTerm: 5,
+    minAmount: 5000,
+    maxAmount: 500000,
+    stepAmount: 1000,
+    maxTerm: 7,
+    minTerm: 1,
+    desc: "Vehicles, equipment & marine asset finance estimator",
+    color: "#3b82f6",
+  },
+} as const;
+
+// ─── Helper ──────────────────────────────────────────────────────────────────
+function fmt(n: number, dec = 0) {
+  return n.toLocaleString("en-AU", {
+    minimumFractionDigits: dec,
+    maximumFractionDigits: dec,
+  });
+}
+
+// ─── Slider component ────────────────────────────────────────────────────────
+function Slider({
+  label,
+  value,
+  display,
+  min,
+  max,
+  step,
+  onChange,
+  minLabel,
+  maxLabel,
+  accent,
+}: {
+  label: string;
+  value: number;
+  display: string;
+  min: number;
+  max: number;
+  step: number;
+  onChange: (v: any) => void;
+  minLabel: string;
+  maxLabel: string;
+  accent: string;
+}) {
+  return (
+    <div className="space-y-1.5">
+      <div className="flex justify-between items-baseline">
+        <label className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+          {label}
+        </label>
+        <span
+          className="text-lg font-black tabular-nums"
+          style={{ color: accent }}
+        >
+          {display}
+        </span>
+      </div>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
+        className="w-full h-1.5 rounded-full appearance-none cursor-pointer accent-primary bg-gray-200 dark:bg-white/10"
+        style={{ accentColor: accent }}
+      />
+      <div className="flex justify-between text-[10px] text-gray-400 font-semibold">
+        <span>{minLabel}</span>
+        <span>{maxLabel}</span>
+      </div>
+    </div>
+  );
+}
+
+// ─── Amortization row type ───────────────────────────────────────────────────
+interface AmorRow {
+  year: number;
+  open: number;
+  principal: number;
+  interest: number;
+  close: number;
+}
+
+function buildAmortization(
+  amount: number,
+  annualRate: number,
+  termYears: number,
+): AmorRow[] {
+  const r = annualRate / 100 / 12;
+  const n = termYears * 12;
+  const emi =
+    r === 0
+      ? amount / n
+      : (amount * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+
+  const rows: AmorRow[] = [];
+  let balance = amount;
+
+  for (let y = 1; y <= termYears; y++) {
+    const open = balance;
+    let yearlyPrincipal = 0;
+    let yearlyInterest = 0;
+    for (let m = 0; m < 12 && balance > 0; m++) {
+      const intPayment = balance * r;
+      const prinPayment = Math.min(emi - intPayment, balance);
+      yearlyInterest += intPayment;
+      yearlyPrincipal += prinPayment;
+      balance = Math.max(balance - prinPayment, 0);
+    }
+    rows.push({
+      year: y,
+      open,
+      principal: yearlyPrincipal,
+      interest: yearlyInterest,
+      close: balance,
+    });
+    if (balance <= 0) break;
+  }
+  return rows;
+}
+
+// ─── Main page ───────────────────────────────────────────────────────────────
 export default function CalculatorsPage() {
-  const [loanAmount, setLoanAmount] = useState(500000);
-  const [interestRate, setInterestRate] = useState(6.25);
-  const [loanTenure, setLoanTenure] = useState(30);
+  const [tab, setTab] = useState<Tab>("home");
+  const cfg = CONFIG[tab];
 
-  // Simple EMI Calculation
-  const r = interestRate / 12 / 100;
-  const n = loanTenure * 12;
-  const emi = (loanAmount * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-  const totalPayment = emi * n;
-  const totalInterest = totalPayment - loanAmount;
+  const [amount, setAmount] = useState(cfg.defaultAmount);
+  const [rate, setRate] = useState(cfg.defaultRate);
+  const [term, setTerm] = useState(cfg.defaultTerm);
+  const [freq, setFreq] = useState<FreqKey>("monthly");
+  const [extraRepay, setExtraRepay] = useState(0);
+  const [showAllRows, setShowAllRows] = useState(false);
+
+  // Switch tab resets
+  const switchTab = useCallback(
+    (t: Tab) => {
+      if (t === tab) return;
+      setTab(t);
+      setAmount(CONFIG[t].defaultAmount);
+      setRate(CONFIG[t].defaultRate);
+      setTerm(CONFIG[t].defaultTerm);
+      setFreq("monthly");
+      setExtraRepay(0);
+      setShowAllRows(false);
+    },
+    [tab],
+  );
+
+  // Core calc
+  const { monthly, totalPayment, totalInterest, rows } = useMemo(() => {
+    const r = rate / 100 / 12;
+    const n = term * 12;
+    const monthly =
+      r === 0
+        ? amount / n
+        : (amount * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const totalPayment = monthly * n;
+    const totalInterest = totalPayment - amount;
+    const rows = buildAmortization(amount, rate, term);
+    return { monthly, totalPayment, totalInterest, rows };
+  }, [amount, rate, term]);
+
+  // Repayment per frequency
+  const repayment = useMemo(() => {
+    const { n } = FREQ[freq];
+    return (monthly * 12) / n;
+  }, [monthly, freq]);
+
+  // Extra repayment savings (simple estimation)
+  const savings = useMemo(() => {
+    if (extraRepay <= 0) return null;
+    const r = rate / 100 / 12;
+    const stdMonthly = monthly;
+    const newMonthly = stdMonthly + extraRepay;
+
+    let bal = amount;
+    let months = 0;
+    let totalInt = 0;
+    while (bal > 0 && months < term * 12 * 2) {
+      const intCharge = bal * r;
+      const prin = Math.min(newMonthly - intCharge, bal);
+      totalInt += intCharge;
+      bal -= prin;
+      months++;
+    }
+    const savedInterest = totalInterest - totalInt;
+    const savedMonths = term * 12 - months;
+    return {
+      savedInterest,
+      savedYears: Math.floor(savedMonths / 12),
+      savedMonths: savedMonths % 12,
+    };
+  }, [extraRepay, monthly, amount, rate, term, totalInterest]);
+
+  const principalPct = Math.round((amount / totalPayment) * 100);
+  const interestPct = 100 - principalPct;
+
+  const displayRows = showAllRows ? rows : rows.slice(0, 5);
+  const accent = cfg.color;
 
   return (
-    <main className="max-w-7xl mx-auto px-6 py-12 pt-28 bg-background-light dark:bg-background-dark min-h-screen">
-      {/* Hero Section */}
-      <header className="mb-16 text-center max-w-3xl mx-auto">
-        <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6">
-          Financial Tools & <span className="text-[#e27b30]">Calculators</span>
-        </h1>
-        <p className="text-lg text-gray-500 dark:text-gray-400">
-          Plan your future with precision. Our suite of professional-grade
-          calculators helps you visualize loan repayments, determine
-          eligibility, and discover savings opportunities.
-        </p>
-      </header>
-
-      {/* Bento Grid Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* EMI Calculator (Large Block) */}
-        <section className="lg:col-span-8 bg-white dark:bg-[#2a1e15] rounded-xl shadow-sm border border-gray-100 dark:border-white/10 p-8">
-          <div className="flex items-center justify-between mb-8">
+    <main className="min-h-screen bg-background-light dark:bg-background-dark">
+      {/* ── Page header ────────────────────────────────────────────────────── */}
+      <div className="bg-white dark:bg-[#1a130f] border-b border-gray-100 dark:border-white/8 pt-20 pb-8 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex items-start justify-between gap-4 flex-wrap">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                EMI Calculator
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest mb-3">
+                <Calculator className="w-3 h-3" />
+                Financial Calculators
+              </div>
+              <h1 className="text-2xl font-extrabold text-gray-900 dark:text-white">
+                Loan Repayment Calculator
+              </h1>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                Visualize repayments, interest costs, and early-payoff savings.
+              </p>
+            </div>
+
+            {/* Tab switcher */}
+            <div className="flex items-center gap-1 p-1 bg-gray-100 dark:bg-white/8 rounded-xl self-start">
+              {(["home", "asset"] as Tab[]).map((t) => {
+                const C = CONFIG[t];
+                const Icon = C.icon;
+                const active = tab === t;
+                return (
+                  <button
+                    key={t}
+                    onClick={() => switchTab(t)}
+                    className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                      active
+                        ? "bg-white dark:bg-white/10 text-gray-900 dark:text-white shadow-sm"
+                        : "text-gray-500 hover:text-gray-800 dark:hover:text-gray-200"
+                    }`}
+                  >
+                    <Icon className="w-3.5 h-3.5" />
+                    {C.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-6 py-8 space-y-6">
+        {/* ── Main calculator grid ───────────────────────────────────────── */}
+        <div className="grid lg:grid-cols-12 gap-5">
+          {/* Inputs */}
+          <section className="lg:col-span-5 bg-white dark:bg-[#2a1e15] rounded-2xl border border-gray-100 dark:border-white/8 shadow-sm p-6 space-y-6">
+            <div>
+              <h2 className="text-sm font-bold text-gray-800 dark:text-white">
+                Loan Details
               </h2>
-              <p className="text-gray-500 dark:text-gray-400 text-sm">
-                Calculate your monthly loan repayments
-              </p>
-            </div>
-            <div className="p-3 bg-orange-50 dark:bg-white/5 rounded-full text-[#e27b30]">
-              <CalcIcon className="w-6 h-6" />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="space-y-10">
-              {/* Loan Amount Slider */}
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <label className="text-sm font-semibold text-gray-600 dark:text-gray-300">
-                    Loan Amount
-                  </label>
-                  <span className="text-lg font-bold text-[#e27b30]">
-                    ${loanAmount.toLocaleString()}
-                  </span>
-                </div>
-                <input
-                  className="accent-[#e27b30] w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
-                  type="range"
-                  min="10000"
-                  max="2000000"
-                  step="10000"
-                  value={loanAmount}
-                  onChange={(e) => setLoanAmount(Number(e.target.value))}
-                />
-                <div className="flex justify-between text-xs text-gray-400 font-medium">
-                  <span>$10k</span>
-                  <span>$2M</span>
-                </div>
-              </div>
-
-              {/* Interest Rate Slider */}
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <label className="text-sm font-semibold text-gray-600 dark:text-gray-300">
-                    Interest Rate (p.a)
-                  </label>
-                  <span className="text-lg font-bold text-[#e27b30]">
-                    {interestRate}%
-                  </span>
-                </div>
-                <input
-                  className="accent-[#e27b30] w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
-                  type="range"
-                  min="1"
-                  max="15"
-                  step="0.05"
-                  value={interestRate}
-                  onChange={(e) => setInterestRate(Number(e.target.value))}
-                />
-                <div className="flex justify-between text-xs text-gray-400 font-medium">
-                  <span>1%</span>
-                  <span>15%</span>
-                </div>
-              </div>
-
-              {/* Tenure Slider */}
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <label className="text-sm font-semibold text-gray-600 dark:text-gray-300">
-                    Loan Tenure
-                  </label>
-                  <span className="text-lg font-bold text-[#e27b30]">
-                    {loanTenure} Years
-                  </span>
-                </div>
-                <input
-                  className="accent-[#e27b30] w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
-                  type="range"
-                  min="1"
-                  max="30"
-                  step="1"
-                  value={loanTenure}
-                  onChange={(e) => setLoanTenure(Number(e.target.value))}
-                />
-                <div className="flex justify-between text-xs text-gray-400 font-medium">
-                  <span>1 Year</span>
-                  <span>30 Years</span>
-                </div>
-              </div>
+              <p className="text-xs text-gray-400 mt-0.5">{cfg.desc}</p>
             </div>
 
-            {/* EMI Results Visualization */}
-            <div className="bg-gray-50 dark:bg-black/20 rounded-xl p-8 flex flex-col items-center justify-center text-center">
-              <p className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-2">
-                Monthly Repayment
-              </p>
-              <h3 className="text-4xl font-black text-gray-900 dark:text-white mb-8">
-                ${emi.toLocaleString(undefined, { maximumFractionDigits: 2 })}
-              </h3>
+            <Slider
+              label="Loan Amount"
+              value={amount}
+              display={`$${fmt(amount)}`}
+              min={cfg.minAmount}
+              max={cfg.maxAmount}
+              step={cfg.stepAmount}
+              onChange={setAmount}
+              minLabel={`$${fmt(cfg.minAmount)}`}
+              maxLabel={`$${fmt(cfg.maxAmount)}`}
+              accent={accent}
+            />
 
-              <div className="w-full space-y-4">
-                <div className="relative h-4 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden flex">
-                  <div
-                    className="h-full bg-[#e27b30]"
-                    style={{ width: `${(loanAmount / totalPayment) * 100}%` }}
-                  ></div>
-                  <div
-                    className="h-full bg-gray-800 dark:bg-gray-500"
-                    style={{
-                      width: `${(totalInterest / totalPayment) * 100}%`,
-                    }}
-                  ></div>
-                </div>
-                <div className="flex justify-between text-xs font-semibold">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-[#e27b30] rounded-sm"></div>
-                    <span className="text-gray-600 dark:text-gray-300">
-                      Principal: ${loanAmount.toLocaleString()}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-gray-800 dark:bg-gray-500 rounded-sm"></div>
-                    <span className="text-gray-600 dark:text-gray-300">
-                      Interest: $
-                      {totalInterest.toLocaleString(undefined, {
-                        maximumFractionDigits: 0,
-                      })}
-                    </span>
-                  </div>
-                </div>
+            <Slider
+              label="Interest Rate (p.a.)"
+              value={rate}
+              display={`${rate.toFixed(2)}%`}
+              min={1}
+              max={15}
+              step={0.05}
+              onChange={setRate}
+              minLabel="1.00%"
+              maxLabel="15.00%"
+              accent={accent}
+            />
+
+            <Slider
+              label="Loan Term"
+              value={term}
+              display={`${term} yr${term > 1 ? "s" : ""}`}
+              min={cfg.minTerm}
+              max={cfg.maxTerm}
+              step={1}
+              onChange={setTerm}
+              minLabel={`${cfg.minTerm} yr`}
+              maxLabel={`${cfg.maxTerm} yrs`}
+              accent={accent}
+            />
+
+            {/* Extra repayment */}
+            <div className="space-y-1.5">
+              <div className="flex justify-between items-baseline">
+                <label className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                  Extra Repayment / mo
+                </label>
+                <span className="text-[10px] text-emerald-500 font-bold uppercase tracking-wider">
+                  {extraRepay > 0 ? "Savings on!" : "Optional"}
+                </span>
+              </div>
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
+                  $
+                </span>
+                <input
+                  type="number"
+                  min={0}
+                  step={100}
+                  value={extraRepay || ""}
+                  placeholder="0"
+                  onChange={(e) =>
+                    setExtraRepay(Math.max(0, Number(e.target.value)))
+                  }
+                  className="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 text-sm font-bold text-gray-800 dark:text-white outline-none focus:border-emerald-400 transition-colors"
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* Results */}
+          <section className="lg:col-span-7 flex flex-col gap-5">
+            {/* Repayment frequency + big number */}
+            <div className="bg-white dark:bg-[#2a1e15] rounded-2xl border border-gray-100 dark:border-white/8 shadow-sm p-6">
+              {/* Freq selector */}
+              <div className="flex items-center gap-1 p-1 bg-gray-100 dark:bg-white/8 rounded-xl w-fit mb-5">
+                {(Object.keys(FREQ) as FreqKey[]).map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setFreq(f)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                      freq === f
+                        ? "bg-white dark:bg-white/15 text-gray-900 dark:text-white shadow-sm"
+                        : "text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+                    }`}
+                  >
+                    {FREQ[f].label}
+                  </button>
+                ))}
               </div>
 
-              <div className="mt-8 pt-8 border-t border-gray-200 dark:border-white/10 w-full grid grid-cols-2 gap-4">
+              <div className="flex items-end justify-between gap-4">
                 <div>
-                  <p className="text-xs text-gray-400 mb-1">Total Repayment</p>
-                  <p className="text-sm font-bold text-gray-900 dark:text-white">
-                    $
-                    {totalPayment.toLocaleString(undefined, {
-                      maximumFractionDigits: 0,
-                    })}
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">
+                    {FREQ[freq].label} Repayment
+                  </p>
+                  <p
+                    className="text-4xl font-black tabular-nums"
+                    style={{ color: accent }}
+                  >
+                    ${fmt(repayment, 0)}
+                  </p>
+                  <p className="text-xs text-gray-400 mt-1">
+                    incl. principal + interest
                   </p>
                 </div>
-                <div>
-                  <p className="text-xs text-gray-400 mb-1">Repayment Type</p>
-                  <p className="text-sm font-bold text-gray-900 dark:text-white">
-                    Monthly
-                  </p>
+
+                {/* Split bar */}
+                <div className="flex-1 max-w-[200px]">
+                  <div className="flex h-2.5 rounded-full overflow-hidden mb-1.5">
+                    <div
+                      className="h-full transition-all duration-700"
+                      style={{
+                        width: `${principalPct}%`,
+                        backgroundColor: accent,
+                      }}
+                    />
+                    <div
+                      className="h-full bg-gray-300 dark:bg-white/20 transition-all duration-700"
+                      style={{ width: `${interestPct}%` }}
+                    />
+                  </div>
+                  <div className="flex justify-between text-[9px] font-bold text-gray-400">
+                    <span style={{ color: accent }}>
+                      Principal {principalPct}%
+                    </span>
+                    <span>Interest {interestPct}%</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* Loan Eligibility (Side Block) */}
-        <section className="lg:col-span-4 bg-gray-900 dark:bg-[#1a130f] text-white rounded-xl p-8 shadow-xl flex flex-col">
-          <div className="mb-8">
-            <span className="inline-block px-3 py-1 bg-[#e27b30]/20 text-[#e27b30] text-xs font-bold rounded-full mb-4">
-              ELIGIBILITY CHECK
-            </span>
-            <h2 className="text-2xl font-bold">How much can I borrow?</h2>
-          </div>
-          <div className="space-y-6 flex-grow">
-            <div className="space-y-2">
-              <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                Gross Monthly Income
-              </label>
-              <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
-                  $
-                </span>
-                <input
-                  className="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-10 pr-4 text-white focus:ring-[#e27b30] focus:border-[#e27b30] outline-none transition-all"
-                  type="text"
-                  defaultValue="8,500"
-                />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                Monthly Expenses
-              </label>
-              <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
-                  $
-                </span>
-                <input
-                  className="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-10 pr-4 text-white focus:ring-[#e27b30] focus:border-[#e27b30] outline-none transition-all"
-                  type="text"
-                  defaultValue="3,200"
-                />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                Other Commitments
-              </label>
-              <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
-                  $
-                </span>
-                <input
-                  className="w-full bg-white/5 border border-white/10 rounded-lg py-3 pl-10 pr-4 text-white focus:ring-[#e27b30] focus:border-[#e27b30] outline-none transition-all"
-                  type="text"
-                  defaultValue="450"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="mt-10 p-6 bg-white/5 border border-white/10 rounded-xl text-center">
-            <p className="text-sm text-gray-400 mb-2">
-              Estimated Borrowing Power
-            </p>
-            <p className="text-3xl font-bold text-[#e27b30]">$745,000</p>
-          </div>
-          <button className="mt-6 w-full bg-[#e27b30] py-4 rounded-xl font-bold hover:bg-opacity-90 transition-all text-white">
-            Get Prequalified
-          </button>
-        </section>
-
-        {/* Affordability Calculator (Medium Block) */}
-        <section className="lg:col-span-6 bg-white dark:bg-[#2a1e15] rounded-xl shadow-sm border border-gray-100 dark:border-white/10 p-8">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-12 bg-gray-100 dark:bg-white/5 rounded-xl flex items-center justify-center text-gray-600 dark:text-gray-300">
-              <Home className="w-6 h-6" />
-            </div>
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-              Affordability Calculator
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <div className="p-4 bg-gray-50 dark:bg-white/5 rounded-lg">
-                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1">
-                  Property Value
-                </p>
-                <p className="text-lg font-bold text-gray-900 dark:text-white">
-                  $850,000
-                </p>
-              </div>
-              <div className="p-4 bg-gray-50 dark:bg-white/5 rounded-lg">
-                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1">
-                  Your Deposit (20%)
-                </p>
-                <p className="text-lg font-bold text-gray-900 dark:text-white">
-                  $170,000
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-col justify-center">
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-                Based on your deposit and the current market rates, your LVR
-                (Loan-to-Value Ratio) is{" "}
-                <span className="font-bold text-gray-900 dark:text-white">
-                  80%
-                </span>
-                .
-              </p>
-              <div className="h-2 w-full bg-gray-100 dark:bg-gray-700 rounded-full">
+            {/* Stat grid */}
+            <div className="grid grid-cols-3 gap-3">
+              {[
+                {
+                  icon: DollarSign,
+                  label: "Total Repayment",
+                  value: `$${fmt(totalPayment, 0)}`,
+                  sub: "over full term",
+                  color: accent,
+                },
+                {
+                  icon: Percent,
+                  label: "Total Interest",
+                  value: `$${fmt(totalInterest, 0)}`,
+                  sub: `${fmt((totalInterest / amount) * 100, 1)}% of principal`,
+                  color: "#f97316",
+                },
+                {
+                  icon: Clock,
+                  label: "Loan Term",
+                  value: `${term} yrs`,
+                  sub: `${term * 12} payments`,
+                  color: "#6366f1",
+                },
+              ].map(({ icon: Icon, label, value, sub, color }) => (
                 <div
-                  className="h-full bg-[#e27b30] rounded-full"
-                  style={{ width: "80%" }}
-                ></div>
+                  key={label}
+                  className="bg-white dark:bg-[#2a1e15] rounded-xl border border-gray-100 dark:border-white/8 shadow-sm p-4"
+                >
+                  <div
+                    className="w-7 h-7 rounded-lg flex items-center justify-center mb-3"
+                    style={{ backgroundColor: `${color}18` }}
+                  >
+                    <Icon className="w-3.5 h-3.5" style={{ color }} />
+                  </div>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-0.5">
+                    {label}
+                  </p>
+                  <p className="text-base font-black text-gray-900 dark:text-white tabular-nums">
+                    {value}
+                  </p>
+                  <p className="text-[10px] text-gray-400 mt-0.5">{sub}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Extra repayment savings */}
+            {savings && (
+              <div className="bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-200 dark:border-emerald-700/30 rounded-2xl p-5 flex items-start gap-4">
+                <div className="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0">
+                  <TrendingDown className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider mb-0.5">
+                    Extra Repayment Savings
+                  </p>
+                  <p className="text-sm text-emerald-800 dark:text-emerald-300">
+                    Paying an extra <strong>${fmt(extraRepay)}/mo</strong> saves{" "}
+                    <strong>${fmt(savings.savedInterest, 0)}</strong> in
+                    interest
+                    {savings.savedYears > 0 || savings.savedMonths > 0 ? (
+                      <>
+                        {" "}
+                        and cuts your loan by{" "}
+                        <strong>
+                          {savings.savedYears > 0
+                            ? `${savings.savedYears}y `
+                            : ""}
+                          {savings.savedMonths > 0
+                            ? `${savings.savedMonths}m`
+                            : ""}
+                        </strong>
+                      </>
+                    ) : null}
+                    .
+                  </p>
+                </div>
               </div>
-              <p className="mt-4 text-xs text-gray-400">
-                Lower LVRs often qualify for better interest rates.
+            )}
+          </section>
+        </div>
+
+        {/* ── Amortization table ─────────────────────────────────────────── */}
+        <section className="bg-white dark:bg-[#2a1e15] rounded-2xl border border-gray-100 dark:border-white/8 shadow-sm overflow-hidden">
+          <div className="px-6 py-4 border-b border-gray-100 dark:border-white/8 flex items-center justify-between">
+            <div>
+              <h2 className="text-sm font-bold text-gray-900 dark:text-white">
+                Yearly Amortization Schedule
+              </h2>
+              <p className="text-xs text-gray-400 mt-0.5">
+                How your loan balance reduces year by year
               </p>
             </div>
-          </div>
-        </section>
-
-        {/* Savings Calculator (Medium Block) */}
-        <section className="lg:col-span-6 bg-white dark:bg-[#2a1e15] rounded-xl shadow-sm border border-gray-100 dark:border-white/10 p-8">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-12 bg-orange-50 dark:bg-white/5 rounded-xl flex items-center justify-center text-[#e27b30]">
-              <CalcIcon className="w-6 h-6" />
-            </div>
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-              Early Repayment Savings
-            </h2>
-          </div>
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600 dark:text-gray-300">
-                Additional Monthly Payment
-              </span>
-              <div className="flex items-center gap-2">
-                <span className="text-gray-400">$</span>
-                <input
-                  className="w-24 text-right border border-gray-200 dark:border-white/10 bg-transparent rounded p-1 font-bold text-gray-900 dark:text-white outline-none focus:border-[#e27b30]"
-                  type="text"
-                  defaultValue="500"
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 border border-emerald-100 dark:border-emerald-900/50 bg-emerald-50/30 dark:bg-emerald-900/10 rounded-xl">
-                <p className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-1">
-                  Interest Saved
-                </p>
-                <p className="text-2xl font-bold text-emerald-700 dark:text-emerald-300">
-                  $142,300
-                </p>
-              </div>
-              <div className="p-4 border border-blue-100 dark:border-blue-900/50 bg-blue-50/30 dark:bg-blue-900/10 rounded-xl">
-                <p className="text-xs font-semibold text-blue-600 dark:text-blue-400 mb-1">
-                  Time Saved
-                </p>
-                <p className="text-2xl font-bold text-blue-700 dark:text-blue-300">
-                  7y 4m
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Amortization Table (Full Width) */}
-        <section className="lg:col-span-12 bg-white dark:bg-[#2a1e15] rounded-xl shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden">
-          <div className="p-8 border-b border-gray-100 dark:border-white/10 flex items-center justify-between">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-              Amortization Schedule (Yearly)
-            </h2>
-            <button className="flex items-center gap-2 text-sm font-semibold text-[#e27b30] hover:underline">
-              <Download className="w-4 h-4" />
-              Export PDF
-            </button>
+            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+              {rows.length} Years
+            </span>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full text-left">
-              <thead className="bg-gray-50 dark:bg-black/20">
-                <tr>
-                  <th className="px-8 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    Year
-                  </th>
-                  <th className="px-8 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    Opening Balance
-                  </th>
-                  <th className="px-8 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    Principal Paid
-                  </th>
-                  <th className="px-8 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    Interest Paid
-                  </th>
-                  <th className="px-8 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                    Closing Balance
-                  </th>
+            <table className="w-full text-left text-sm">
+              <thead>
+                <tr className="bg-gray-50 dark:bg-white/3">
+                  {[
+                    "Year",
+                    "Opening Balance",
+                    "Principal Paid",
+                    "Interest Paid",
+                    "Closing Balance",
+                  ].map((h) => (
+                    <th
+                      key={h}
+                      className="px-5 py-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider whitespace-nowrap"
+                    >
+                      {h}
+                    </th>
+                  ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100 dark:divide-white/5">
-                <tr className="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                  <td className="px-8 py-4 text-sm font-bold text-gray-700 dark:text-gray-300">
-                    1
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $500,000
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $5,892
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $31,051
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $494,108
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                  <td className="px-8 py-4 text-sm font-bold text-gray-700 dark:text-gray-300">
-                    2
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $494,108
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $6,271
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $30,672
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $487,837
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                  <td className="px-8 py-4 text-sm font-bold text-gray-700 dark:text-gray-300">
-                    3
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $487,837
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $6,675
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $30,268
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $481,162
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
-                  <td className="px-8 py-4 text-sm font-bold text-gray-700 dark:text-gray-300">
-                    4
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $481,162
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $7,105
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $29,838
-                  </td>
-                  <td className="px-8 py-4 text-sm text-gray-600 dark:text-gray-400">
-                    $474,057
-                  </td>
-                </tr>
+              <tbody className="divide-y divide-gray-50 dark:divide-white/5">
+                {displayRows.map((row, i) => (
+                  <tr
+                    key={row.year}
+                    className={`hover:bg-gray-50 dark:hover:bg-white/3 transition-colors ${
+                      i === 0 ? "font-semibold" : ""
+                    }`}
+                  >
+                    <td className="px-5 py-3 font-bold text-gray-700 dark:text-gray-200">
+                      {row.year}
+                    </td>
+                    <td className="px-5 py-3 text-gray-500 dark:text-gray-400 tabular-nums">
+                      ${fmt(row.open, 0)}
+                    </td>
+                    <td
+                      className="px-5 py-3 tabular-nums"
+                      style={{ color: accent }}
+                    >
+                      ${fmt(row.principal, 0)}
+                    </td>
+                    <td className="px-5 py-3 text-orange-500 tabular-nums">
+                      ${fmt(row.interest, 0)}
+                    </td>
+                    <td className="px-5 py-3 text-gray-500 dark:text-gray-400 tabular-nums">
+                      ${fmt(row.close, 0)}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
-          <div className="p-6 bg-gray-50 dark:bg-black/20 border-t border-gray-100 dark:border-white/10 text-center">
-            <button className="text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
-              View Full 30 Year Table
+          {rows.length > 5 && (
+            <button
+              onClick={() => setShowAllRows(!showAllRows)}
+              className="w-full py-3 text-xs font-bold text-gray-500 hover:text-gray-800 dark:hover:text-white flex items-center justify-center gap-1.5 border-t border-gray-100 dark:border-white/8 hover:bg-gray-50 dark:hover:bg-white/3 transition-colors"
+            >
+              {showAllRows ? (
+                <>
+                  <ChevronUp className="w-3.5 h-3.5" /> Collapse Table
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="w-3.5 h-3.5" /> View All {rows.length}{" "}
+                  Years
+                </>
+              )}
             </button>
+          )}
+        </section>
+
+        {/* ── CTA ────────────────────────────────────────────────────────── */}
+        <section className="rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 dark:from-[#1a130f] dark:to-[#2a1e15] p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 relative">
+          <div
+            className="absolute right-0 top-0 w-64 h-64 rounded-full blur-3xl opacity-20 pointer-events-none"
+            style={{ background: accent }}
+          />
+          <div className="relative">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-2">
+              Next Step
+            </p>
+            <h2 className="text-xl font-extrabold text-white mb-1.5">
+              Ready to proceed?
+            </h2>
+            <p className="text-sm text-white/60 max-w-sm">
+              These are estimates. Our brokers will tailor a strategy to your
+              exact financial situation — for free.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3 relative flex-shrink-0">
+            <Link href="/contact">
+              <button
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-white shadow-lg hover:opacity-90 transition-opacity"
+                style={{ backgroundColor: accent }}
+              >
+                Book Free Consultation
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </Link>
+            <Link href="tel:+1234567890">
+              <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-white border border-white/20 hover:bg-white/10 transition-colors">
+                <Phone className="w-4 h-4" />
+                Call Us Now
+              </button>
+            </Link>
           </div>
         </section>
-      </div>
-
-      {/* Call to Action */}
-      <div className="mt-16 rounded-3xl bg-[#e27b30]/10 dark:bg-[#e27b30]/5 p-12 relative overflow-hidden">
-        <div className="absolute right-0 top-0 w-1/2 h-full opacity-20 pointer-events-none">
-          <img
-            className="w-full h-full object-cover"
-            data-alt="Abstract financial geometric shapes and patterns"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-9NpHtPaVI6CPVlimh3KPIsMLgywgCHmXs3s6zDSLXFpSoOJAGb2nLESfo2z2wIvvCepPlhARYT0Z2V9IKzy5EAosup9eyyaXgUU6GLfS6B8ph1gqIgBc1LJ-UjyVWk6zQgThUC4MZEfbc4HGoBQ88lgiYIx8ZY7-xjarYhwud3HjJWqu1baTy8ezQohZz79K5IDLyvYbKRnE1exFJawGM7-FseMUHbFawikfhNlcJMmk8jIH8oUmOPNU3oPe-XxOAZqUOQF_dLFA"
-          />
-        </div>
-        <div className="relative z-10 max-w-2xl">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Ready to take the next step?
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-8 text-lg">
-            These calculations are estimates. Talk to our expert mortgage
-            brokers to get a personalized strategy for your financial goals.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <button className="bg-[#e27b30] text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-[#e27b30]/20 hover:scale-[1.02] transition-all">
-              Book Free Consultation
-            </button>
-            <button className="bg-white dark:bg-transparent text-gray-900 dark:text-white font-bold px-8 py-4 rounded-xl border border-gray-200 dark:border-white/20 hover:bg-gray-50 dark:hover:bg-white/5 transition-all">
-              Download Rates Guide
-            </button>
-          </div>
-        </div>
       </div>
     </main>
   );

@@ -22,7 +22,7 @@ export default function SmsfPage() {
     <>
       {/* Key Features (Bento Grid) */}
       <section className="py-20 bg-gray-50 dark:bg-white/5">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Strategic Financing Solutions
@@ -72,7 +72,7 @@ export default function SmsfPage() {
       </section>
       {/* Rates & Investment Snapshot */}
       <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-[#2a1e15] rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-sm flex flex-col lg:flex-row">
             <div className="p-12 lg:w-1/2 bg-gray-900 dark:bg-[#1a130f] text-white">
               <h2 className="text-3xl font-bold mb-8">
@@ -147,7 +147,7 @@ export default function SmsfPage() {
       </section>
       {/* Eligibility & Costs */}
       <section className="py-24 bg-gray-50 dark:bg-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Requirements */}
             <div>
@@ -249,7 +249,7 @@ export default function SmsfPage() {
       </section>
       {/* The Path to Settlement */}
       <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-16">
             The Path to Settlement
           </h2>
@@ -302,7 +302,7 @@ export default function SmsfPage() {
       </section>
       {/* Compliance & Docs */}
       <section className="py-24 bg-gray-900 dark:bg-[#1a130f] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
             <div>
               <h3 className="text-2xl font-bold mb-8">Document Checklist</h3>

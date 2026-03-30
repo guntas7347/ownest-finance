@@ -1,194 +1,290 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
-import { Menu, X, ChevronDown } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Phone,
+  Home,
+  Car,
+  RefreshCw,
+  Building2,
+  ArrowRight,
+  Calculator,
+  TrendingUp,
+} from "lucide-react";
+
+const SERVICES = [
+  {
+    href: "/services/home-loan",
+    icon: Home,
+    label: "Home Loans",
+    desc: "Residential mortgages",
+  },
+  {
+    href: "/services/asset-finance",
+    icon: Car,
+    label: "Asset Finance",
+    desc: "Vehicles & equipment",
+  },
+  {
+    href: "/services/refinance",
+    icon: RefreshCw,
+    label: "Refinance",
+    desc: "Switch & save",
+  },
+  {
+    href: "/services/smsf",
+    icon: Building2,
+    label: "SMSF Loans",
+    desc: "Self-managed super loans",
+  },
+];
+
+const NAV_LINKS = [
+  { href: "/calculators", label: "Calculators", icon: Calculator },
+  { href: "/rates", label: "Rates", icon: TrendingUp },
+  { href: "/about", label: "About", icon: null },
+  { href: "/blog", label: "Blog", icon: null },
+];
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  // Tighten glass on scroll
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
+  }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  const navLinkClass = (href: string) =>
+    `text-sm font-medium transition-colors ${
+      pathname === href
+        ? "text-primary"
+        : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+    }`;
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-white/10">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <div className="flex items-center gap-12">
+    <>
+      <nav
+        className={`sticky top-0 left-0 right-0 z-50 px-4 sm:px-6 py-2.5 transition-all duration-300`}
+      >
+        {/* ── Pill navbar ─────────────────────────────────────────────────── */}
+        <div
+          className={`max-w-5xl mx-auto flex items-center justify-between px-4 sm:px-5 rounded-2xl transition-all duration-300 ${
+            scrolled
+              ? "py-2 bg-white/70 dark:bg-[#1a130f]/80 backdrop-blur-3xl border border-white/60 dark:border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
+              : "py-2.5 bg-white/50 dark:bg-[#1a130f]/60 backdrop-blur-2xl border border-white/50 dark:border-white/8 shadow-[0_2px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_2px_20px_rgba(0,0,0,0.3)]"
+          }`}
+          style={{
+            WebkitBackdropFilter: "blur(24px)",
+          }}
+        >
+          {/* Logo */}
           <Link
             href="/"
-            className="text-xl font-bold tracking-tight text-gray-900 dark:text-white flex items-center gap-2"
+            className="flex items-center gap-2 flex-shrink-0 group"
           >
-            <div className="w-8 h-8 bg-black dark:bg-white rounded-full flex items-center justify-center overflow-hidden">
+            <div className="w-7 h-7 rounded-full overflow-hidden ring-1 ring-black/10 dark:ring-white/10 group-hover:ring-primary/40 transition-all">
               <img
                 src="/ownest-t.png"
-                alt="Ownest Finance Logo"
-                className="w-full h-full object-cover invert-0 dark:invert-0"
+                alt="Ownest Finance"
+                className="w-full h-full object-cover"
               />
             </div>
-            Ownest Finance
+            <span className="text-sm font-bold text-gray-900 dark:text-white tracking-tight hidden sm:block">
+              Ownest <span className="text-primary">Finance</span>
+            </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-8">
+          {/* Desktop nav links */}
+          <div className="hidden lg:flex items-center gap-1">
+            {/* Services dropdown */}
             <div
-              className="relative group"
+              className="relative"
               onMouseEnter={() => setDropdownOpen(true)}
               onMouseLeave={() => setDropdownOpen(false)}
             >
-              <button className="flex items-center gap-1 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-8">
+              <button
+                className={`flex items-center gap-1 text-sm font-medium px-3 py-2 rounded-xl transition-all ${
+                  dropdownOpen
+                    ? "bg-gray-100 dark:bg-white/8 text-gray-900 dark:text-white"
+                    : "text-gray-600 dark:text-gray-300 hover:bg-gray-100/70 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white"
+                }`}
+              >
                 Services
-                <ChevronDown className="w-4 h-4" />
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
+                />
               </button>
 
-              {dropdownOpen && (
-                <div className="absolute top-[80px] -left-4 w-56 pt-2 pb-4">
-                  <div className="bg-white dark:bg-[#2a1e15] shadow-xl border border-gray-200 dark:border-white/10 rounded-lg overflow-hidden py-2">
+              {/* Glass dropdown */}
+              <div
+                className={`absolute top-[calc(100%+6px)] -left-2 w-64 transition-all duration-200 origin-top ${
+                  dropdownOpen
+                    ? "opacity-100 scale-100 pointer-events-auto"
+                    : "opacity-0 scale-95 pointer-events-none"
+                }`}
+              >
+                <div className="bg-white/80 dark:bg-[#2a1e15]/90 backdrop-blur-2xl border border-white/60 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden p-1.5">
+                  {SERVICES.map(({ href, icon: Icon, label, desc }) => (
                     <Link
-                      href="/services/home-loan"
-                      className="block px-6 py-3 text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-gray-900 dark:text-gray-200"
+                      key={href}
+                      href={href}
+                      onClick={() => setDropdownOpen(false)}
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-primary/8 dark:hover:bg-white/5 transition-colors group"
                     >
-                      Home Loans
+                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/15 transition-colors">
+                        <Icon className="w-4 h-4 text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white leading-none mb-0.5">
+                          {label}
+                        </p>
+                        <p className="text-[10px] text-gray-400 dark:text-gray-500">
+                          {desc}
+                        </p>
+                      </div>
                     </Link>
+                  ))}
+                  <div className="mt-1 mx-1 p-2.5 rounded-xl bg-primary/5 border border-primary/10">
                     <Link
-                      href="/services/asset-finance"
-                      className="block px-6 py-3 text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-gray-900 dark:text-gray-200"
+                      href="/contact"
+                      onClick={() => setDropdownOpen(false)}
+                      className="flex items-center justify-between text-xs font-bold text-primary"
                     >
-                      Asset Finance
-                    </Link>
-                    <Link
-                      href="/services/refinance"
-                      className="block px-6 py-3 text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-gray-900 dark:text-gray-200"
-                    >
-                      Refinance
-                    </Link>
-                    <Link
-                      href="/services/smsf"
-                      className="block px-6 py-3 text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-gray-900 dark:text-gray-200"
-                    >
-                      SMSF Loans
+                      Speak to a broker
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
+
+            {NAV_LINKS.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className={`px-3 py-2 rounded-xl transition-all hover:bg-gray-100/70 dark:hover:bg-white/5 ${navLinkClass(href)}`}
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Right actions */}
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+
+            {/* Call button — always visible on mobile */}
             <Link
-              href="/calculators"
-              className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+              href="tel:+611234567890"
+              className="flex items-center justify-center w-8 h-8 rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all duration-200 shadow-sm"
+              title="Call us"
             >
-              Calculators
+              <Phone className="w-3.5 h-3.5" />
             </Link>
-            <Link
-              href="/rates"
-              className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+
+            {/* Contact CTA — desktop only */}
+            <Link href="/contact" className="hidden lg:block">
+              <button className="bg-primary text-white text-sm font-semibold px-4 py-2 rounded-xl hover:bg-primary-dark transition-colors shadow-sm shadow-primary/20">
+                Contact Us
+              </button>
+            </Link>
+
+            {/* Hamburger — tablet/mobile */}
+            <button
+              onClick={() => setOpen(!open)}
+              className="lg:hidden flex items-center justify-center w-8 h-8 rounded-xl bg-gray-100/70 dark:bg-white/8 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/15 transition-colors"
+              aria-label="Toggle menu"
             >
-              Rates
-            </Link>
-            <Link
-              href="/about"
-              className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-            >
-              About
-            </Link>
-            <Link
-              href="/blog"
-              className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-            >
-              Blog
-            </Link>
+              {open ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
-          <ThemeToggle />
-
-          <Link href="/contact" className="hidden md:block">
-            <button className="bg-[#e27b30] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity">
-              Contact Us
-            </button>
-          </Link>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="lg:hidden text-gray-900 dark:text-white p-2"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Nav */}
-      {open && (
-        <div className="lg:hidden bg-white dark:bg-[#2a1e15] border-t border-gray-200 dark:border-white/10 px-6 py-4 flex flex-col gap-4 shadow-xl">
-          <div className="flex flex-col gap-2">
-            <div className="font-bold text-gray-900 dark:text-white mb-2 pt-2">
+        {/* ── Mobile panel ────────────────────────────────────────────────── */}
+        <div
+          className={`lg:hidden max-w-5xl mx-auto mt-2 overflow-hidden rounded-2xl transition-all duration-300 ease-in-out ${
+            open ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="bg-white/85 dark:bg-[#1a130f]/90 backdrop-blur-2xl border border-white/60 dark:border-white/10 shadow-2xl rounded-2xl p-4 space-y-1">
+            {/* Services group */}
+            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 px-3 pt-1 pb-1">
               Services
-            </div>
-            <Link
-              href="/services/home-loan"
-              onClick={() => setOpen(false)}
-              className="pl-4 text-sm text-gray-600 dark:text-gray-300 py-2"
-            >
-              Home Loans
-            </Link>
-            <Link
-              href="/services/asset-finance"
-              onClick={() => setOpen(false)}
-              className="pl-4 text-sm text-gray-600 dark:text-gray-300 py-2"
-            >
-              Asset Finance
-            </Link>
-            <Link
-              href="/services/refinance"
-              onClick={() => setOpen(false)}
-              className="pl-4 text-sm text-gray-600 dark:text-gray-300 py-2"
-            >
-              Refinance
-            </Link>
-            <Link
-              href="/services/smsf"
-              onClick={() => setOpen(false)}
-              className="pl-4 text-sm text-gray-600 dark:text-gray-300 py-2 pb-4 border-b border-gray-100 dark:border-white/10"
-            >
-              SMSF Loans
-            </Link>
-          </div>
-          <Link
-            href="/calculators"
-            onClick={() => setOpen(false)}
-            className="text-sm font-medium text-gray-900 dark:text-white py-2"
-          >
-            Calculators
-          </Link>
-          <Link
-            href="/rates"
-            onClick={() => setOpen(false)}
-            className="text-sm font-medium text-gray-900 dark:text-white py-2"
-          >
-            Rates
-          </Link>
-          <Link
-            href="/about"
-            onClick={() => setOpen(false)}
-            className="text-sm font-medium text-gray-900 dark:text-white py-2"
-          >
-            About
-          </Link>
-          <Link
-            href="/blog"
-            onClick={() => setOpen(false)}
-            className="text-sm font-medium text-gray-900 dark:text-white py-2 pb-4 mb-2 border-b border-gray-100 dark:border-white/10"
-          >
-            Blog
-          </Link>
+            </p>
+            {SERVICES.map(({ href, icon: Icon, label, desc }) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-primary/6 dark:hover:bg-white/5 transition-colors group"
+              >
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Icon className="w-3.5 h-3.5 text-primary" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-900 dark:text-white leading-none mb-0.5">
+                    {label}
+                  </p>
+                  <p className="text-[10px] text-gray-400">{desc}</p>
+                </div>
+              </Link>
+            ))}
 
-          <Link href="/contact" onClick={() => setOpen(false)}>
-            <button className="w-full bg-[#e27b30] text-white px-6 py-3 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity">
-              Contact Us
-            </button>
-          </Link>
+            <div className="border-t border-gray-100 dark:border-white/8 pt-2 mt-2 space-y-0.5">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 px-3 pb-1">
+                More
+              </p>
+              {NAV_LINKS.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  className={`block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors hover:bg-gray-100 dark:hover:bg-white/5 ${navLinkClass(href)}`}
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Mobile CTA row */}
+            <div className="pt-2 flex gap-2">
+              <Link href="tel:+611234567890" className="flex-1">
+                <button className="w-full flex items-center justify-center gap-2 border border-gray-200 dark:border-white/10 py-2.5 rounded-xl text-sm font-semibold text-gray-800 dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                  <Phone className="w-3.5 h-3.5 text-primary" />
+                  Call Us
+                </button>
+              </Link>
+              <Link
+                href="/contact"
+                className="flex-1"
+                onClick={() => setOpen(false)}
+              >
+                <button className="w-full flex items-center justify-center gap-2 bg-primary text-white py-2.5 rounded-xl text-sm font-semibold hover:bg-primary-dark transition-colors shadow-sm">
+                  Contact Us
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
-      )}
-    </nav>
+      </nav>
+    </>
   );
 };
 

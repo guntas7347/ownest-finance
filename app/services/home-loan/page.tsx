@@ -19,7 +19,7 @@ export default function HomeLoanPage() {
   return (
     <>
       <section className="py-20 bg-gray-50 dark:bg-white/5">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Unmatched Flexibility
@@ -69,7 +69,7 @@ export default function HomeLoanPage() {
       </section>
       {/* Segments & Structures */}
       <section className="py-20 bg-white dark:bg-[#2a1e15] border-y border-gray-200 dark:border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-12">
             {/* Segments */}
             <div className="lg:col-span-5">
@@ -159,7 +159,7 @@ export default function HomeLoanPage() {
         </div>
       </section>
       {/* Repayment Preview & Practical Details */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Repayment Preview */}
           <div className="bg-gray-900 dark:bg-[#1a130f] text-white p-8 rounded-2xl shadow-xl">
@@ -213,7 +213,7 @@ export default function HomeLoanPage() {
                 </li>
                 <li className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300">
                   <CheckCircle className="text-green-500 text-sm mt-1" />
-                  Good credit history
+                  XXX TODO
                 </li>
               </ul>
               <h3 className="font-bold text-lg mt-8 mb-4 flex items-center gap-2">
@@ -287,7 +287,7 @@ export default function HomeLoanPage() {
       </section>
       {/* How It Works Timeline */}
       <section className="py-20 bg-gray-900 dark:bg-[#1a130f] text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-headline font-bold mb-16 text-center">
             Your Path to Settlement
           </h2>
