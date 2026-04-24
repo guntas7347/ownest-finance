@@ -16,6 +16,7 @@ import {
   Unlock,
   Wallet,
 } from "lucide-react";
+import RefinanceCalculator from "./RefinanceCalculator";
 
 export default function RefinancePage() {
   return (
@@ -89,108 +90,7 @@ export default function RefinancePage() {
         </div>
       </section>
       {/* Rates & Savings Section */}
-      <section className="py-20">
-        <div className="max-w-5xl mx-auto px-6 grid lg:grid-cols-5 gap-12">
-          {/* Rate Snapshot */}
-          <div className="lg:col-span-2">
-            <div className="bg-white dark:bg-[#2a1e15] p-8 rounded-2xl border-2 border-[#e27b30] ring-4 border-[#e27b30]/20 dark:border-[#e27b30]/30">
-              <h3 className="text-xl font-bold mb-6">Market Rate Snapshot</h3>
-              <div className="space-y-6">
-                <div className="flex justify-between items-end border-b border-gray-200 dark:border-white/10 pb-4">
-                  <div>
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-gray-500 uppercase">
-                      Variable Rate
-                    </div>
-                    <div className="text-4xl font-bold text-gray-900 dark:text-white">
-                      5.94%{" "}
-                      <span className="text-lg text-gray-400 dark:text-gray-500">
-                        p.a.
-                      </span>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-xs font-semibold text-gray-400 dark:text-gray-500">
-                      COMPARISON
-                    </div>
-                    <div className="text-sm font-bold text-gray-600 dark:text-gray-300">
-                      6.02% p.a.
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-between items-end">
-                  <div>
-                    <div className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-gray-500 uppercase">
-                      3-Year Fixed
-                    </div>
-                    <div className="text-4xl font-bold text-gray-900 dark:text-white">
-                      6.12%{" "}
-                      <span className="text-lg text-gray-400 dark:text-gray-500">
-                        p.a.
-                      </span>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-xs font-semibold text-gray-400 dark:text-gray-500">
-                      COMPARISON
-                    </div>
-                    <div className="text-sm font-bold text-gray-600 dark:text-gray-300">
-                      6.21% p.a.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Savings Example */}
-          <div className="lg:col-span-3 bg-gray-50 dark:bg-white/5 p-8 rounded-2xl border border-gray-200 dark:border-white/10">
-            <h3 className="text-xl font-bold mb-8">
-              Refinance Savings Example
-            </h3>
-            <div className="grid md:grid-cols-2 gap-8 mb-8">
-              <div className="p-6 bg-white dark:bg-[#2a1e15] rounded-xl border border-gray-200 dark:border-white/10">
-                <div className="text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">
-                  Current Loan
-                </div>
-                <div className="text-2xl font-bold text-gray-700 dark:text-gray-200">
-                  $3,450 <span className="text-sm font-normal">/mo</span>
-                </div>
-                <div className="mt-2 text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500">
-                  Based on 7.20% Interest
-                </div>
-              </div>
-              <div className="p-6 bg-[#e27b30]-muted rounded-xl border border-[#e27b30]/20">
-                <div className="text-xs font-bold text-[#e27b30] uppercase tracking-wider mb-2">
-                  Potential New Loan
-                </div>
-                <div className="text-2xl font-bold text-[#e27b30]">
-                  $3,010{" "}
-                  <span className="text-sm font-normal text-gray-700 dark:text-gray-200">
-                    /mo
-                  </span>
-                </div>
-                <div className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                  Based on 5.94% Interest
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-900 dark:bg-[#1a130f] rounded-xl p-6 flex flex-col md:flex-row justify-between items-center text-white">
-              <div className="mb-4 md:mb-0">
-                <div className="text-sm text-gray-400 dark:text-gray-500">
-                  Monthly Savings
-                </div>
-                <div className="text-3xl font-bold">$440</div>
-              </div>
-              <div className="hidden md:block w-px h-12 bg-slate-700"></div>
-              <div>
-                <div className="text-sm text-gray-400 dark:text-gray-500">
-                  Annual Savings
-                </div>
-                <div className="text-3xl font-bold text-[#e27b30]">$5,280</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <RefinanceCalculator />
       {/* Eligibility & Costs Grid */}
       <section className="py-20 bg-gray-50 dark:bg-white/5 border-y border-gray-200 dark:border-white/10">
         <div className="max-w-5xl mx-auto px-6 grid lg:grid-cols-2 gap-16">

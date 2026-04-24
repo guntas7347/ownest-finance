@@ -11,7 +11,25 @@ import {
   Linkedin,
   Twitter,
   Instagram,
+  CheckCircle2,
+  Loader2,
+  AlertCircle,
+  MessageCircle,
 } from "lucide-react";
+import { submitContactForm } from "./actions";
+import Link from "next/link";
+
+type Status = "idle" | "loading" | "success" | "error";
+
+const INTEREST_OPTIONS = [
+  "Wealth Planning",
+  "Investment Management",
+  "Tax Strategy",
+  "Philanthropy",
+  "Real Estate Advisory",
+  "Estate Planning",
+  "Other",
+];
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -21,10 +39,29 @@ export default function Contact() {
     interest: "Wealth Planning",
     message: "",
   });
+  const [status, setStatus] = useState<Status>("idle");
+  const [focused, setFocused] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Contact Form Submitted Data:", formData);
+    setStatus("loading");
+    try {
+      const result = await submitContactForm(formData);
+      if (result.success) {
+        setStatus("success");
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          interest: "Wealth Planning",
+          message: "",
+        });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
 
   const handleChange = (
@@ -33,203 +70,309 @@ export default function Contact() {
     >,
   ) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    if (status === "error") setStatus("idle");
   };
+
+  const inputClass = (name: string) =>
+    `w-full px-4 py-3 bg-white/70 dark:bg-white/5 border rounded-xl transition-all duration-200 placeholder:text-brown/30 dark:placeholder:text-white/20 text-brown dark:text-white outline-none ${
+      focused === name
+        ? "border-primary ring-2 ring-primary/20 shadow-sm"
+        : "border-brown/15 dark:border-white/10 hover:border-brown/30 dark:hover:border-white/20"
+    }`;
 
   return (
     <main className="relative min-h-screen pt-20 flex flex-col items-center justify-center overflow-hidden bg-background-light dark:bg-background-dark transition-colors">
-      {/* Background Map Image (Soft Focus) */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        <img
-          className="w-full h-full object-cover grayscale brightness-110 blur-[4px] dark:invert"
-          alt="Soft focus aerial view of an urban financial district map"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0VxW_-ijeLXdGUFNAESawbT4ygnPd480e0tj5NcgQWaZwFxcP1LizrHg-LS21HNZQq_cGFz_FFPyUeF8qU9XZNLdl_pOHIsKOXIYxrnYYdIlEPGLjXNBJot18O7Nv2fP59F-eBNI2GNLfpy9DspFNT9bzi3HkRutNKUJXgXFDzLpu9cynHq9OV_L_LLLt_8qURDCUlioSNhCMly7CFCcKsa16d-aEnVGGqe8fAZ3fz3OT1y3gJfY_jWAsWFVm_pn2SrbimpuL-tDK"
-        />
-      </div>
+      {/* Background gradient blobs */}
+      <div className="fixed top-1/4 -right-32 w-[500px] h-[500px] bg-primary/8 rounded-full blur-[140px] -z-10" />
+      <div className="fixed -bottom-20 -left-20 w-[600px] h-[600px] bg-brown/5 dark:bg-white/3 rounded-full blur-[160px] -z-10" />
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-primary/5 rounded-full blur-[100px] -z-10" />
 
-      <div className="relative z-10 w-full max-w-6xl px-6 py-12">
-        {/* Header Text */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-brown mb-4 tracking-tight">
-            Connect with Excellence
+      <div className="relative z-10 w-full max-w-6xl px-6 py-16">
+        {/* Header */}
+        <div className="text-center mb-14">
+          <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-3 block">
+            Get In Touch
+          </span>
+          <h1 className="text-4xl md:text-6xl font-extrabold text-brown dark:text-white mb-5 tracking-tight">
+            Connect with <span className="text-primary italic">Excellence</span>
           </h1>
-          <p className="text-lg text-brown/60 dark:text-white/60 max-w-2xl mx-auto">
+          <p className="text-lg text-brown/55 dark:text-white/55 max-w-xl mx-auto leading-relaxed">
             Our advisors are available for exclusive consultations. Reach out to
             discuss how we can secure your financial legacy.
           </p>
         </div>
 
-        {/* Central Glass Card */}
+        {/* Main Card */}
         <Card
           variant="glass"
-          className="border border-white/50 shadow-2xl rounded-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 p-0 bg-white/80 dark:bg-black/80 backdrop-blur-md"
+          className="border border-white/40 dark:border-white/5 shadow-2xl rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 p-0 bg-white/75 dark:bg-black/50 backdrop-blur-xl"
           hoverEffect={false}
         >
-          {/* Inquiry Form Section */}
+          {/* Form Section */}
           <div className="lg:col-span-7 p-8 md:p-12">
-            <h2 className="text-2xl font-bold text-brown mb-8 flex items-center">
-              <span className="w-8 h-[2px] bg-primary mr-4" />
+            <h2 className="text-2xl font-bold text-brown dark:text-white mb-8 flex items-center gap-3">
+              <span className="w-6 h-[2px] bg-primary inline-block" />
               Send an Inquiry
             </h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-brown/50 dark:text-white/50 ml-1">
-                    Full Name
-                  </label>
-                  <input
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/70 dark:bg-white/10 border border-brown/20 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-brown/40 dark:placeholder:text-white/30 text-brown outline-none"
-                    placeholder="Johnathan Doe"
-                    type="text"
-                  />
+
+            {/* Success state */}
+            {status === "success" ? (
+              <div className="flex flex-col items-center justify-center py-16 gap-4 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="w-20 h-20 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-2">
+                  <CheckCircle2 className="w-10 h-10 text-green-600 dark:text-green-400" />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-brown/50 dark:text-white/50 ml-1">
-                    Work Email
-                  </label>
-                  <input
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/70 dark:bg-white/10 border border-brown/20 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-brown/40 dark:placeholder:text-white/30 text-brown outline-none"
-                    placeholder="j.doe@company.com"
-                    type="email"
-                  />
-                </div>
+                <h3 className="text-2xl font-bold text-brown dark:text-white">
+                  Message Sent!
+                </h3>
+                <p className="text-brown/60 dark:text-white/60 max-w-sm leading-relaxed">
+                  Thank you for reaching out. Our team will contact you within
+                  24 hours for an exclusive consultation.
+                </p>
+                <Button
+                  variant="outline"
+                  className="mt-4 border-primary text-primary hover:bg-primary hover:text-white"
+                  onClick={() => setStatus("idle")}
+                >
+                  Send Another Inquiry
+                </Button>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-brown/50 dark:text-white/50 ml-1">
-                    Phone Number
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Error Banner */}
+                {status === "error" && (
+                  <div className="flex items-center gap-3 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/40 rounded-xl text-red-700 dark:text-red-400 text-sm animate-in fade-in duration-300">
+                    <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                    <span>
+                      Something went wrong. Please try again or contact us
+                      directly.
+                    </span>
+                  </div>
+                )}
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold uppercase tracking-wider text-brown/45 dark:text-white/45 ml-1">
+                      Full Name
+                    </label>
+                    <input
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleChange}
+                      onFocus={() => setFocused("fullName")}
+                      onBlur={() => setFocused(null)}
+                      className={inputClass("fullName")}
+                      placeholder="Jonathan Doe"
+                      type="text"
+                      required
+                      disabled={status === "loading"}
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold uppercase tracking-wider text-brown/45 dark:text-white/45 ml-1">
+                      Work Email
+                    </label>
+                    <input
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      onFocus={() => setFocused("email")}
+                      onBlur={() => setFocused(null)}
+                      className={inputClass("email")}
+                      placeholder="j.doe@company.com"
+                      type="email"
+                      required
+                      disabled={status === "loading"}
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold uppercase tracking-wider text-brown/45 dark:text-white/45 ml-1">
+                      Phone Number
+                    </label>
+                    <input
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      onFocus={() => setFocused("phone")}
+                      onBlur={() => setFocused(null)}
+                      className={inputClass("phone")}
+                      placeholder="+91 98765 43210"
+                      type="tel"
+                      disabled={status === "loading"}
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold uppercase tracking-wider text-brown/45 dark:text-white/45 ml-1">
+                      Interest Area
+                    </label>
+                    <select
+                      name="interest"
+                      value={formData.interest}
+                      onChange={handleChange}
+                      onFocus={() => setFocused("interest")}
+                      onBlur={() => setFocused(null)}
+                      className={inputClass("interest") + " cursor-pointer"}
+                      disabled={status === "loading"}
+                    >
+                      {INTEREST_OPTIONS.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold uppercase tracking-wider text-brown/45 dark:text-white/45 ml-1">
+                    How can we assist you?
                   </label>
-                  <input
-                    name="phone"
-                    value={formData.phone}
+                  <textarea
+                    name="message"
+                    value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/70 dark:bg-white/10 border border-brown/20 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-brown/40 dark:placeholder:text-white/30 text-brown outline-none"
-                    placeholder="+1 (555) 000-0000"
-                    type="tel"
+                    onFocus={() => setFocused("message")}
+                    onBlur={() => setFocused(null)}
+                    className={inputClass("message") + " resize-none"}
+                    placeholder="Tell us about your financial goals and how we can help..."
+                    rows={4}
+                    required
+                    disabled={status === "loading"}
                   />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-brown/50 dark:text-white/50 ml-1">
-                    Interest Area
-                  </label>
-                  <select
-                    name="interest"
-                    value={formData.interest}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/70 dark:bg-white/10 border border-brown/20 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-brown/80 dark:text-white/80 outline-none"
+
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                  <Button
+                    type="submit"
+                    className="w-full sm:w-auto disabled:opacity-60 disabled:cursor-not-allowed"
+                    disabled={status === "loading"}
                   >
-                    <option value="Wealth Planning">Wealth Planning</option>
-                    <option value="Investment Management">
-                      Investment Management
-                    </option>
-                    <option value="Tax Strategy">Tax Strategy</option>
-                    <option value="Philanthropy">Philanthropy</option>
-                  </select>
+                    {status === "loading" ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Sending…
+                      </>
+                    ) : (
+                      <>
+                        <span>Request Consultation</span>
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </>
+                    )}
+                  </Button>
+                  <p className="text-xs text-brown/40 dark:text-white/35 leading-relaxed">
+                    We respect your privacy. Your information is never shared.
+                  </p>
                 </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-brown/50 dark:text-white/50 ml-1">
-                  How can we assist you?
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white/70 dark:bg-white/10 border border-brown/20 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-brown/40 dark:placeholder:text-white/30 text-brown outline-none resize-none"
-                  placeholder="Your message here..."
-                  rows={4}
-                />
-              </div>
-              <Button type="submit" className="w-full md:w-auto">
-                <span>Request Consultation</span>
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </form>
+              </form>
+            )}
           </div>
 
-          {/* Contact Details Sidebar */}
-          <div className="lg:col-span-5 bg-brown/5 dark:bg-black/20 p-8 md:p-12 border-l border-white/20 dark:border-white/5">
-            <h2 className="text-2xl font-bold text-brown mb-10">
+          {/* Sidebar */}
+          <div className="lg:col-span-5 bg-brown/[0.04] dark:bg-white/[0.03] p-8 md:p-12 border-t lg:border-t-0 lg:border-l border-brown/10 dark:border-white/5">
+            <h2 className="text-xl font-bold text-brown dark:text-white mb-10 flex items-center gap-3">
+              <span className="w-6 h-[2px] bg-primary inline-block" />
               Direct Channels
             </h2>
-            <div className="space-y-10">
+
+            <div className="space-y-8">
               {/* Office */}
-              <div className="flex items-start space-x-5">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white dark:bg-white/10 flex items-center justify-center shadow-sm">
-                  <MapPin className="text-primary w-6 h-6" />
+              <div className="flex items-start space-x-4 group">
+                <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-white dark:bg-white/8 border border-brown/8 dark:border-white/8 flex items-center justify-center shadow-sm group-hover:bg-primary/10 transition-colors">
+                  <MapPin className="text-primary w-5 h-5" />
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-primary mb-1">
-                    Global Headquarters
+                    Office
                   </p>
-                  <p className="text-brown font-semibold text-lg leading-snug">
-                    One Financial Plaza, Suite 4200
+                  <p className="text-brown dark:text-white font-semibold leading-snug">
+                    Sydeny, NSW
                     <br />
-                    New York, NY 10004
+                    Australia
                   </p>
                 </div>
               </div>
+
               {/* Phone */}
-              <div className="flex items-start space-x-5">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white dark:bg-white/10 flex items-center justify-center shadow-sm">
-                  <Phone className="text-primary w-6 h-6" />
+              <div className="flex items-start space-x-4 group">
+                <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-white dark:bg-white/8 border border-brown/8 dark:border-white/8 flex items-center justify-center shadow-sm group-hover:bg-primary/10 transition-colors">
+                  <Phone className="text-primary w-5 h-5" />
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-primary mb-1">
                     Inquiry Line
                   </p>
-                  <p className="text-brown font-semibold text-lg">
-                    +1 (212) 555-8800
+                  <p className="text-brown dark:text-white font-semibold">
+                    +61 414 060 000
                   </p>
-                  <p className="text-sm text-brown/50 dark:text-white/50 mt-1">
-                    Mon - Fri: 8am - 6pm EST
+                  <p className="text-xs text-brown/45 dark:text-white/45 mt-1">
+                    Mon – Sat: 9am – 6pm AEST
                   </p>
                 </div>
               </div>
+
               {/* Email */}
-              <div className="flex items-start space-x-5">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white dark:bg-white/10 flex items-center justify-center shadow-sm">
-                  <Mail className="text-primary w-6 h-6" />
+              <div className="flex items-start space-x-4 group">
+                <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-white dark:bg-white/8 border border-brown/8 dark:border-white/8 flex items-center justify-center shadow-sm group-hover:bg-primary/10 transition-colors">
+                  <Mail className="text-primary w-5 h-5" />
                 </div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-primary mb-1">
-                    Concierge Email
+                    Email
                   </p>
-                  <p className="text-brown font-semibold text-lg">
-                    concierge@ownest.finance
+                  <p className="text-brown dark:text-white font-semibold break-all">
+                    ownestfinance@gmail.com
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-16 pt-10 border-t border-brown/10 dark:border-white/10">
-              <p className="text-sm font-bold text-brown/60 dark:text-white/60 mb-4 uppercase tracking-widest">
-                Secure Channels
+            {/* Quick response badge */}
+            <div className="mt-10 p-4 rounded-xl bg-primary/8 dark:bg-primary/10 border border-primary/15">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-xs font-bold text-primary uppercase tracking-wider">
+                  Typically responds in &lt; 24 hrs
+                </span>
+              </div>
+              <p className="text-xs text-brown/55 dark:text-white/55 ml-4">
+                All inquiries are treated with the utmost confidentiality.
               </p>
-              <div className="flex space-x-4">
-                <button className="w-10 h-10 rounded-full border border-brown/10 dark:border-white/10 flex items-center justify-center hover:bg-primary hover:text-white transition-colors group">
-                  <Linkedin className="w-5 h-5 opacity-80 group-hover:opacity-100 text-brown group-hover:text-white" />
-                </button>
-                <button className="w-10 h-10 rounded-full border border-brown/10 dark:border-white/10 flex items-center justify-center hover:bg-primary hover:text-white transition-colors group">
-                  <Twitter className="w-5 h-5 opacity-80 group-hover:opacity-100 text-brown group-hover:text-white" />
-                </button>
-                <button className="w-10 h-10 rounded-full border border-brown/10 dark:border-white/10 flex items-center justify-center hover:bg-primary hover:text-white transition-colors group">
-                  <Instagram className="w-5 h-5 opacity-80 group-hover:opacity-100 text-brown group-hover:text-white" />
-                </button>
+            </div>
+
+            {/* Social */}
+            <div className="mt-10 pt-8 border-t border-brown/8 dark:border-white/8">
+              <p className="text-xs font-bold text-brown/45 dark:text-white/45 mb-4 uppercase tracking-widest">
+                Follow Us
+              </p>
+              <div className="flex space-x-3">
+                {[
+                  {
+                    Icon: MessageCircle,
+                    label: "Whatsapp",
+                    href: "https://wa.me/61414060000",
+                  },
+                  {
+                    Icon: Instagram,
+                    label: "Instagram",
+                    href: "https://www.instagram.com/ownestfinance/",
+                  },
+                ].map(({ Icon, label, href }) => (
+                  <Link
+                    key={label}
+                    aria-label={label}
+                    href={href}
+                    className="w-10 h-10 rounded-xl border border-brown/10 dark:border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary hover:text-white transition-all duration-200 group"
+                  >
+                    <Icon className="w-4 h-4 text-brown/60 dark:text-white/60 group-hover:text-white transition-colors" />
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
         </Card>
       </div>
-
-      {/* Background Decorative Elements */}
-      <div className="fixed top-1/4 -right-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -z-10" />
-      <div className="fixed bottom-0 left-0 w-[500px] h-[500px] bg-brown/5 dark:bg-white/5 rounded-full blur-[150px] -z-10" />
     </main>
   );
 }

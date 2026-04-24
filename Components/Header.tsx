@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
@@ -49,13 +49,14 @@ const NAV_LINKS = [
   { href: "/calculators", label: "Calculators", icon: Calculator },
   { href: "/rates", label: "Rates", icon: TrendingUp },
   { href: "/about", label: "About", icon: null },
-  { href: "/blog", label: "Blog", icon: null },
+  // { href: "/blog", label: "Blog", icon: null },
 ];
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
 
   // Tighten glass on scroll
@@ -115,8 +116,16 @@ const Header = () => {
             {/* Services dropdown */}
             <div
               className="relative"
-              onMouseEnter={() => setDropdownOpen(true)}
-              onMouseLeave={() => setDropdownOpen(false)}
+              onMouseEnter={() => {
+                if (closeTimer.current) clearTimeout(closeTimer.current);
+                setDropdownOpen(true);
+              }}
+              onMouseLeave={() => {
+                closeTimer.current = setTimeout(
+                  () => setDropdownOpen(false),
+                  150,
+                );
+              }}
             >
               <button
                 className={`flex items-center gap-1 text-sm font-medium px-3 py-2 rounded-xl transition-all ${
@@ -191,7 +200,7 @@ const Header = () => {
 
             {/* Call button — always visible on mobile */}
             <Link
-              href="tel:+611234567890"
+              href="tel:+61414060000"
               className="flex items-center justify-center w-8 h-8 rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-white transition-all duration-200 shadow-sm"
               title="Call us"
             >

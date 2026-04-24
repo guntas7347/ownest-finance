@@ -9,6 +9,7 @@ import {
   MapPin,
   ArrowRight,
   Shield,
+  MessageCircle,
 } from "lucide-react";
 
 const SOLUTIONS = [
@@ -33,9 +34,12 @@ const LEGAL = [
 ];
 
 const SOCIALS = [
-  { icon: Twitter, label: "Twitter", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Instagram, label: "Instagram", href: "#" },
+  { icon: MessageCircle, label: "Whatsapp", href: "https://wa.me/61414060000" },
+  {
+    icon: Instagram,
+    label: "Instagram",
+    href: "https://www.instagram.com/ownestfinance/",
+  },
 ];
 
 const Footer = () => {
@@ -98,13 +102,13 @@ const Footer = () => {
               {[
                 {
                   icon: Phone,
-                  text: "+61 2 1234 5678",
-                  href: "tel:+61212345678",
+                  text: "+61 414 060 000",
+                  href: "tel:+61414060000",
                 },
                 {
                   icon: Mail,
-                  text: "hello@ownestfinance.com.au",
-                  href: "mailto:hello@ownestfinance.com.au",
+                  text: "ownestfinance@gmail.com",
+                  href: "mailto:ownestfinance@gmail.com",
                 },
                 { icon: MapPin, text: "Sydney, NSW, Australia", href: "#" },
               ].map(({ icon: Icon, text, href }) => (
