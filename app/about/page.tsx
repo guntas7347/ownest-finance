@@ -110,7 +110,7 @@ export default function About() {
       {/* Timeline & Founder Split Section */}
       <section className="py-16 bg-white dark:bg-neutral-900/50 border-y border-brown/5 dark:border-white/5">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
-          {/* Milestones */}
+          {/* Milestones
           <div>
             <span className="text-primary font-bold tracking-widest uppercase text-[10px] mb-6 block">
               Evolution
@@ -130,23 +130,23 @@ export default function About() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Founder */}
           <div className="bg-brown dark:bg-white/5 p-8 rounded-2xl text-white">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-16 h-16 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center text-2xl font-bold text-primary">
-                G
+                I
               </div>
               <div>
-                <h4 className="text-xl font-bold">Guntas Singh</h4>
+                <h4 className="text-xl font-bold">Ibban Dhilon</h4>
                 <span className="text-primary text-[10px] font-bold uppercase tracking-widest">
-                  Founder & MD
+                  Finance and Mortgage Broker
                 </span>
               </div>
             </div>
             <p className="text-sm text-white/70 leading-relaxed mb-6">
-              Guntas founded Ownest Finance to cut through the noise of
+              Ibban Dhilon founded Ownest Finance to cut through the noise of
               traditional banking. His practice is built on the belief that
               financial clarity should be accessible to every family seeking
               long-term sovereignty.
