@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import {
   Home,
   Truck,
@@ -164,9 +165,12 @@ export default function RatesPage() {
             </ul>
           </div>
           <div className="mt-8 z-10 w-full relative">
-            <button className="w-full py-4 bg-[#e27b30] text-white font-bold rounded hover:brightness-110 transition-all z-20 relative block">
+            <Link
+              href="/calculators"
+              className="w-full py-4 bg-[#e27b30] text-white font-bold rounded-xl hover:brightness-110 transition-all z-20 relative block text-center shadow-lg shadow-[#e27b30]/30"
+            >
               Calculate Your Rate
-            </button>
+            </Link>
           </div>
 
           {/* Abstract Design Element */}
@@ -197,9 +201,9 @@ export default function RatesPage() {
             </div>
             <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
               <div className="flex justify-between border-b border-gray-100 dark:border-white/5 pb-1">
-                <span>Credit Tier</span>
+                <span>Flexible Terms</span>
                 <span className="text-gray-900 dark:text-white font-medium">
-                  750+
+                  1 - 7 Years
                 </span>
               </div>
               <div className="flex justify-between border-b border-gray-100 dark:border-white/5 pb-1">
@@ -289,8 +293,7 @@ export default function RatesPage() {
                   Processing Fees
                 </p>
                 <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                  Typically $500 - $995 depending on loan complexity. This is
-                  capitalized into the loan amount unless requested otherwise.
+                  No broker fee. We're paid directly by the lender, not by you, so there is zero fee for our advice, comparison, or application support.
                 </p>
               </div>
             </div>
@@ -352,14 +355,14 @@ export default function RatesPage() {
               <li className="flex items-center gap-3">
                 <CheckCircle2 className="text-green-600 dark:text-green-500 w-5 h-5 shrink-0" />
                 <span className="text-sm font-medium text-gray-900 dark:text-white">
-                  Credit Score of 600+ for Tier 1 Rates
+                  Valid Australian identification and income verification
                 </span>
               </li>
             </ul>
             <div className="mt-8 p-4 bg-white dark:bg-black/20 rounded border border-gray-200 dark:border-white/10">
               <p className="text-xs text-gray-500 dark:text-gray-400 italic">
-                "Rates are subject to credit assessment and individual financial
-                circumstances. Rates displayed are 'from' rates for high-quality
+                "Rates are subject to lender credit assessment and individual financial
+                circumstances. Rates displayed are 'from' rates for qualified
                 applicants."
               </p>
             </div>
@@ -384,8 +387,8 @@ export default function RatesPage() {
             rate.
           </p>
           <p>
-            Ownest Finance Pty Ltd (ABN 12 345 678 910) operates under
-            Australian Credit License 123456. Interest rates are current as of
+            Ownest Finance Pty Ltd (ABN 74 690 727 247) operates under
+            Australian Credit Licence 389087 with Credit Representative 580242. Interest rates are current as of
             the date specified and are subject to change without notice.
           </p>
         </div>

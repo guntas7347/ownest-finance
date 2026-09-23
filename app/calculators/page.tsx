@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, useEffect, Suspense } from "react";
 import {
   Calculator,
   Home,
@@ -15,6 +15,7 @@ import {
   Clock,
 } from "lucide-react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 type Tab = "home" | "asset";
@@ -170,9 +171,14 @@ function buildAmortization(
   return rows;
 }
 
-// ─── Main page ───────────────────────────────────────────────────────────────
-export default function CalculatorsPage() {
-  const [tab, setTab] = useState<Tab>("home");
+// ─── Calculator Inner Content ────────────────────────────────────────────────
+function CalculatorsContent() {
+  const searchParams = useSearchParams();
+  const queryTab = searchParams.get("tab") as Tab | null;
+
+  const [tab, setTab] = useState<Tab>(
+    queryTab === "asset" || queryTab === "home" ? queryTab : "home",
+  );
   const cfg = CONFIG[tab];
 
   const [amount, setAmount] = useState(cfg.defaultAmount);
@@ -196,6 +202,12 @@ export default function CalculatorsPage() {
     },
     [tab],
   );
+
+  useEffect(() => {
+    if (queryTab === "home" || queryTab === "asset") {
+      switchTab(queryTab);
+    }
+  }, [queryTab, switchTab]);
 
   // Core calc
   const { monthly, totalPayment, totalInterest, rows } = useMemo(() => {
@@ -631,7 +643,7 @@ export default function CalculatorsPage() {
                 <ArrowRight className="w-4 h-4" />
               </button>
             </Link>
-            <Link href="tel:+1234567890">
+            <Link href="tel:+61414060000">
               <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-white border border-white/20 hover:bg-white/10 transition-colors">
                 <Phone className="w-4 h-4" />
                 Call Us Now
@@ -641,5 +653,13 @@ export default function CalculatorsPage() {
         </section>
       </div>
     </main>
+  );
+}
+
+export default function CalculatorsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen py-24 text-center">Loading Calculators...</div>}>
+      <CalculatorsContent />
+    </Suspense>
   );
 }

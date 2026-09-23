@@ -210,12 +210,16 @@ const Footer = () => {
 
           {/* Licence / ABN + ASIC badge */}
           <div className="flex flex-wrap items-center gap-3">
-            {["Credit Licence: 690 727 247", "ABN: 74 690 727 247"].map((t) => (
+            {[
+              "ACL: 389087",
+              "Credit Rep: 580242",
+              "ABN: 74 690 727 247",
+            ].map((t) => (
               <span
                 key={t}
-                className="flex items-center gap-1.5 text-[10px] text-white/30 font-semibold"
+                className="flex items-center gap-1.5 text-[10px] text-white/40 font-semibold"
               >
-                <Shield className="w-3 h-3 text-primary/50" />
+                <Shield className="w-3 h-3 text-primary/70" />
                 {t}
               </span>
             ))}
@@ -223,11 +227,10 @@ const Footer = () => {
         </div>
 
         {/* Disclaimer */}
-        <p className="mt-4 text-[10px] text-white/20 leading-relaxed max-w-2xl">
-          Ownest Finance Pty Ltd is a credit representative authorised under the
-          National Consumer Credit Protection Act 2009. This website does not
-          constitute financial advice. Please read our Credit Guide before
-          proceeding.
+        <p className="mt-4 text-[10px] text-white/30 leading-relaxed max-w-2xl">
+          Ownest Finance Pty Ltd operates under Australian Credit Licence 389087
+          with Credit Representative 580242. This website does not constitute
+          financial advice. Please read our Credit Guide before proceeding.
         </p>
       </div>
     </footer>

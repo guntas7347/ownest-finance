@@ -273,7 +273,7 @@ const Header = () => {
 
             {/* Mobile CTA row */}
             <div className="pt-2 flex gap-2">
-              <Link href="tel:+611234567890" className="flex-1">
+              <Link href="tel:+61414060000" className="flex-1">
                 <button className="w-full flex items-center justify-center gap-2 border border-gray-200 dark:border-white/10 py-2.5 rounded-xl text-sm font-semibold text-gray-800 dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
                   <Phone className="w-3.5 h-3.5 text-primary" />
                   Call Us

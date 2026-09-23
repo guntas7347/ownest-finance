@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
   ArrowRight,
   ArrowRightLeft,
@@ -299,9 +300,12 @@ export default function RefinancePage() {
                   </div>
                 </div>
               </div>
-              <button className="bg-[#e27b30] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#e27b30]/90 transition-colors w-full sm:w-auto">
+              <Link
+                href="/contact"
+                className="bg-[#e27b30] text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#e27b30]/90 transition-colors inline-block text-center w-full sm:w-auto shadow-lg shadow-[#e27b30]/20"
+              >
                 Start Application
-              </button>
+              </Link>
             </div>
             <div className="lg:w-1/2 relative min-h-[300px]">
               <img

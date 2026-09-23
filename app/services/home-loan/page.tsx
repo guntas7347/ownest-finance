@@ -1,7 +1,9 @@
 import React from "react";
+import Link from "next/link";
 import {
   BadgeCheck,
   CheckCircle,
+  CheckCircle2,
   ChevronDown,
   ChevronRight,
   CircleDollarSign,
@@ -10,9 +12,14 @@ import {
   Lock,
   Percent,
   RefreshCw,
+  Sparkles,
   Split,
   TrendingUp,
   Wallet,
+  ShieldCheck,
+  Zap,
+  Users,
+  HeartHandshake,
 } from "lucide-react";
 
 export default function HomeLoanPage() {
@@ -160,122 +167,124 @@ export default function HomeLoanPage() {
       </section>
       {/* Repayment Preview & Practical Details */}
       <section className="py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-12 gap-8 items-stretch">
           {/* Repayment Preview */}
-          <div className="bg-gray-900 dark:bg-[#1a130f] text-white p-8 rounded-2xl shadow-xl">
-            <h3 className="text-xl font-bold mb-6">Repayment Preview</h3>
-            <div className="space-y-6">
-              <div>
-                <p className="text-xs text-gray-400 dark:text-gray-500 mb-2 uppercase tracking-wider">
-                  Loan Amount
-                </p>
-                <p className="text-2xl font-bold">$600,000</p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-400 dark:text-gray-500 mb-2 uppercase tracking-wider">
-                  Estimated Monthly Repayment
-                </p>
-                <p className="text-4xl font-bold text-[#e27b30]">$3,534</p>
-              </div>
-              <div className="pt-6 border-t border-white/10 grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-[10px] text-gray-400 dark:text-gray-500 mb-1">
-                    Interest Rate
-                  </p>
-                  <p className="text-sm font-bold">5.84% p.a.</p>
-                </div>
-                <div>
-                  <p className="text-[10px] text-gray-400 dark:text-gray-500 mb-1">
-                    Loan Term
-                  </p>
-                  <p className="text-sm font-bold">30 Years</p>
-                </div>
-              </div>
-              <button className="w-full bg-[#e27b30] py-3 rounded font-bold text-sm mt-4">
-                Adjust Calculation
-              </button>
-            </div>
-          </div>
-          {/* Eligibility & Docs */}
-          <div className="lg:col-span-2 grid sm:grid-cols-2 gap-8">
+          <div className="lg:col-span-5 bg-gray-900 dark:bg-[#1a130f] text-white p-8 rounded-3xl shadow-xl flex flex-col justify-between">
             <div>
-              <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                <BadgeCheck className="text-[#e27b30]" /> Eligibility
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300">
-                  <CheckCircle className="text-green-500 text-sm mt-1" />
-                  Australian Citizen or PR holder
-                </li>
-                <li className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300">
-                  <CheckCircle className="text-green-500 text-sm mt-1" />
-                  Steady employment (min 6 months)
-                </li>
-                <li className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300">
-                  <CheckCircle className="text-green-500 text-sm mt-1" />
-                  XXX TODO
-                </li>
-              </ul>
-              <h3 className="font-bold text-lg mt-8 mb-4 flex items-center gap-2">
-                <CircleDollarSign className="text-[#e27b30]" /> Major Fees
-              </h3>
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm py-2 border-b border-gray-200 dark:border-white/10">
-                  <span className="text-gray-600 dark:text-gray-300">
-                    Application Fee
-                  </span>
-                  <span className="font-bold">$0</span>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-xl font-bold">Repayment Preview</h3>
+                <span className="text-xs px-2.5 py-1 rounded-full bg-[#e27b30]/20 text-[#e27b30] font-bold">
+                  Home Loan
+                </span>
+              </div>
+              <div className="space-y-6">
+                <div>
+                  <p className="text-xs text-gray-400 dark:text-gray-500 mb-1.5 uppercase tracking-wider font-semibold">
+                    Loan Amount
+                  </p>
+                  <p className="text-3xl font-extrabold">$600,000</p>
                 </div>
-                <div className="flex justify-between text-sm py-2 border-b border-gray-200 dark:border-white/10">
-                  <span className="text-gray-600 dark:text-gray-300">
-                    Valuation Fee
-                  </span>
-                  <span className="font-bold">$250</span>
+                <div>
+                  <p className="text-xs text-gray-400 dark:text-gray-500 mb-1.5 uppercase tracking-wider font-semibold">
+                    Estimated Monthly Repayment
+                  </p>
+                  <p className="text-4xl md:text-5xl font-extrabold text-[#e27b30]">$3,534<span className="text-sm text-gray-400 font-normal ml-1">/mo</span></p>
                 </div>
-                <div className="flex justify-between text-sm py-2">
-                  <span className="text-gray-600 dark:text-gray-300">
-                    Monthly Admin
-                  </span>
-                  <span className="font-bold">$10</span>
+                <div className="pt-6 border-t border-white/10 grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-[10px] text-gray-400 dark:text-gray-500 mb-1 uppercase tracking-wider font-bold">
+                      Interest Rate
+                    </p>
+                    <p className="text-base font-bold">5.84% p.a.</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-gray-400 dark:text-gray-500 mb-1 uppercase tracking-wider font-bold">
+                      Loan Term
+                    </p>
+                    <p className="text-base font-bold">30 Years</p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="bg-gray-50 dark:bg-white/5 p-6 rounded-xl border border-gray-200 dark:border-white/10">
-              <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                <FileText className="text-[#e27b30]" /> Required Docs
+
+            <Link
+              href="/calculators?tab=home"
+              className="w-full bg-[#e27b30] hover:brightness-110 text-white py-4 rounded-xl font-bold text-sm mt-8 text-center transition-all block shadow-lg shadow-[#e27b30]/30"
+            >
+              Adjust Calculation
+            </Link>
+          </div>
+
+          {/* Why go through Ownest & Required Docs */}
+          <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6">
+            {/* Why go through Ownest */}
+            <div className="bg-white dark:bg-[#2a1e15] p-7 rounded-3xl border border-gray-200 dark:border-white/10 shadow-sm flex flex-col justify-between">
+              <div>
+                <h3 className="font-extrabold text-xl mb-5 flex items-center gap-2 text-gray-900 dark:text-white">
+                  <Sparkles className="text-[#e27b30] w-5 h-5" />
+                  Why go through Ownest
+                </h3>
+                <ul className="space-y-4">
+                  {[
+                    { title: "No broker fee", desc: "100% free service for you" },
+                    { title: "One broker, 30+ lenders", desc: "Tailored market comparison" },
+                    { title: "Fast pre-approvals", desc: "Rapid credit assessments" },
+                    { title: "Free loan health checks", desc: "Regular deal reviews" },
+                    { title: "End-to-end support to settlement", desc: "Guidance every step of the way" },
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <CheckCircle2 className="text-[#e27b30] w-4 h-4 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-sm font-bold text-gray-900 dark:text-white leading-tight">
+                          {item.title}
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Required Docs */}
+            <div className="bg-gray-50 dark:bg-white/5 p-7 rounded-3xl border border-gray-200 dark:border-white/10 shadow-sm">
+              <h3 className="font-extrabold text-xl mb-5 flex items-center gap-2 text-gray-900 dark:text-white">
+                <FileText className="text-[#e27b30] w-5 h-5" /> Required Docs
               </h3>
               <ul className="space-y-4">
                 <li className="flex gap-3">
-                  <div className="w-8 h-8 rounded bg-white dark:bg-[#2a1e15] flex items-center justify-center border border-gray-200 dark:border-white/10 shrink-0">
-                    <span className="text-xs font-bold">01</span>
+                  <div className="w-8 h-8 rounded-xl bg-white dark:bg-[#2a1e15] flex items-center justify-center border border-gray-200 dark:border-white/10 shrink-0 font-bold text-xs text-[#e27b30]">
+                    01
                   </div>
                   <div>
-                    <p className="text-sm font-bold">Proof of Identity</p>
-                    <p className="text-[11px] text-gray-500 dark:text-gray-400 dark:text-gray-500">
+                    <p className="text-sm font-bold text-gray-900 dark:text-white">Proof of Identity</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
                       Passport, Driver License, or Medicare
                     </p>
                   </div>
                 </li>
                 <li className="flex gap-3">
-                  <div className="w-8 h-8 rounded bg-white dark:bg-[#2a1e15] flex items-center justify-center border border-gray-200 dark:border-white/10 shrink-0">
-                    <span className="text-xs font-bold">02</span>
+                  <div className="w-8 h-8 rounded-xl bg-white dark:bg-[#2a1e15] flex items-center justify-center border border-gray-200 dark:border-white/10 shrink-0 font-bold text-xs text-[#e27b30]">
+                    02
                   </div>
                   <div>
-                    <p className="text-sm font-bold">Proof of Income</p>
-                    <p className="text-[11px] text-gray-500 dark:text-gray-400 dark:text-gray-500">
+                    <p className="text-sm font-bold text-gray-900 dark:text-white">Proof of Income</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
                       Last 2 payslips &amp; Group Certificate
                     </p>
                   </div>
                 </li>
                 <li className="flex gap-3">
-                  <div className="w-8 h-8 rounded bg-white dark:bg-[#2a1e15] flex items-center justify-center border border-gray-200 dark:border-white/10 shrink-0">
-                    <span className="text-xs font-bold">03</span>
+                  <div className="w-8 h-8 rounded-xl bg-white dark:bg-[#2a1e15] flex items-center justify-center border border-gray-200 dark:border-white/10 shrink-0 font-bold text-xs text-[#e27b30]">
+                    03
                   </div>
                   <div>
-                    <p className="text-sm font-bold">
+                    <p className="text-sm font-bold text-gray-900 dark:text-white">
                       Assets &amp; Liabilities
                     </p>
-                    <p className="text-[11px] text-gray-500 dark:text-gray-400 dark:text-gray-500">
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
                       Bank statements &amp; Credit card limits
                     </p>
                   </div>

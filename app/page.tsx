@@ -1,5 +1,6 @@
 import React from "react";
 import { scrapeMarketRates } from "@/lib/scraper";
+import getGoogleReviews from "@/lib/googleReviews";
 
 // Components
 import Hero from "@/Components/Hero";
@@ -10,7 +11,10 @@ import Testimonials from "@/Components/Testimonials";
 import FAQ from "@/Components/FAQ";
 
 export default async function Home() {
-  const data = await scrapeMarketRates();
+  const [data, reviews] = await Promise.all([
+    scrapeMarketRates(),
+    getGoogleReviews(),
+  ]);
 
   return (
     <>
@@ -19,7 +23,7 @@ export default async function Home() {
       <MarketRates data={data} />
 
       <SimpleCalculator />
-      <Testimonials />
+      <Testimonials reviews={reviews} />
       <FAQ />
     </>
   );

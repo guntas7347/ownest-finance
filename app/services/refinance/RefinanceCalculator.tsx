@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   Calculator,
   TrendingDown,
@@ -223,12 +224,14 @@ export default function RefinanceCalculator() {
               <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl" />
             </div>
 
-            <Button className="w-full py-6 rounded-xl shadow-xl shadow-primary/20 group">
-              <span className="flex items-center gap-2 justify-center">
-                Lock In This Rate{" "}
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Button>
+            <Link href="/contact" className="w-full block">
+              <Button className="w-full py-6 rounded-xl shadow-xl shadow-primary/20 group">
+                <span className="flex items-center gap-2 justify-center">
+                  Lock In This Rate{" "}
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

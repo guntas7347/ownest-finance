@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import {
   ArrowRight,
   BadgeCheck,
@@ -16,6 +17,7 @@ import {
   Truck,
   Zap,
 } from "lucide-react";
+import AssetFinanceCalculator from "./AssetFinanceCalculator";
 
 export default function AssetFinancePage() {
   return (
@@ -85,101 +87,34 @@ export default function AssetFinancePage() {
 
         <section className="py-20 bg-white dark:bg-[#2a1e15]">
           <div className="max-w-5xl mx-auto px-6">
-            <div className="grid lg:grid-cols-3 gap-12">
-              <div className="lg:col-span-2">
-                <h2 className="text-3xl font-extrabold mb-8">
-                  Rates &amp; Repayments
-                </h2>
-                <div className="grid sm:grid-cols-2 gap-4 mb-8">
-                  <div className="border border-gray-200 dark:border-white/10 rounded-xl p-6 bg-gray-50 dark:bg-white/5">
-                    <p className="text-xs font-bold text-gray-500 dark:text-gray-400 dark:text-gray-500 uppercase mb-1">
-                      Starting From
-                    </p>
-                    <p className="text-4xl font-extrabold text-gray-900 dark:text-white">
-                      5.49%{" "}
-                      <span className="text-lg font-medium text-gray-400 dark:text-gray-500">
-                        p.a.
-                      </span>
-                    </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500 mt-2">
-                      Fixed interest rates
-                    </p>
-                  </div>
-                  <div className="border border-gray-200 dark:border-white/10 rounded-xl p-6 bg-gray-50 dark:bg-white/5">
-                    <p className="text-xs font-bold text-gray-500 dark:text-gray-400 dark:text-gray-500 uppercase mb-1">
-                      Flexible Terms
-                    </p>
-                    <p className="text-4xl font-extrabold text-gray-900 dark:text-white">
-                      1 - 7{" "}
-                      <span className="text-lg font-medium text-gray-400 dark:text-gray-500">
-                        Years
-                      </span>
-                    </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500 mt-2">
-                      Repayment flexibility
-                    </p>
-                  </div>
-                </div>
-                <div className="bg-white dark:bg-[#2a1e15] border border-gray-200 dark:border-white/10 rounded-xl overflow-hidden">
-                  <div className="bg-gray-50 dark:bg-white/5 px-6 py-4 border-b border-gray-200 dark:border-white/10">
-                    <h3 className="font-bold text-gray-900 dark:text-white">
-                      Repayment Preview
-                    </h3>
-                  </div>
-                  <div className="p-6">
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-gray-600 dark:text-gray-300">
-                        Financing Amount
-                      </span>
-                      <span className="font-bold text-gray-900 dark:text-white">
-                        $50,000
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-gray-600 dark:text-gray-300">
-                        Loan Term
-                      </span>
-                      <span className="font-bold text-gray-900 dark:text-white">
-                        5 Years
-                      </span>
-                    </div>
-                    <div className="h-px bg-slate-100 my-4"></div>
-                    <div className="flex justify-between items-center">
-                      <span className="font-bold text-gray-900 dark:text-white">
-                        Monthly Repayment
-                      </span>
-                      <span className="text-3xl font-extrabold text-[#e27b30]">
-                        $954.80*
-                      </span>
-                    </div>
-                    <p className="text-[10px] text-gray-400 dark:text-gray-500 mt-6 leading-tight">
-                      *Estimated monthly repayment based on 5.49% p.a.
-                      Comparison rate may vary. T&amp;Cs apply.
-                    </p>
-                  </div>
-                </div>
+            <div className="grid lg:grid-cols-12 gap-8 items-start">
+              {/* Left: Asset Finance Calculator */}
+              <div className="lg:col-span-7">
+                <AssetFinanceCalculator />
               </div>
-              <div className="space-y-8">
+
+              {/* Right: Requirements & Docs */}
+              <div className="lg:col-span-5 space-y-8 bg-gray-50 dark:bg-white/5 p-8 rounded-3xl border border-gray-200 dark:border-white/10">
                 <div>
-                  <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
                     <ClipboardCheck className="text-[#e27b30]" />
                     Requirements
                   </h3>
                   <ul className="space-y-4">
                     <li className="flex gap-3 text-sm">
-                      <CheckCircle className="text-[#e27b30] text-base" />
+                      <CheckCircle className="text-[#e27b30] text-base shrink-0 mt-0.5" />
                       <span className="text-gray-600 dark:text-gray-300 font-medium">
                         Verified Proof of Income
                       </span>
                     </li>
                     <li className="flex gap-3 text-sm">
-                      <CheckCircle className="text-[#e27b30] text-base" />
+                      <CheckCircle className="text-[#e27b30] text-base shrink-0 mt-0.5" />
                       <span className="text-gray-600 dark:text-gray-300 font-medium">
                         ABN/Business Registration (if applicable)
                       </span>
                     </li>
                     <li className="flex gap-3 text-sm">
-                      <CheckCircle className="text-[#e27b30] text-base" />
+                      <CheckCircle className="text-[#e27b30] text-base shrink-0 mt-0.5" />
                       <span className="text-gray-600 dark:text-gray-300 font-medium">
                         Valid Asset Details &amp; Invoice
                       </span>
@@ -187,15 +122,15 @@ export default function AssetFinancePage() {
                   </ul>
                 </div>
                 <div className="pt-6 border-t border-gray-200 dark:border-white/10">
-                  <h3 className="text-xl font-bold mb-4">Required Documents</h3>
+                  <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Required Documents</h3>
                   <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-slate-100 text-gray-600 dark:text-gray-300 text-xs font-semibold rounded">
+                    <span className="px-3 py-1 bg-white dark:bg-neutral-800 text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-lg border border-gray-200 dark:border-white/10">
                       Tax Returns
                     </span>
-                    <span className="px-3 py-1 bg-slate-100 text-gray-600 dark:text-gray-300 text-xs font-semibold rounded">
+                    <span className="px-3 py-1 bg-white dark:bg-neutral-800 text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-lg border border-gray-200 dark:border-white/10">
                       Bank Statements
                     </span>
-                    <span className="px-3 py-1 bg-slate-100 text-gray-600 dark:text-gray-300 text-xs font-semibold rounded">
+                    <span className="px-3 py-1 bg-white dark:bg-neutral-800 text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-lg border border-gray-200 dark:border-white/10">
                       ID Documentation
                     </span>
                   </div>
@@ -386,12 +321,18 @@ export default function AssetFinancePage() {
                   best rate and term for your needs.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
-                  <button className="bg-gray-900 dark:bg-[#1a130f] text-white px-8 py-4 rounded font-bold hover:bg-black transition-colors shadow-lg">
+                  <Link
+                    href="/contact"
+                    className="bg-gray-900 dark:bg-[#1a130f] text-white px-8 py-4 rounded-xl font-bold hover:bg-black transition-colors shadow-lg inline-block"
+                  >
                     Apply Now
-                  </button>
-                  <button className="bg-white dark:bg-[#2a1e15] text-[#e27b30] px-8 py-4 rounded font-bold hover:bg-gray-50 dark:bg-white/5 transition-colors shadow-lg">
+                  </Link>
+                  <Link
+                    href="tel:+61414060000"
+                    className="bg-white dark:bg-[#2a1e15] text-[#e27b30] px-8 py-4 rounded-xl font-bold hover:bg-gray-50 dark:bg-white/5 transition-colors shadow-lg inline-block"
+                  >
                     Schedule a Call
-                  </button>
+                  </Link>
                 </div>
               </div>
               <div className="absolute top-0 right-0 w-64 h-64 bg-white dark:bg-[#2a1e15]/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
