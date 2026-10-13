@@ -210,19 +210,17 @@ const Footer = () => {
 
           {/* Licence / ABN + ASIC badge */}
           <div className="flex flex-wrap items-center gap-3">
-            {[
-              "ACL: 389087",
-              "Credit Rep: 580242",
-              "ABN: 74 690 727 247",
-            ].map((t) => (
-              <span
-                key={t}
-                className="flex items-center gap-1.5 text-[10px] text-white/40 font-semibold"
-              >
-                <Shield className="w-3 h-3 text-primary/70" />
-                {t}
-              </span>
-            ))}
+            {["ACL: 389087", "Credit Rep: 580242", "ABN: 74 690 727 247"].map(
+              (t) => (
+                <span
+                  key={t}
+                  className="flex items-center gap-1.5 text-[10px] text-white/40 font-semibold"
+                >
+                  <Shield className="w-3 h-3 text-primary/70" />
+                  {t}
+                </span>
+              ),
+            )}
           </div>
         </div>
 
@@ -231,6 +229,16 @@ const Footer = () => {
           Ownest Finance Pty Ltd operates under Australian Credit Licence 389087
           with Credit Representative 580242. This website does not constitute
           financial advice. Please read our Credit Guide before proceeding.
+        </p>
+        <p className="mt-10 text-center text-[10px] text-white/30 leading-relaxed">
+          Website Design & Development by{" "}
+          <Link
+            target="_blank"
+            href="https://guntassandhu.com"
+            className="text-white/60 hover:text-primary transition-colors"
+          >
+            Guntas Sandhu
+          </Link>
         </p>
       </div>
     </footer>
